@@ -19,9 +19,9 @@ if($_SESSION['login']){
 			
 		      //If success
 			echo $catname.' adlı kategori başarıyla eklendi.<script>
-			      $(".rfcat").load(location.href + " .rfcat");
-			      $(".rfcatl").load(location.href + " .rfcatl");
-			      $(".close").click();
+			      $(".categorylist").load(location.href + " .categorylist").end();
+			      $(".categorycollapselist").load(location.href + " .categorycollapselist");
+			      $(".addcategorym").click();
 			      </script>';
 		  }
 		  

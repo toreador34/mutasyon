@@ -16,21 +16,23 @@
 	      <h4 class="headers">
 		    {$_category}<a data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="float:right;color:#5cb85c"><i class="fa fa-pencil-square-o"></i></a>
 	      </h4>
-	      <ul id="accordion" class="accordion">
-		    <li class="link"><i class="fa fa-home"></i> <a href="stock.php">{$_all}</a></li>
-		    {foreach $categories as $ct}
-			  <li>
-				<div class="link"><i class="fa fa-home"></i> {$ct.category_name}<br /> <span class="catdetail">{$ct.category_detail}</span></div>
-				<ul class="submenu">
-				      {foreach $acategories as $kat}
-				      {if $ct.category_id == $kat.category_sub}
-					    <li class="relative"><i class="fa fa-caret-right"></i> <a href="?cid={$kat.category_id}">{$kat.category_name}</a><span class="catdetail">{$kat.category_detail}</span></li>
-				      {/if}
-				      {/foreach}
-				</ul>
-			  </li>
-		    {/foreach}
-	      </ul>
+	      <div class="categorylist">
+		    <ul id="accordion" class="accordion">
+			  <li class="link"><i class="fa fa-home"></i> <a href="stock.php">{$_all}</a></li>
+			  {foreach $categories as $ct}
+				<li>
+				      <div class="link"><i class="fa fa-home"></i> {$ct.category_name}<br /> <span class="catdetail">{$ct.category_detail}</span></div>
+				      <ul class="submenu">
+					    {foreach $acategories as $kat}
+					    {if $ct.category_id == $kat.category_sub}
+						  <li class="relative"><i class="fa fa-caret-right"></i> <a href="?cid={$kat.category_id}">{$kat.category_name}</a><span class="catdetail">{$kat.category_detail}</span></li>
+					    {/if}
+					    {/foreach}
+				      </ul>
+				</li>
+			  {/foreach}
+		    </ul>
+	      </div>
 	</div><!--/col-sm-3 margin-top relative-->
 	<div class="col-sm-9">
 	      <div class="row">
