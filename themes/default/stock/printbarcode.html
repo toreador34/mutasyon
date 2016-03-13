@@ -1,0 +1,29 @@
+<!--Print stock no-->
+<div class="collapse" id="printsn">
+      <div class="topwind">
+	    <div class="alert" style="overflow:hidden">
+		  <button type="button" class="close hidden-print" data-toggle="collapse" href="#printsn"><span aria-hidden="true">x</span></button>
+		  <h4 class="hidden-print">{$_print_barcode}</h4>
+		  <div class="prsnbody">
+			<table class="table">
+				<tbody>
+					<tr>
+					      <th>{$_stock_name}</th>
+					      <td>{$s.stock_name}</td>
+					</tr>
+					<tr>
+					      <th>{$_price}</th>
+					      <td>{$_currency} {$s.stock_price_out}</td>
+					</tr>
+				</tbody>
+			</table>
+			<img class="margin-top" alt="{$s.stock_no}" src="configs/barcode.php?size=70&text={$s.stock_no}" /><br />
+			<span id="barcode1">{$s.stock_name}</span>
+		  </div>
+		  <div class="margin-top hidden-print">
+		      <button class="btn btn-default printMe"><i class="fa fa-print"></i> {$_print}</button>
+		  </div>
+	    </div>
+      </div><!--topwind-->
+</div>
+<!--/Print stock no--> 

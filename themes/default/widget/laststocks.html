@@ -1,0 +1,17 @@
+<div class="panel">
+      <div class="panel-body">
+	  <div class="row">
+	      <div class="col-md-8">
+		  {if $screen == 'computer'}
+		  <div id="instocks"></div>
+		  {/if}
+	      </div>
+	      <div class="col-md-4">
+		  <h4 class="mbm">{$_last_stocks}</h4>
+		  {foreach $stlist as $ts}
+			{$ts.stock_name}
+		  {/foreach}
+	      </div>
+	  </div>
+      </div>
+</div> 

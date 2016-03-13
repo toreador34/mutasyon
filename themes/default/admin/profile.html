@@ -1,0 +1,49 @@
+<div class="panel">
+      <div class="panel-body">
+	  <div class="profile">
+	      <div style="margin-bottom: 15px" class="row">
+		  <div class="col-xs-12 col-sm-4 text-center">
+		      <figure>
+			    <img src="img/1-user.jpg" onError="this.onerror=null;this.src='img/user.png';" alt="" style="display: inline-block" class="img-responsive img-circle">
+			    <figcaption class="ratings">
+				  <span id="rating">
+					<p>
+					      
+					</p>
+				  </span>
+			    </figcaption>
+		      </figure>
+		  </div>
+		  <div class="col-xs-12 col-sm-8" style="text-align:center">
+		      <h2>{$admin_name}</h2>
+		      <strong>{$_old}:</strong> {$old}
+		      <strong>{$_city}:</strong> {$admin_city}
+		  </div>
+	      </div>
+	      <div class="row text-center divider">
+		  <div class="col-xs-12 emphasis">
+		      <div class="col-sm-6 col-xs-12">
+			    <h2><strong><span class="totalinv">{$countinv}</span></strong></h2>
+			    <small>{$_invoice}</small>
+		      </div>
+		      <div class="col-sm-6 col-xs-12">
+			    <h2><strong>{foreach $stock as $s}{$s.product}/{$s.in_stock}{/foreach}</strong></h2>
+			    <small>{$_stocks}</small>
+		      </div>
+		  </div>
+		  <div class="col-xs-12 margin-top">
+		      <div class="col-sm-6 col-xs-12">
+			    <a href="settings.php" class="btn btn-yellow btn-block">
+				<span class="fa fa-user"></span>&nbsp; {$_user}
+			    </a>
+		      </div>
+		      <div class="col-sm-6 col-xs-12">
+			    <a href="settings.php" class="btn btn-blue btn-block">
+				<span class="fa fa-gear"></span>&nbsp; {$_settings}
+			    </a>
+		      </div>
+		  </div>
+	      </div>
+	  </div>
+      </div>
+</div> 

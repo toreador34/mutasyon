@@ -1,0 +1,163 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+{foreach $stock as $stk}
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li><a href="stock.php">{$_stock_list}</a></li>
+    <li><a href="stock.php?cid={$stk.category_id}">{$stk.category_name}</a></li>
+    <li><a href="productdetail.php?sid={$stk.stock_id}">{$stk.stock_name}</a></li>
+    <li class="active">{$_edit}</li>
+  </ol>
+<!--/Breadcrumb-->
+    <div class="navbar well">
+	  <div class="col-sm-6"><!--add product-->
+		<form action="editproduct.php" method="post" id="editProductform">
+			<span class="number">1- {$_edit}</span><br />
+			<label class="margin-top">{$_stock_name}</label>
+			<input type="text" class="form-control epname" value="{$stk.stock_name}" name="product_name" />
+			<input type="hidden" class="form-control" value="{$stk.stock_id}" name="product_id" />
+			<label class="margin-top">{$_short_desc}</label>
+			<input type="text" class="form-control" value="{$stk.stock_short_detail}" name="short_desc" />
+			<label class="margin-top">{$_detail}</label>
+			<textarea type="text" class="form-control" id="editorpredit" name="product_detail">{$stk.stock_detail}</textarea>
+			<label class="margin-top">{$_stock_no}</label>
+			<input type="text" class="form-control epno" value="{$stk.stock_no}" name="product_no" />
+			<div class="navbar">
+			      <label class="margin-top">{$_category}</label>
+			      <select class="btn btn-default" style="width:100%" name="product_category">
+				    {foreach $category as $ct}
+					  <option value="{$ct.category_id}" {if $stk.stock_category_id == $ct.category_id}selected{/if}>{$ct.category_name}</option>
+				    {/foreach}
+			      </select>
+			</div>
+			<button class="btn btn-success margin-top" type="submit">{$_ok}</button>
+		</form>      
+	  </div><!--/add product-->
+	{/foreach}
+	<div class="col-sm-6"><!--add picture-->
+		<span class="number">2- {$_upload_images}</span><br />
+		<small>{$_click_del_images}<br />
+		<!--Thumb-->
+			<div class="navbar margin-top">
+			    {foreach $images as $image}
+				<div id="thumbimage">
+					<img src="{$main_img}/products/{$image.images_stock_id}/small/{$image.images_id}-small.jpg"  alt="" class="img-thumbnail" style="float:left;margin-left:10px" data-toggle="modal" data-target="#imagedel-{$image.images_id}" />
+				</div>
+<!-- Modal -->
+				  <div class="modal fade" id="imagedel-{$image.images_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				    <div class="modal-dialog" role="document">
+				      <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					  <h4 class="modal-title" id="myModalLabel">Silme Onayı</h4>
+					</div>
+					<form id="delimage" action="images.php" method="post">
+					  <div class="modal-body">
+						<label>{$_confirm_delete}</label>
+						<input type="hidden" name="id" value="{$image.images_id}" />
+					  </div>
+					  <div class="modal-footer">
+					    <button type="submit" class="btn pull-left">{$_delete}</button>
+					    <button type="button" class="btn btn-success pull-right" data-dismiss="modal" aria-label="Close">{$_cancel}</button>
+					  </div>
+					</form>
+				      </div>
+				    </div>
+				  </div>
+<!-- /Modal -->
+			    {/foreach}
+                        </div>
+		<!--/Thumb-->
+                <div class="form-group margin-top">
+		<div class="form-group">
+		      <form action="images.php" method="post" id="addimagesform" enctype="multipart/form-data">
+			    <input name="productimage[]" class="file" type="file" multiple />
+			    <input class="id"  type="hidden" name="addimagesid[]" multiple />
+		      </form>
+                </div>
+                </div>
+	</div><!--/add picture-->
+    </div>
+</div><!--/container-->
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+        tinymce.init({
+            selector: "#editorpredit"
+        });
+
+var id = $("input[name=product_id]").val();
+$(".id").val(id);
+
+//For edit product
+$("#editProductform").on('submit',(function(e) {
+	  tinyMCE.triggerSave();
+	  e.preventDefault();
+	  var formData = new FormData(this);
+	  $("div.work-inf").addClass("display-block");
+	  $("div.work-inf").html("<img src='img/load.gif' />");
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(e){
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(e);
+		  $("div.work-inf").fadeIn();
+		  setTimeout(function(){ location.reload(); }, 2000);
+		}
+	  });
+  }));
+
+//For add images
+$("#addimagesform").on('submit',(function(e) {
+	  e.preventDefault();
+	  var formData = new FormData(this);
+	  $("div.work-inf").addClass("display-block");
+	  $("div.work-inf").html("<img src='img/load.gif' />");
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(e){
+		  $("div.work-inf").empty(1000);
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(e);
+		  $("div.work-inf").fadeIn();
+		  setTimeout(function(){ location.reload(); }, 2000);
+		}
+	  });
+  }));
+  
+//For delete image
+$("#delimage").on('submit',(function(e) {
+	  e.preventDefault();
+	  var formData = new FormData(this);
+	  $("div.work-inf").addClass("display-block");
+	  $("div.work-inf").html("<img src='img/load.gif' />");
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(e){
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(e);
+		  $(".close").click();
+		  setTimeout(function(){ location.reload(); }, 2000);
+		}
+	  });
+  }));
+
+// End of function
+});
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Mutasyon</title>
+
+    <!-- Bootstrap -->
+   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{$css}/bootstrap.min.css">
+    <link rel="stylesheet" href="{$css}/font-awesome.min.css">
+    <link rel="stylesheet" href="{$css}/fileinput.min.css">
+    <link rel="stylesheet" href="{$css}/chosen.min.css">
+    <link rel="stylesheet" href="{$css}/style.css">
+    <link rel="stylesheet" href="{$css}/jquery-ui.css">
+    <link rel="stylesheet" href="{$css}/main.css">
+    <link rel="stylesheet" href="{$css}/jqx.base.css">
+    {if $page_name==settings}
+      <link rel="stylesheet" href="{$css}/settings.css">
+    {/if}
+    {if $page_name==stock}
+      <link rel="stylesheet" href="{$css}/menu.css">
+    {/if}
+    {if $screen == 'phone'}
+      <link rel="stylesheet" href="{$css}/mobile.css">
+    {/if}
+  </head>
+  <body>
+<!--   Top Menu -->
+    <div class="container top_container hidden-print">
+    <div class="nav"><!-- Row Start -->
+	 <div class="col-md-1 col-sm-6 padding">
+		{if $screen == 'computer'}
+		      <a href="index.php"><img src="{$main_img}/logo1.png" style="margin-top: -15px;" /></a>
+		{/if}
+	</div>
+	 <div class="col-md-6 col-sm-6 headmenu">
+		{include file='themes/default/header/topmenu.html'}
+	 </div>
+	 {if $screen == 'computer'}
+		<div class="col-md-3 hidden-sm hidden-xs padding">
+			  <div class="col-lg-12">
+				  {include file='themes/default/header/search.html'}
+			  </div>
+		</div>
+		<div class="col-md-2 hidden-sm hidden-xs padding">
+			<div class="col-md-4"><img class="user-img" src="img/1-user.jpg" onError="this.onerror=null;this.src='img/user.png';" /></div>
+			<div class="col-md-8">
+				<div class="dropdown user-name">
+					<button class="btn btn-link dropdown-toggle" type="button" id="settingmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{$admin_name}<span class="caret"></span></button>
+					<ul class="dropdown-menu" aria-labelledby="settingmenu">
+						<li><a href="settings.php">{$_settings}</a></li>
+						<li><a href="logout.php">{$_logout}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	 {/if}
+     </div><!-- Row Finish -->
+    </div>
+    <div  {if $screen == 'phone'}style="margin-top:50px"{/if}></div>

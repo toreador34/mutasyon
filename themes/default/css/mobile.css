@@ -1,0 +1,12 @@
+.container{
+  padding-left:3px;
+  padding-right:3px;
+  overflow-x:hidden;
+}
+.navbar-header{
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+.nav{
+  padding-left:5px;
+} 

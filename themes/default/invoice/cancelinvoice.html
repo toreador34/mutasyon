@@ -1,0 +1,65 @@
+<div class="collapse topwind" id="cancelinvoice">
+      <div class="panel panel-pink" style="background:#fff">
+	      <button type="button" class="close" data-toggle="collapse" href="#cancelinvoice" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_cancel_invoice}</div>
+	      <div class="panel-body pan">
+		   <form id="paymentform" action="cancelinvoice.php" method="POST" class="reload">
+			    <div class="form-body pal">
+					      <div class="col-md-12">
+						    <div class="form-group">
+							<label for="inputName" class="control-label">{$_refund}</label>
+							<div class="input-icon right">
+							    <i class="fa fa-credit-card"></i>
+							    <input type="number" name="refund" class="form-control refund" step="0.01" autocomplete="off" />
+							    <input type="hidden" name="invoiceid" value="{Check::getValue("iid")}" class="form-control" />
+							    <input type="hidden" name="paycancdesc" class="form-control" />
+						      </div>
+						    </div>
+						</div>
+						<div class="col-sm-12">
+						      <label class="margin-top">{$_payment_type}</label>
+						      <div class="input-group input-group-sm servicetype">
+							    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addpaytype" aria-expanded="false" title="{$_add_paytype}"><i class="fa fa-plus"></i></a></span>
+							    <select class="form-control" name="paytype">
+								  <option value="empty"></option>
+								  {foreach $paytype as $typ}
+									  <option value="{$typ.paytype_id}">{$typ.paytype_name}</option>
+								  {/foreach}
+							    </select>
+						      </div>
+						</div>
+						<div class="col-md-12">
+						      <div class="form-group">
+							  <label for="inputWebsite" class="control-label">{$_date}</label>
+							  <div class="input-icon right">
+							      <i class="fa fa-calendar"></i>
+							      <input type="date" class="form-control margin-top cidate" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}" style="font-size: 11px;">
+							  </div>
+						      </div>
+						</div>
+						<div class="col-md-12">
+						    <div class="form-group">
+							<label for="inputEmail" class="control-label">{$_cancel_due}</label>
+							<div class="input-icon right">
+							    <textarea class="form-control cidue" row="3" name="cancdue"></textarea>
+							</div>
+						    </div>
+						</div>
+						<div class="col-md-12">
+						    <div class="form-group">
+							<label for="inputWebsite" class="control-label">
+							      {$_password} <i class="fa fa-question-circle" title="{$_why_password_write}"></i>
+							</label>
+							<div class="input-icon right">
+							    <input type="password" name="password" class="form-control cipasswd" />
+							</div>
+						    </div>
+						</div>
+						<div class="form-actions text-right pal">
+						      <button type="submit" class="btn btn-info btn-xs margin-top">{$_payment}</button>
+						</div>
+			    </div>
+		    </form>   
+	      </div><!--panel-body pan-->
+      </div>
+</div>

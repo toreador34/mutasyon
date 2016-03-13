@@ -1,0 +1,194 @@
+<div class="btn btn-primary" data-toggle="collapse" href="#addseller" aria-expanded="false">{$_addseller}</div>
+ <div class="collapse" id="addseller" style="position:relative">
+	<table class="table table-striped" id="dev-table">
+	      <fieldset class="addsellerField">
+		<form  class="reload" action="seller.php" method="POST">
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_seller_name}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_seller_name}" class="form-control" name="sellerName">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_no}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_no}" class="form-control" name="selleriban">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_tel}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_tel}" class="form-control" name="sellerTel">
+		      </div>
+		    </div>
+		    		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_address}</label>
+		      <div class="col-sm-8">
+			<input type="textarea" placeholder="{$_address}" class="form-control" name="sellerAddress">
+		      </div>
+		    </div>
+		    		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_web}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_web}" class="form-control" name="sellerweb">
+		      </div>
+		    </div>
+		    		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_email}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_email}" class="form-control" name="sellermail">
+		      </div>
+		    </div>
+		    		    
+		    <div class="form-group">
+		      <div class="col-sm-offset-2 col-sm-10">
+			<div class="pull-right">
+			  <button type="submit" class="btn btn-primary margin-top" id="submit">{$_ok}</button>
+			</div>
+		      </div>
+		    </div>
+		</form>
+	      </fieldset>
+	</table>
+</div>
+{foreach $seller as $slr}
+<table class="table table-striped margin-top">
+	<tr>
+	  <td style="width:30%">{$_seller_name}</td>
+	  <td>
+		<a class="btn btn-info" role="button" data-toggle="collapse" href="#seller-{$slr.seller_id}" aria-expanded="false" aria-controls="seller" style="width:100%">
+		  {$slr.seller_name}
+		</a>
+		<div class="collapse" id="seller-{$slr.seller_id}" style="position:relative">
+			<table class="table table-striped" id="dev-table">
+			
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Satıcı Adı</th>
+						<th>IBAN</th>
+						<th>Adres</th>
+						<th>Telefon</th>
+					</tr>
+				</thead>
+				<tbody>
+				      
+					<tr>
+						<td><a href=#>{$slr.seller_id}</a></td>
+						<td><a href=#>{$slr.seller_name}</a></td>
+						<td><a href=#>{$slr.seller_iban}</a></td>
+						<td><a href=#>{$slr.seller_address}</a></td>
+						<td><a href=#>{$slr.seller_tel}</a></td>
+					</tr>
+					
+				</tbody>
+				
+			</table>
+			<span class="edit-bank"><button class="btn btn-default btn-xs" data-toggle="modal" data-target="#sellerInf-{$slr.seller_id}">Düzenle</button></span>
+			<span class="edit-bank"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#sellerdel-{$slr.seller_id}" style="margin-left: -89px">Sil</button></span>
+		</div>
+	  </td>
+	</tr>
+</table> 
+
+
+ <!-- Edit Modal -->
+      <div class="modal fade" id="sellerInf-{$slr.seller_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">{$_seller_inf_edit}</h4>
+	    </div>
+	    <form action="seller.php" method="post" class="reload">
+		  <div class="modal-body">
+				    <fieldset>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_seller_name}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_name}" class="form-control" name="seller_name">
+					  <input type="text" value="{$slr.seller_id}" class="form-control" name="seller_id" style="display:none">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_iban}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_iban}" class="form-control" name="seller_iban">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_address}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_address}" class="form-control" name="seller_address">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_tel}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_tel}" class="form-control" name="seller_tel">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_email}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_mail}" class="form-control" name="seller_mail">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_web}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$slr.seller_web}" class="form-control" name="seller_web">
+					</div>
+				      </div>
+				      
+				      <div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					  <div class="pull-right">
+					    <button type="submit" class="btn btn-primary">{$_form_sent}</button>
+				          </div>
+				        </div>
+				      </div>
+		  </div><!--/modal-body -->
+	    </form>
+	  </div>
+	</div>
+      </div>
+  <!-- Modal -->
+  
+ <!-- Delete Modal -->
+      <div class="modal fade" id="sellerdel-{$slr.seller_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">{$_seller_inf_edit}</h4>
+	    </div>
+	    <form action="seller.php" method="post" class="reload">
+		  <div class="modal-body">
+		  <div class="alert alert-danger">{$slr.seller_name} isimli satıcıyı silmek istediğinize emin misiniz?</div>
+		  <input type="hidden" value="{$slr.seller_id}" name="delsellerid"></input>
+		  <button type="submit" class="btn btn-danger">{$_delete}</button>
+		  </div><!--/modal-body -->
+	    </form>
+	  </div>
+	</div>
+      </div>
+  <!-- Modal -->
+{/foreach}

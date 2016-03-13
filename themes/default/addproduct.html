@@ -1,0 +1,121 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+    <div class="navbar">  
+	<form action="addproduct.php" method="post" enctype="multipart/form-data" class="addProduct">
+	      <div class="well one"><!--add product-->
+		    <span class="number">1- {$_add_stock}</span><br />
+		    <label class="margin-top">{$_stock_name}</label>
+		    <input type="text" class="form-control name" placeholder="{$_add_stock}" name="product_name">
+		    <label class="margin-top">{$_short_desc}</label>
+		    <input type="text" class="form-control shortdesc" placeholder="{$_short_desc}" name="short_desc">
+		    <label class="margin-top">{$_desc}</label>
+		    <textarea type="text" class="form-control" placeholder="{$_desc}" id="editor" name="product_detail"></textarea>
+		    <label class="margin-top">{$_stock_no}</label>
+		    <input type="text" class="form-control no" placeholder="{$_stock_no}" name="product_no">
+		    <div class="row" style="padding:15px;">
+			    <label>{$_category}</label>
+			    <div class="input-group input-group-sm category">
+				  <span class="input-group-addon btn btn-yellow" id="sizing-addon3" data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="color: #fff;"><i class="fa fa-plus"></i> {$_add_category}</span>
+				  <select class="form-control" name="product_category">
+					<option value="empty"></option>
+					{foreach $category as $ct}
+						<option value="{$ct.category_id}">{$ct.category_name}</option>
+					{/foreach}
+				  </select>
+			    </div>
+		    </div>
+		    <button class="btn btn-success margin-top send" type="submit">{$_save}</button>
+	      </div><!--/add product-->
+	</form>
+	<div class="well two display-none"><!--add picture-->
+		<span class="number">2- {$_upload_images}</span>
+                <div class="form-group margin-top">
+		<div class="form-group">
+		      <form action="images.php" method="post" id="addimagesform" enctype="multipart/form-data">
+			      <input name="productimage[]" class="file" type="file" multiple />
+			      <input name="newproductname[]" class="stname" type="hidden" />
+		      </form>
+                </div>
+                </div>
+	</div><!--/add picture-->
+    </div>
+</div><!--/container-->
+
+
+<!--Add Seller Modal-->
+<div class="collapse topwind" id="addcategory">
+  <div class="well">
+  <button type="button" class="close" data-toggle="collapse" href="#addcategory"><span aria-hidden="true">×</span></button>
+  <h4 class="headers" style="">{$_add_category}</h4>
+  <form action="addcategory.php" type="post" class="noload">
+      <input type="text" placeholder="{$_category_name}" name="catname" class="form-control" />
+      <input type="text" placeholder="{$_category_detail}" name="catdetail" class="form-control margin-top" />
+      <select name="subcat" class="margin-top form-control">
+	<option value="0">{$_main_category}</option>
+	{foreach $categories as $ct}
+	    <option value="{$ct.category_id}">{$ct.category_name}</option>
+	{/foreach}
+      </select>
+      <button type ="submit" class="btn btn-info btn-sm margin-top"><i class="glyphicon glyphicon-ok"></i>{$_add_category}</button>
+  </form>
+</div>
+</div>
+<!--/Add Seller Modal-->
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+        tinymce.init({
+            selector: "#editor"
+        });
+        
+$(".addProduct").on('submit',(function(e) {
+	  tinyMCE.triggerSave();
+	  e.preventDefault();
+	  var formData = new FormData(this);
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(e){
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(e);
+		}
+	  });
+  }));
+  
+//Add images
+//For add images
+$("input[name='product_name']").change(function(){
+    var stname = $("input[name='product_name']").val();
+    $(".stname").val(stname);
+});
+
+$("#addimagesform").on('submit',(function(e) {
+	  e.preventDefault();
+	  var formData = new FormData(this);
+	  $("div.work-inf").addClass("display-block");
+	  $("div.work-inf").html("<img src='img/load.gif' />");
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(e){
+		  $("div.work-inf").empty(1000);
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(e);
+		  $("div.work-inf").fadeIn();
+// 		  setTimeout(function(){ location.reload(); }, 2000);
+		}
+	  });
+  }));
+
+
+// End of function
+});
+</script>

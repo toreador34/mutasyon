@@ -1,0 +1,141 @@
+{include file='themes/default/header.html'}
+{foreach $customer as $row}
+<div class="container body-bg">
+     <div class="row col-sm-offset-3 customer-detail padding">
+	 <div class="col-xs-12 col-sm-8 col-md-8">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="{$main_img}/customers/{$row.cust_id}.png" alt="" class="img-rounded img-responsive" onError="this.onerror=null;this.src='img/user.png';" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>{$row.cust_name}</h4>
+                        <small><cite title="{$row.cust_address}">{$row.cust_address}<i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i>{$row.cust_mail}
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.gozdesm.com">{$row.cust_web}</a>
+                            <br />
+                            <i class="glyphicon glyphicon-earphone"></i>{$row.cust_tel}
+                        </p>
+                        <a href="addinvoice.php?cid={$row.cust_id}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>{$_add_invoice}</a>
+                        <a class="btn btn-default" data-toggle="collapse" href="#{$row.cust_id}" aria-expanded="false" aria-controls="collapseExample"><i class="glyphicon glyphicon-ok"></i>{$_inf_edit}</a>
+			    <div class="collapse" id="{$row.cust_id}">
+			      <div class="well">
+				{include file='themes/default/editcustomer.html'}
+			      </div>
+			    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div><!--/row col-sm-offset-3 customer-detail-->
+     <div class="row panel">
+	  <div class="container" style="padding-bottom: 10px;">
+		  <div class="panel panel-default filterable">
+		    <div class="panel-heading">
+			<h3 class="panel-title">Son 10 Kayıt</h3>
+			<div class="pull-right">
+			    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+			</div>
+		    </div>
+		    <div {if $screen == 'phone'} style="overflow:auto" {/if}>
+				<table class="table">
+				    <thead>
+					<tr class="filters">
+					    <th><input type="text" class="form-control" placeholder="{$_no}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_desc}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_customer}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_user}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_bank}/{$_providers}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_pay}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_remain}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_date}" disabled></th>
+					    <th><input type="text" class="form-control" placeholder="{$_detail}" disabled></th>
+					</tr>
+				    </thead>
+				    <tbody>
+				      {foreach $invoice as $inv}
+					  <tr {if $inv.invoice_cancelled==1} style="text-decoration: line-through;color:gray" {/if}>
+						<td>
+						<a class="label {if ($inv.paytotal)<($inv.invtotal-$inv.invoice_discount)}label-warning{else if $inv.invoice_cancelled == 1}label-danger{else if $inv.invoice_providers != 0 and $inv.insertedservice_price == NULL}label-violet{else}label-success{/if} invoice-status" href="invoicedetail.php?{if $inv.invoice_providers != 0}seid{else}iid{/if}={$inv.invoice_id}">{$inv.invoice_no}</a>
+						</td>
+						<td style="font-size:11px">{$inv.invoice_description}</td>
+						<td><a href="custdetail.php?cid={$inv.invoice_customer_id}">{$inv.cust_name}</a></td>
+						<td><a href="settings.php">{$inv.name_surname}</a></td>
+						<td>
+						      {if $inv.bank_name != NULL}
+							    <a href="settings.php">{$inv.bank_name}</a>
+						      {else if $inv.providers_name != NULL}
+							    <a href="#">{$inv.providers_name}</a>
+						      {else}
+							    <a href="#">{$company_name}</a>
+						      {/if}
+						</td>
+						<td>
+						      <a href="payments.php">
+							    <span>{$_currency}</span>
+							    {if $inv.invoice_providers == 0}
+								  {if $inv.paytotal== ""}
+									0
+								  {else}
+									{$inv.paytotal}
+								  {/if}
+							    {else}
+								  {if $inv.payservtotal== ""}
+									0
+								  {else}
+									{$inv.payservtotal}
+								  {/if}
+							    {/if}
+						      </a>
+						</td>
+						<td>
+						      <span>{$_currency}</span>
+						      {if $inv.invoice_providers == 0}
+							    {($inv.invtotal - $inv.invoice_discount- $inv.paytotal)|number_format:2:".":""}
+						      {else}
+							   {($inv.servtotal - $inv.invoice_discount- $inv.payservtotal)|number_format:2:".":""}
+						      {/if}
+						</td>
+						<td>{$inv.invoice_date}</td>
+						<td>
+						    <i class="glyphicon glyphicon-envelope" style="margin-right: 5px;font-size: 17px;" title="E-posta olarak yolla"></i>
+						    <i class="glyphicon glyphicon-file" style="margin-right: 5px;font-size: 17px;color: #d9534f" title="PDF olarak göster"></i>
+						    <i class="glyphicon glyphicon-save" alt="E-posta olarak yolla" title="Bilgisayarıma indir"></i>
+						</td>
+					    </tr>
+				      {/foreach}
+				    </tbody>
+				</table>
+			  </div>
+		</div>
+		<span class="label label-danger invoice-status" style="margin-left:15px">{$_invoice_cancel}</span>
+		<span class="label label-warning invoice-status">{$_invoice_not_paid}</span>
+		<span class="label label-success invoice-status">{$_invoice_paid}</span>
+		<span class="label label-violet invoice-status">{$_invoice_wait}</span>
+	  </div>
+     </div><!--/row panel--> 
+</div><!--/container-->
+{/foreach}
+{include file='themes/default/footer.html'} 
+<script>
+$(function(){
+
+  // Add Customer
+  $("#name").on("input", function(event){
+    var custName = $("#name").val();
+    if(custName == "" || custName == null){
+      $("#name").addClass("alert-danger");
+    }
+    else{
+      $("#name").removeClass("alert-danger");
+      $("#name").addClass("alert-success");
+      $("div.work-inf").empty();
+    }
+  });
+
+// End of function
+});
+</script>

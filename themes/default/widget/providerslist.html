@@ -1,0 +1,57 @@
+<!-- Bank Lists -->
+<div class="margin-top panel">
+	<div class="portlet-header border-bottom invoice-icon">
+	     <span class="pull-right addevent" style="margin-right:10px;" data-toggle="collapse" href="#addproviders"><i class="fa fa-plus-square"></i></span>
+	    <i class="glyphicon glyphicon-home" style="font-size: 20px"></i>
+	    <span class="invoice-header">{$_providers}</span>
+	</div>
+	<div id="bank" class="row1 last-customer-list" {if $screen == 'phone'} style="overflow:auto" {/if}>
+		<div class="providers">
+		      <table class="table table-hover" id="dev-table">
+			    <thead>
+				  <th>{$_providers}</td>
+				  <th><i class="fa fa-money"></i> {$_total}</td>
+				  <th><i class="fa fa-credit-card"></i> {$_paid}</td>
+				  <td></td>
+			    </thead>
+			    {foreach $providerslist as $pl}
+			    <tbody>
+				    <tr><!-- List Start -->
+					    <td><a href="#">{$pl.providers_name}</a></td>
+					    <td>
+						<a href="payments.php">
+						    <span>{$_currency}</span>
+						    {if $pl.total == NULL}
+							<span>0</span>
+						    {else}
+							<span>{($pl.total)|number_format:2:".":""}</span>
+						    {/if}
+						</a>
+					    </td>
+					    <td>
+						<a href="payments.php">
+						    <span>{$_currency}</span>
+						    {if round(($pl.pp_price),2) == NULL}
+							<span>0</span>
+						    {else}
+							<span>{($pl.paytotal)|number_format:2:".":""}</span>
+						    {/if}
+						</a>
+					    </td>
+					    <td>
+						  {if (($pl.paytotal)|number_format:2:".":"") == (($pl.total)|number_format:2:".":"")}
+						      <span><i class="fa fa-check-square colorGreen"></i></span>
+						  {else}
+						      <span><i class="fa fa-exclamation-triangle colorRed"></i></span>
+						  {/if}
+					    </td>
+				    </tr><!-- List Finish -->
+			    </tbody>
+			    {/foreach}
+		      </table>
+		</div>
+	</div><!-- /row1 -->
+</div>
+<!-- /Bank Lists --> 
+
+{include file='themes/default/providers/addproviders.html'}

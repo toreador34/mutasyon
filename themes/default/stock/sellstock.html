@@ -1,0 +1,87 @@
+<!-- Modallar  -->
+<div class="collapse topwind" id="sellstock">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close sellstockm" data-toggle="collapse" href="#sellstock" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_sale}</div>
+	      <div class="panel-body pan">
+		      <form class="reload" action="addinvoice.php" method="POST">
+			    <div class="form-body pal">
+				    <div class="navbar">
+					 <div class="col-md-12">
+					      <div class="form-group">
+						  <div class="input-icon right">
+						      <span style="font-size:20px;font-weight:bold">{$_total}: {$_currency}<span class="totalinv">{if $page_name == "productdetail"}{$s.stock_price_out}{/if}</span></span>
+						      <input type="hidden" name="price[]" id="price" {if $page_name == "productdetail"}value="{$s.stock_price_out}"{/if} />
+						      <input type="hidden" name="totalinv" {if $page_name == "productdetail"}value="{$s.stock_price_out}"{/if} />
+						      <input type="hidden" name="productname[]" {if $page_name == "productdetail"}value="{$s.stock_name}"{/if} />
+						</div>
+					      </div>
+					  </div> 
+					 <div class="col-md-12">
+					      <div class="form-group">
+						  <div class="input-icon right">
+						      <i class="fa fa-credit-card"></i>
+						      <input type="number" name="amount[]" class="form-control amount" autocomplete="off" placeholder="{$_amount}" value="1" />
+						</div>
+					      </div>
+					  </div> 
+					 <div class="col-md-12">
+					      <div class="form-group">
+						  <div class="input-icon right">
+						      <i class="fa fa-credit-card"></i>
+							  <input id="discount" type="number" class="form-control" name="discount1" step="0.01" autocomplete="off" placeholder="{$_discount}" value="0" />
+						  </div>
+					      </div>
+					  </div> 
+					 <div class="col-md-12">
+					      <div class="form-group">
+						  <label class="margin-top">{$_desc}</label>
+						  <div class="input-icon right">
+						      <i class="fa fa-credit-card"></i>
+							  <textarea rows="4" class="form-control invdesc" type="textarea" name="desc1"></textarea>
+						</div>
+					      </div>
+					  </div> 
+					  <div class="col-md-12">
+						<div class="form-group">
+						    <label for="inputWebsite" class="control-label">{$_customer}</label>
+						    <div class="input-group input-group-sm customer">
+							  <span class="input-group-addon"><a data-toggle="collapse" href="#adduser" aria-expanded="false" title="{$_addcustomer}"><i class="fa fa-plus"></i></a></span>
+							  <select class="form-control custid" name="custid1">
+								<option value="empty"></option>
+							      {foreach $customers as $c}
+								  <option value="{$c.cust_id}">{$c.cust_name}</option>
+							      {/foreach}
+							  </select>
+						    </div>
+						</div>
+					  </div>
+					  <div class="col-md-12">
+					      <div class="form-group">
+						  <label for="inputWebsite" class="control-label">{$_invoiceadj}</label>
+						  <div class="input-group input-group-sm tax">
+							<span class="input-group-addon"><a data-toggle="collapse" href="#addtax" aria-expanded="false" title="{$_add_tax}"><i class="fa fa-plus"></i></a></span>
+							<select class="form-control invoiceadj" style="width:100%" name="adjp1">
+							      <option value="empty"></option>
+							    {foreach $invoiceadj as $adj}
+								<option value="{$adj.invoiceadj_name}">{$adj.invoiceadj_name}</option>
+							    {/foreach}
+							</select>
+						  </div>
+					      </div>
+					  </div>
+					  <div class="col-md-12">
+						<div class="form-group">
+						    <label for="inputWebsite" class="control-label">{$_date}</label>
+						    <div class="input-icon right">
+							  <input type="date" class="form-control" name="date1" value="{$smarty.now|date_format:'%Y-%m-%d'}" />    
+						    </div>
+						</div>
+					  </div>
+				    </div><!--/row-->
+				    <button type="submit" class="btn btn-info btn-xs margin-top">{$_sale}</button>
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

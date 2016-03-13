@@ -1,0 +1,102 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li><a href="payments.php">{$_payment_history}</a></li>
+    <li class="active">{$_receipt}</li>
+  </ol>
+<!--/Breadcrumb-->
+      <div class="col-xs-12 margin-top">
+	    {foreach $invoiceid as $i}
+	    <div class="col-xs-12" style="background:#fff;">
+		  <div class="row">
+		  <div class="pull-right hidden-print" style="padding-right:5px;padding-top:5px">
+			<a href="javascript:if(window.print)window.print()" class="btn btn-green"><i class="fa fa-print"></i>&nbsp;{$_print}</a>
+			<a href="?epid={$i.payment_id}" class="btn btn-blue"><i class="fa fa-edit"></i>&nbsp;{$_edit}</a>
+                  </div>
+			<div class="col-sm-8 col-xs-12">
+			      <div class="col-sm-6 col-xs-10"><img src="{$main_img}/logo.jpg" style="width:100%" /></div>
+			</div>
+			<div class="col-sm-4 col-xs-12">
+				    <h3 class="box-heading">{$_receipt}</h3>
+				    <span style="font-size:14px">{$i.payment_date}</span>
+			</div>
+		  </div>
+		  <div class="row margin-top">
+			<div class="col-sm-8"><span class="compname">{$_company} : </span> <span class="compname1">{$compname}</span></div>
+			<div class="col-sm-4">
+			      <div class="note note-info">
+				    <h4 class="box-heading">{$_desc}</h4>
+				    {$i.payment_desc}
+			      </div>
+			      <table class="table table-hover table-bordered">
+				    <tr>
+					  <td class="active" style="width:40%">{$i.paytype_name}</td>
+					  <td style="width:60%"><span>{$_currency}</span>{$i.payment_amount}</td>
+				    </tr>
+			      </table>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-xs-12"{if $screen == 'phone'} style="overflow:auto" {/if}>
+			      <table class="table table-bordered">
+				    <thead>
+					  <tr class="active">
+						<th>{$_bank}</th>
+						<th>{$_branch}</th>
+						<th>{$_no}</th>
+						<th>{$_check_no}</th>
+						<th>{$_expiry}</th>
+						<th>{$_price}</th>
+					  </tr>
+				    </thead>
+				    <tbody>
+					  <tr style="height:50px">
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><span>{$_currency}</span>{$i.payment_amount}</td>
+					  </tr>
+				    </tbody>
+			      </table>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-xs-12">
+			      <table class="table table-hover table-bordered">
+				    <tr style="height:80px">
+					  <td style="width:50%">
+						<strong>{$_only}</strong>
+						{sayiyiYaziyaCevir($i.payment_amount,2,"TL","Kr","#",null,null,null)} alınmıştır.
+					  </td>
+					  <td style="width:25%;text-align:center">
+						<strong>{$_paying}</strong><br />
+						{if $i.cust_name != ""}
+						      {$i.cust_name}
+						{else}
+						      {$admin_name}
+						{/if}
+					  </td>
+					  <td style="width:25%;text-align:center">
+						<strong>{$_who_charged}</strong><br />
+						{if $i.cust_name != ""}
+						      {$admin_name}
+						{else if $i.payment_seller_id != NULL}
+						      {$i.seller_name}
+						{else}
+						      {$i.providers_name}
+						{/if}
+					  </td>
+				    </tr>
+			      </table>
+			</div>
+		  </div>
+	    </div>
+	    {/foreach}
+      </div>
+</div><!--/container-->
+
+{include file='themes/default/footer.html'}

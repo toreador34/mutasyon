@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$_setup_header}</title>
+    <link rel="stylesheet" href="{$css}/bootstrap.min.css">
+    <link rel="stylesheet" href="{$css}/font-awesome.min.css">
+    <link rel="stylesheet" href="{$css}/style.css">
+  </head>
+  <body>
+    <div class="container top_container hidden-print">
+	    <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
+		  <div class="container">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+		      </button>
+		      <div class="navbar-header">
+		      <a class="navbar-brand" href="#">{$_setup_header}</a>
+		  </div>
+		  <div class="pull-right" style="margin-top:10px;">
+			<span><a href="lang.php?lang=tr">Türkçe</a></span>
+			<span style="margin-left:10px;"><a href="lang.php?lang=en">English</a></span>
+		  </div>
+	    </nav>
+    <div class="container" style="margin-top:52px;">
+	  <div class="col-xs-12">
+		<div class="col-sm-4 hidden-xs">
+		      <div class="box">
+			  <div class="box-content">
+			      <div class="import">
+				    {if $baglanti == 1}
+					  <h2>{$_connect_success}</h2>
+					  <div class="alert alert-info">
+						<label>{$_for_install}</label><p>{$_for_install_i}</p>
+					  </div>
+					  <div class="alert alert-danger">
+						<label>{$_for_copy_db}</label><p>{$_for_copy_db_i}</p>
+					  </div>
+				    {else}
+					  <h2>{$_connect_error}</h2>
+					  <div class="alert alert-danger">
+						<label>{$_error}</label><p>{$_error_i}</p>
+					  </div>
+				    {/if}
+			      </div>
+			      <div class="addinfo" style="display:none">
+				    <h2>{$_connect_success}</h2>
+				    <div class="alert alert-info">
+					  <label>{$_for_inf}</label><p>{$_for_inf_i}</p>
+				    </div>
+				    <div class="alert alert-danger">
+					  <label>{$_for_password}</label><p>{$_for_password_i}</p>
+				    </div>
+			      </div>
+			  </div>
+		      </div>
+		</div>
+		<div class="col-sm-8 col-xs-12">
+			<div class="import">
+			      {if $baglanti == 1}
+				    <h1>{$_start_setup}</h1>
+				    <form action="insertdb.php" method="POST" class="noload">
+					  <input type="hidden" name="sserver" value="{$servername}" />
+					  <input type="hidden" name="sdbname" value="{$dbname}" />
+					  <input type="hidden" name="susername" value="{$username}" />
+					  <input type="hidden" name="spassword" value="{$dbpasword}" />
+					  <textarea type="hidden" name="config" readonly style="margin: 0px; width: 648px; height: 308px;">
+<?php
+//  Db Connection
+// DB
+/** Veritabani Bilgileri **/
+define('_DB_SERVER_', '{$servername}');
+define('_DB_NAME_', '{$dbname}');
+define('_DB_USER_', '{$username}');
+define('_DB_PASSWD_', '{$dbpasword}');
+define('_DB_PREFIX_', '');
+define('_MYSQL_ENGINE_', 'InnoDB');
+$user = _DB_USER_;
+$password = _DB_PASSWD_;
+try {
+    $db = new PDO('mysql:host='._DB_SERVER_.';dbname='._DB_NAME_.'', $user , $password);
+	$db->query("SET CHARACTER SET utf8");
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
+
+// For Login
+if(isset($_SESSION['login'])){
+		$success = '';
+		$login = $_SESSION["username"];
+		$admin_inf = $db->query('SELECT * FROM admin Where email = "'.$login.'"');
+		foreach ($admin_inf as $row)
+		{
+		  $admin_id = $row['admin_id'];
+		  $admin_email = $row['email'];
+		  $admin_name = $row['name_surname'];
+		  $admin_username = $row['username'];
+		  $admin_city = $row['city'];
+		  $admin_old = $row['old'];
+		  $admin_password = $row['password'];
+		}
+		
+		$old = date('Y')-$admin_old;
+
+//Connect language for get active language
+  $language = $db->query("SELECT * FROM language WHERE language_active = 1");
+  $languages = $db->query("SELECT * FROM language");
+  
+  foreach($language as $langs)
+  {
+    $lang = $langs["language_name"];
+  }
+
+$smarty->assign(array(
+	  "admin_city"	 	=> $admin_city,
+	  "admin_email" 	=> $admin_email,
+	  "admin_id" 		=> $admin_id,
+	  "admin_name" 		=> $admin_name,
+	  "admin_old" 		=> $admin_old,
+	  "admin_password" 	=> $admin_password,
+	  "admin_username" 	=> $admin_username,
+	  "languages" 		=> $languages,
+	  "old" 		=> $old,
+
+));
+
+}
+?>
+					  
+					  </textarea><br /><br />
+					  <button type="submit" class="btn btn-success">{$_start_setup}</button>
+				    </form>
+			      {/if}
+			</div>
+			<div class="addinfo" style="display:none">
+			      <h1>{$_your_infs}</h1>
+			      <form action="writeinfo.php" method="POST" class="noload">
+				    <div class="form-group">
+					  <label >{$_email} *</label>
+					  <input type="email" class="form-control" name="email" />
+				    </div>
+				    <div class="form-group">
+					  <label >{$_password} *</label>
+					  <input type="text" class="form-control" name="password" />
+				    </div>
+				    <div class="form-group">
+					  <label >{$_user_name} *</label>
+					  <input type="text" class="form-control" name="username" />
+					  <input type="hidden" name="sserver" value="{$servername}" />
+					  <input type="hidden" name="sdbname" value="{$dbname}" />
+					  <input type="hidden" name="susername" value="{$username}" />
+					  <input type="hidden" name="spassword" value="{$dbpasword}" />
+				    </div>
+				    <div class="form-group">
+					  <label >{$_name_surname} *</label>
+					  <input type="text" class="form-control" name="namesurname" />
+				    </div>
+				    <div class="form-group">
+					  <label >{$_city}</label>
+					  <input type="text" class="form-control" name="city" />
+				    </div>
+				    <div class="form-group">
+					  <label >{$_date}</label>
+					  <input type="date" class="form-control" name="old" />
+				    </div>
+				    <button type="submit" name="datebase" class="btn btn-success">{$_send_infs}</button>
+			      </form>
+			</div>
+			
+		</div>
+	  </div>
+    </div>
+    <div class="work-inf alert alert-info" style="display:none"></div>
+  </body>
+  {include file='themes/default/footer.html'}
+</html>

@@ -1,0 +1,166 @@
+{include file='themes/default/header.html'} 
+<div class="container body-bg">
+    <!--Breadcrumb-->
+      <ol class="breadcrumb hidden-print">
+	<li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+	{if !Check::getValue(cid)}
+	      <li class="active">{$_stock_list}</li>
+	{/if}
+	{if Check::getValue(cid)}
+	      <li><a href="stock.php">{$_stock_list}</a></li>
+	      <li class="active"><span id="ctname"></span></li>
+	{/if}
+      </ol>
+    <!--/Breadcrumb-->
+      <div class="col-sm-3 margin-top relative">
+	      <h4 class="headers">
+		    {$_category}<a data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="float:right;color:#5cb85c"><i class="fa fa-pencil-square-o"></i></a>
+	      </h4>
+	      <ul id="accordion" class="accordion">
+		    <li class="link"><i class="fa fa-home"></i> <a href="stock.php">{$_all}</a></li>
+		    {foreach $categories as $ct}
+			  <li>
+				<div class="link"><i class="fa fa-home"></i> {$ct.category_name}<br /> <span class="catdetail">{$ct.category_detail}</span></div>
+				<ul class="submenu">
+				      {foreach $acategories as $kat}
+				      {if $ct.category_id == $kat.category_sub}
+					    <li class="relative"><i class="fa fa-caret-right"></i> <a href="?cid={$kat.category_id}">{$kat.category_name}</a><span class="catdetail">{$kat.category_detail}</span></li>
+				      {/if}
+				      {/foreach}
+				</ul>
+			  </li>
+		    {/foreach}
+	      </ul>
+	</div><!--/col-sm-3 margin-top relative-->
+	<div class="col-sm-9">
+	      <div class="row">
+		    <div class="col-xs-12">
+			  <div class="col-sm-6 col-xs-12">
+				<div class="container-fluid padding"><a href="addproduct.php" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>{$_add_stock}</a></div>
+			  </div>
+			  <div class="col-sm-6 col-xs-12">
+				
+			  </div>
+		    </div>
+	      </div>
+	      <div id="prlists" class="row">
+		    <!--Product List-->
+		    {foreach $stocklist as $s}
+		      <div class="col-sm-3">
+			    <div class="prbox {if $s.stock_amount == 0}alert-danger{else}alert-success{/if}">
+				  <div class="productlist">
+					<a href="productdetail.php?sid={$s.stock_id}">
+					      <img src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}-large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
+					</a>
+				  </div>
+				  <div class="prname">
+					<span><a href="productdetail.php?sid={$s.stock_id}"><span class="names">{$s.stock_name|truncate:30}</span></a></span>
+					<input type="hidden" class="ctname" value="{$s.category_name}" />
+				  </div>
+				  <div class="prdetail">
+					{if $s.stock_detail == ""}Açıklama Bulunamadı!{else}{$s.stock_short_detail|truncate:40}{/if}
+				  </div>
+				  <div class="pramount">
+					{if $s.stock_amount == 0} <span>Stokta Kalmadı!</span> {else}<span>Stok Miktarı :</span>{$s.stock_amount}{/if}
+				  </div>
+				  <div class="prtotal">
+					<span>Satış Fiyatı :</span><span>{$_currency}</span>{$s.stock_price_out}
+				  </div>
+				  <div>
+					<a data-toggle="collapse" href="#buystock" class="btn btn-yellow btn-xs buystock1" stock="{$s.stock_name}" sid="{$s.stock_id}"><i class="fa fa-cart-plus"></i> {$_buy}</a>
+					<a data-toggle="collapse" href="#sellstock" class="btn btn-green btn-xs sellstock1" price="{$s.stock_price_out}" stockname="{$s.stock_name}"><i class="fa fa-shopping-cart"></i> {$_sale}</a>
+				  </div>
+			    </div>
+		      </div>
+		    {/foreach}
+		  <!--/Product List-->
+	      </div>
+	</div><!--/col-sm-9-->
+	{if $pagetotal > 1}
+	<div class="pull-right">
+		<ul class="pagination mtm mbm">
+		      <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="?page={Check::getValue("page")-1}" {/if}><<</a>
+		      {for $i = 1 to $pagetotal}
+			    <li {if Check::getValue("page")==$i} class="active" {/if}><a href="?page={$i}">{$i}</a></li>
+		      {/for}
+		      <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="?page={Check::getValue("page")+1}"{/if}>>></a>
+		</ul>
+	</div>
+	{/if}
+</div><!--/container body-bg-->
+
+{include file='themes/default/category/addcategory.html'}
+{include file='themes/default/stock/addstock.html'}
+{include file='themes/default/stock/sellstock.html'}
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+
+//Accordion
+$(".top").accordion();
+
+//For menu
+var Accordion = function(el, multiple) {
+		this.el = el || {};
+		this.multiple = multiple || false;
+
+		// Variables privadas
+		var links = this.el.find('.link');
+		// Evento
+		links.on('click', { el: this.el, multiple: this.multiple}, this.dropdown)
+	}
+
+	Accordion.prototype.dropdown = function(e) {
+		var $el = e.data.el;
+			$this = $(this),
+			$next = $this.next();
+
+		$next.slideToggle();
+		$this.parent().toggleClass('open');
+
+		if (!e.data.multiple) {
+			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+		};
+	}	
+
+	var accordion = new Accordion($('#accordion'), false);
+	
+//For add stock
+$(".buystock1").click(function(){
+  var stock = $(this).attr("stock");
+  var stockid = $(this).attr("sid");
+  $("#addstock-heading").text(stock);
+  $("input[name='buyproductname[]']").val(stockid);
+});
+
+// For sell stock (This code write price to #price)
+$(".sellstock1").click(function(){
+  var price = $(this).attr("price");
+  var stockname = $(this).attr("stockname");
+  $(".totalinv").text(price);
+  $("#price").val(price);
+  $("input[name='productname[]']").val(stockname);
+});
+
+//This for confirm pay to seller on addstockhtml and addbuyinvoice.html
+$("#binvsubmit").click(function(){
+    if($(".notvirtual").is(':checked'))
+    {
+      $("#binvsubmit").attr("type", "submit");
+    }
+    else
+    {
+      var tinv = $("input[name='buypayment']").val();
+      if(confirm(tinv + " {$_confirm_pay_to_seller}")){
+	  $("#binvsubmit").attr("type", "submit");
+      }
+      else{
+	  return false;
+      }
+    }
+});
+
+
+});
+
+</script>

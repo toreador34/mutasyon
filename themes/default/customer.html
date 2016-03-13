@@ -1,0 +1,214 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+    <div class="col-sm-5">
+	<div class="panel panel-info" style="margin-top:10px;padding:20px">
+	      {include file='themes/default/customerLeft.html'}
+	</div>
+    </div>
+    <div class="col-sm-7">
+	  <table class="table">
+	  {foreach $customer as $row}
+		  <tr>
+		    <td>
+			  <div class="btn btn-primary" role="button" data-toggle="collapse" href="#custInf-{$row.cust_id}" aria-expanded="false" aria-controls="custInf">
+			  <i class="glyphicon glyphicon-user"></i>
+			    <span class="cust-top-name">{$row.cust_name}</span>
+			  </div>
+			  <div class="collapse" id="custInf-{$row.cust_id}" style="position:relative">
+				  <table class="table table-striped" id="dev-table">
+				  
+					  <thead>
+						  <tr>
+							  <th style="width:2%">ID</th>
+							  <th style="width:40%">{$_customer}</th>
+							  <th style="width:15%">{$_invoice}</th>
+							  <th style="width:28%;text-align:right">{$_detail}</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+						
+						  <tr>
+							  <td style="width:2%">{$row.cust_id}</td>
+							  <td style="width:40%"> 
+							      <a class="h5" href="custdetail.php?cid={$row.cust_id}">{$row.cust_name}</a>
+							  </td>
+							  
+							  <td class="alert-success alert" style="width:30%">
+							    <a class="h5" href="addinvoice.php?cid={$row.cust_id}">
+								<i class="glyphicon glyphicon-plus"></i>{$_add_invoice}
+							    </a>
+							  </td>
+
+							  </td>
+							  <td class="cust-inf" style="width:28%;text-align:right;position:relative">
+								<i id="cust_active" class="glyphicon {if $row.cust_status == 1} glyphicon-ok{else}glyphicon-remove colorRed{/if}" style="color:green;float:right" title="{$row.cust_id}" alt="{$row.cust_status}"></i>
+							    <!--Address -->
+								<div style="float:right"><i class="glyphicon glyphicon-map-marker" id="address" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+								<span class="dropdown-menu" style="text-align:center; padding:7px" aria-labelledby="address">{$row.cust_address}</span></div>
+							  <!--Mail -->
+								<div style="float:right"><i class="glyphicon glyphicon-envelope" id="cust_mail" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+								<span class="dropdown-menu" style="text-align:center; padding:7px" aria-labelledby="cust_mail">{$row.cust_mail}</span></div>
+							  <!--Web -->
+								<div style="float:right"><i class="glyphicon glyphicon-globe" id="cust_web" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+								<span class="dropdown-menu" style="text-align:center; padding:7px" aria-labelledby="cust_web">{$row.cust_web}</span></div>
+							  <!--Tel -->
+								<div style="float:right"><i class="glyphicon glyphicon-earphone" id="cust_tel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+								<span class="dropdown-menu" style="text-align:center; padding:7px" aria-labelledby="cust_tel">{$row.cust_tel}</span></div>
+							  </td>
+							  
+						  </tr>
+						   
+					  </tbody>
+					  
+				  </table>
+				  <span class="edit-bank"><a class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#custInfo-{$row.cust_id}"></a></span>
+				  <span class="del-cust"><a class="open-AddBookDialog glyphicon glyphicon-trash" data-toggle="modal" data-target="#custDel-{$row.cust_id}" data-id="{$row.cust_id}" ></a></span>
+			  </div>
+		    </td>
+		  </tr>
+<!--Modals-->
+	<!-- Customer Delete Modal -->
+			<div class="modal fade" id="custDel-{$row.cust_id}" tabindex="-1" role="dialog" aria-labelledby="CustDel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="CustDel"><span style="color:#d9534f">{$row.cust_name}</span> {$_delete_customer}</h4>
+			      </div>
+			      <div class="modal-body">
+				<span style="color:red">{$_delete_customer_message}</span>
+			      </div>
+			      <div class="modal-footer" style="position: relative;">
+			      <form  class="deluser" action="customer.php" method="POST">
+				<input type="hidden" name="deluserid" id="custID" value="{$row.cust_id}" />
+				<button type="submit" class="btn" style="position: absolute;left:10px">{$_delete}</button>
+				<button type="button" class="btn btn-primary" id="close" data-dismiss="modal">{$_close}</button>
+			      </form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	<!-- /Customer Delete Modal -->
+	<!-- Customer info Modal -->
+			<div class="modal fade" id="custInfo-{$row.cust_id}" tabindex="-1" role="dialog" aria-labelledby="CustInf">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="CustInf">{$_customer_info}</h4>
+			      </div>
+			      <div class="modal-body container-fluid">
+			  <form  class="edituser" action="customer.php" method="POST">
+			      <!--Div Start -->
+				    <div class="col-sm-4 control-label" for="textinput">{$_customer_name}</div>
+				    <div class="col-sm-8">
+				      <input type="text" value="{$row.cust_name}" class="form-control" name="custName">
+				      <input type="hidden" value="{$row.cust_id}" class="form-control" name="custId">
+				    </div>
+			      <!--Div Finish -->
+			      
+			      <!--Div Start -->
+				    <div class="col-sm-4 control-div" for="textinput">{$_tel}</div>
+				    <div class="col-sm-8">
+				      <input type="text" value="{$row.cust_tel}" class="form-control" name="custTel">
+				    </div>
+			      <!--Div Finish -->
+			      
+			      <!--Div Start -->
+				    <div class="col-sm-4 control-div" for="textinput">{$_email}</div>
+				    <div class="col-sm-8">
+				      <input type="text" value="{$row.cust_mail}" class="form-control" name="custMail">
+				    </div>
+			      <!--Div Finish -->
+			      
+			      <!--Div Start -->
+				    <div class="col-sm-4 control-div" for="textinput">{$_web}</div>
+				    <div class="col-sm-8">
+				      <input type="text" value="{$row.cust_web}" class="form-control" name="custWeb">
+				    </div>
+			      <!--Div Finish -->
+			      
+			      <!--Div Start -->
+				    <div class="col-sm-4 control-div" for="textinput">{$_address}</div>
+				    <div class="col-sm-8">
+				      <input type="textarea" id="adres" value="{$row.cust_address}" class="form-control" name="custAddress">
+				    </div>
+			      <!--Div Finish -->
+			    </div>
+			    <div class="modal-footer">
+				<button type="submit" class="btn btn-primary">{$_ok}</button>
+			    </div>
+			</form>
+			  </div>
+			</div>
+	<!-- /Customer info Modal --> 
+<!--/Modals--> 
+	  {/foreach}
+	  </table>
+    </div><!--/col-sm-offset-3-->
+</div><!--/container-->
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+
+//For Add Customer
+$("#addCustomer").on('submit',(function(t) {	  
+	  t.preventDefault();
+	  var formData = new FormData(this);
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(t){
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(t);
+		  setTimeout(function(){ location.reload(); }, 2000);
+		}
+	  });
+  }));
+
+//For Edit Customer
+$(".edituser").on('submit',(function(t) {	  
+	  t.preventDefault();
+	  var formData = new FormData(this);
+	  $.ajax({
+	    type:'POST',
+	    url: $(this).attr('action'),
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(t){
+		  $("div.work-inf").addClass("display-block");
+		  $("div.work-inf").html(t);
+		}
+	  });
+  }));
+      
+//For active or deactive customer
+$("i#cust_active").on("dblclick", function(){
+  var active = $(this).attr("title");
+  var status = $(this).attr("alt");
+  if(status == 0)
+  {
+    $(this).removeClass("glyphicon-remove colorRed").addClass("glyphicon-ok");
+  }
+  else if(status == 1)
+  {
+    $(this).addClass("glyphicon-remove colorRed");
+  }
+  $.post("customer.php", {
+                        active: active,
+                        status: status,
+                    }, function (e) {
+                        $("div.work-inf").addClass("display-block");
+			$("div.work-inf").html(e);
+                    });
+});
+      
+// End of function
+});
+</script>

@@ -1,0 +1,154 @@
+{include file='themes/default/header.html'}
+{foreach $buyinvoice as $i}
+<div class="container body-bg">
+      <!--Breadcrumb-->
+	<ol class="breadcrumb hidden-print">
+	      <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+	      <li><a href="buyinvoice.php">{$_buyinvoice}</a></li>
+	      <li class="active">{$i.bi_no}</li>
+	</ol>
+      <!--/Breadcrumb-->
+	<div class="col-sm-2 margin-top hidden-print"><!--left side-->
+		<div class="text-center mbl">
+		      <a data-toggle="collapse" href="#payment" class="btn btn-green" style="min-width: 60%;"><i class="fa fa-money"></i>&nbsp;{$_payment}</a>
+		</div>
+		<div class="text-center mbl">
+		      <a data-toggle="collapse" href="#payment" class="btn btn-blue" style="min-width: 60%;"><i class="fa fa-pencil-square-o"></i>&nbsp;{$_edit}</a>
+		</div>
+		<div class="text-center mbl">
+		      <a data-toggle="collapse" href="#payment" class="btn btn-yellow" style="min-width: 60%;"><i class="fa fa-envelope"></i>&nbsp;{$_email}</a>
+		</div>
+		<div class="text-center mbl">
+		      <a href="?print=1" id="download" class="btn btn-orange" style="min-width: 60%;"><i class="fa fa-download"></i>&nbsp;{$_download}</a>
+		</div>
+		<div class="text-center mbl">
+		      <a data-toggle="collapse" href="#cancelinvoice" class="btn btn-red" style="min-width: 60%;"><i class="fa fa-retweet"></i>&nbsp;{$_invoice_cancel}</a>
+		</div>
+	</div><!--/left side-->
+	
+      <!--invoice details-->
+	<div class="col-sm-offset-3" style="padding-bottom: 100px;"><!--invoice info-->
+	    <h1>{$_invoice}</h1>
+	    <div class="container-fluid">
+	      <div class="col-sm-3"><!--invoiced-->
+		  <h4>{$i.seller_name}</h4>
+			      <small><cite title="{$i.seller_address}">{$i.seller_address}</cite></small>
+			      <p>
+				  {$i.seller_mail}
+				  <br />
+				  <a href="http://{$i.seller_web}" target="blank">{$i.seller_web}</a>
+				  <br />
+				  {$i.seller_tel}
+			      </p>
+		  
+	      </div><!--/invoiced-->
+	      <div class="col-sm-3" style="border-right: 1px solid #aaa;"><!--invoice date-->
+		  <h5><b>{$_date}</b></h5>
+		  {$i.bi_date}
+		  <br />
+		  <h5><b>{$_no}</b></h5>
+		  <span id="invoiceno">{$i.bi_no}</span>
+	      </div><!--/invoice date-->
+	  {foreach $company as $c}
+	      <div class="col-sm-6"><!--firm address-->
+		<h4>{$c.company_name}</h4>
+		<small><cite title="{$c.company_address}">{$c.company_address}</cite></small>
+		<p>
+		    {$c.company_mail}
+		    <br />
+		    <a href="http://{$c.company_web}">{$c.company_web}</a>
+		    <br />
+		    {$c.company_tel}
+		</p>
+	      </div><!--/firm address-->
+	  {/foreach}
+	  </div><!--/invoice info-->
+	  <div class="container-fluid"><!--invoice detail-->
+	  
+	      <table class="table table-hover" id="dev-table" style="border-bottom: 1px solid #aaa;">
+		      <thead>
+			      <tr>
+				      <th>#</th>
+				      <th>{$_detail}</th>
+				      <th>{$_amount}</th>
+				      <th>{$_price}</th>
+				      <th>{$_total}</th>
+			      </tr>
+		      </thead>
+		      <tbody>
+			  {foreach $buyproducts as $ip}
+			      <tr>
+				      <td>{$ip.bp_id}</td>
+				      <td>{$ip.stock_name}</td>
+				      <td>{$ip.bp_amount}</td>
+				      <td><span>{$_currency}</span>{$ip.bp_price}</td>
+				      <td><span>{$_currency}</span><span class="prices">{$ip.bp_price*$ip.bp_amount}</span></td>
+			      </tr>
+			  {/foreach}
+		      </tbody>
+	      </table>
+	  </div><!--/invoice detail-->
+	  <div class="col-sm-6 well">{$ip.bi_desc}</div>
+	  <div class="col-sm-offset-8 container-fluid">
+		<div class="col-sm-12">
+		    <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_total}</div>
+		    <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span id="totalprice"></span></div>
+		</div>
+		<div class="col-sm-12">
+		    <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_pay}</div>
+		    <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span id="paytotal">{if $i.paytotal==0}0.00{else}{$i.paytotal}{/if}</span></div>
+		</div>
+		<div class="col-sm-12">
+		    <div style="width:50%;float:left;border-bottom: 1px solid #aaa;font-size:16px;font-weight:bold">{$_remain}</div>
+		    <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;font-size:16px;font-weight:bold"><span>{$_currency}</span><span id="remain"></span></div>
+		</div>
+	  </div><!--col-sm-offset-9-->
+	  <div class="paid col-sm-3 btn-succes hidden-xs hidden-print" style="display:none">{$_payment_ok}</div>
+	  {if $i.bi_cancel == 1}
+		<div class="rotate cancel col-sm-3 hidden-xs">{$_invoice_cancelled}</div>
+	  {/if}
+	</div><!--/invoice info-->
+      <!--/invoice details-->
+</div><!--/container-->
+{include file='themes/default/payments/addbuypayments.html'}
+{include file='themes/default/invoice/cancelbuyinvoice.html'}
+{include file='themes/default/paytype/addpaytype.html'}
+{include file='themes/default/footer.html'}
+{/foreach}
+<script>
+$(function(){
+
+//For total tax and total price
+var sumprice = 0;
+$('.prices').each(function() {     
+          sumprice += parseInt($(this).text()); 
+	  $("#totalprice").text(sumprice.toFixed(2));
+    });
+var totalprice = parseInt($("#totalprice").text());
+var paytotal = parseInt($("#paytotal").text());
+$("#remain").text((totalprice - paytotal).toFixed(2));
+$("#buyremain").val(totalprice - paytotal);
+$(".buypayment").val(totalprice - paytotal);
+
+// For show payment ok or not
+if($("#remain").text() == 0)
+{
+  $(".paid").show();
+}
+
+//For cancel invoice
+var invoiceno = $("#invoiceno").text();
+$(".refund").val(paytotal);
+$("input[name='invoiceno']").val(invoiceno + " {$_invpaydesc}");
+$("input[name='paycancdesc']").val(invoiceno + " {$_paycancdesc}");
+
+//Set maximum value of payment
+
+$("input.buypayment").attr({
+       "max" : (totalprice - paytotal),        // substitute your own
+       "min" : 0.01          // values (or variables) here
+});
+
+// End of function
+});
+</script>

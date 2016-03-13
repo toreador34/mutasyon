@@ -1,0 +1,77 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li><a href="invoice.php">{$_invoice}</a></li>
+    <li class="active">{$_add_service}</li>
+  </ol>
+<!--/Breadcrumb-->
+	<form action="addservice.php" method="post" class="reload">
+		<div class="navbar container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="row">
+						<div class="col-sm-12">
+						      <label class="margin-top">{$_customer}</label>
+						      <div class="input-group input-group-sm customer">
+							    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#adduser" aria-expanded="false" title="{$_addcustomer}"><i class="fa fa-plus"></i></a></span>
+							    <select class="form-control chosen-select" name="customer">
+								  <option value="empty"></option>
+								  {foreach $customer as $cst}
+									<option value="{$cst.cust_id}" {if Check::getValue("cid")=={$cst.cust_id}}selected{/if}>{$cst.cust_name}</option>
+								  {/foreach}
+							    </select>
+						      </div>
+						</div>
+						<div class="col-sm-12">
+						      <label class="margin-top">{$_providers}</label>
+						      <div class="input-group input-group-sm providers">
+							    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addproviders" aria-expanded="false" title="{$_providers}"><i class="fa fa-plus"></i></a></span>
+							    <select class="form-control" name="providers">
+								      <option value="empty"></option>
+								      <option value="myself">{$_myself}</option>
+								      {foreach $providers as $p}
+									    <option value="{$p.providers_id}">{$p.providers_name}</option>
+								      {/foreach}
+							    </select>
+						      </div>
+						</div>
+					</div><!--/row-->	  
+				</div><!--/col-sm-3-->
+				
+				<div class="col-sm-3 col-sm-offset-6">
+					<label>{$_date}</label>
+					<input type="date" class="form-control" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}">
+					<label class="margin-top">{$_invoiceadj}</label>
+					<div class="input-group input-group-sm invadj">
+					      <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addadj" aria-expanded="false" title="{$_invoiceadj}"><i class="fa fa-plus"></i></a></span>
+					      <select class="form-control" name="invadj">
+							<option value="empty"></option>
+							{foreach $invoiceadj as $a}
+							      <option value="{$a.invoiceadj_name}">{$a.invoiceadj_name}</option>
+							{/foreach}
+					      </select>
+					</div>
+				</div>
+			</div><!--/row-->
+			<div class="navbar">
+				<label class="margin-top">{$_desc}</label>
+				<textarea rows="4" class="form-control servicedesc" type="textarea" name="servicedesc"></textarea>
+			</div>
+			<button type="submit" class="pull-right btn btn-red margin-top">{$_ok}</button>
+		</div><!--navbar-->
+	</form>
+</div><!--container body-bg-->
+{include file='themes/default/customer/adduser.html'}
+{include file='themes/default/providers/addproviders.html'}
+{include file='themes/default/invoiceadj/addadj.html'}
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+
+$(".chosen-select").chosen();
+
+//end
+});
+</script>

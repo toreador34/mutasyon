@@ -1,0 +1,18 @@
+<!-- Profile Start -->
+<div class="col-xs-12" style="margin-top:-50px">
+<div class="col-sm-3 col-xs-12">
+      <a data-toggle="collapse" href="#addadminpicture" aria-expanded="false"><img src="img/1-user.jpg" onError="this.onerror=null;this.src='img/user.png';" style="width:200px;border: 3px solid #ddd;" /></a>
+
+</div><!-- /col-sm-3 col-xs-9-->
+<div class="col-sm-8 col-sm-offset-1 col-xs-12">
+      <h3>{$admin_username}</h3>
+      <h6><span class="admin-span">{$_name_surname}</span>{$admin_name}</h6>
+      <h6><span class="admin-span">{$_email}</span>{$admin_email}</h6>
+      <h6><span class="admin-span">{$_city}</span> {$admin_city}</h6>
+      <h6><span class="admin-span">{$_old}</span>{$admin_old}</h6>
+      <a class="btn btn-blue" data-toggle="collapse" href="#adminInf" aria-expanded="false">{$_inf_edit}</a> 
+</div><!-- /col-sm-5 col-xs-9-->
+</div>
+<!-- Profile Finish -->
+{include file='themes/default/admin/addpicture.html'}
+{include file='themes/default/admin/editinf.html'}

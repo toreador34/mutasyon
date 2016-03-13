@@ -1,0 +1,16 @@
+<div class="collapse" id="delproduct">
+	<form action="delproduct.php" method="post" class="delproductform">
+	  <div class="topwind">
+	    <div class="alert alert-danger">
+	      <div class="alert-danger alert">
+		<input type="hidden" value="{$s.stock_id}" name="product-id">
+		<span>{$s.stock_name} {$_inf_stock_del}</span>
+	      </div>
+	      <div class="margin-top">
+		<button type="submit" class="btn btn-danger">{$_delete}</button>
+		<button type="button" class="btn btn-success pull-right" data-toggle="collapse" href="#delproduct">{$_close}</button>
+	      </div>
+	    </div>
+	  </div><!--topwind-->
+	</form>
+</div> 

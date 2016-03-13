@@ -1,0 +1,70 @@
+<ul class="pagination">
+{if $page == "" }
+        <li class="active" ><a href="customer.php">Tümü</a></li>
+        {else}
+        <li><a href="customer.php">Tümü</a></li>
+{/if}
+  {foreach item=i from='A'|@range:'Z'}
+        {if $page == $i }
+        <li class="active"><a href="?c={$i}">{$i}</a></li>
+        {else}
+        <li><a href="?c={$i}">{$i}</a></li>
+        {/if}
+  {/foreach}
+</ul> 
+<div class="btn btn-primary" data-toggle="collapse" href="#addUser" aria-expanded="false" aria-controls="custInf">{$_addcustomer}</div>
+ <div class="collapse" id="addUser" style="position:relative">
+	<table class="table table-striped" id="dev-table">
+	      <fieldset class="addcustField">
+		<form  id="addCustomer" action="addcustomer.php" method="POST">
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_customer_name}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_customer_name}" class="form-control" name="custName" id="custName">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_tel}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_tel}" class="form-control" name="custTel">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_email}</label>
+		      <div class="col-sm-8">
+			<input type="email" placeholder="{$_email}" class="form-control" name="custMail">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_web}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_web}" class="form-control" name="custWeb">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_address}</label>
+		      <div class="col-sm-8">
+			<input type="textarea" placeholder="{$_address}" class="form-control" name="custAddress">
+		      </div>
+		    </div>
+
+		    <div class="form-group">
+		      <div class="col-sm-offset-2 col-sm-10">
+			<div class="pull-right">
+			  <button type="submit" class="btn btn-primary" id="submit">{$_ok}</button>
+			</div>
+		      </div>
+		    </div>
+		</form>
+	      </fieldset>
+	</table>
+</div>

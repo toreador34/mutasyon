@@ -1,0 +1,207 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li><a href="buyinvoice.php">{$_buyinvoice}</a></li>
+    <li class="active">{$_add_invoice}</li>
+  </ol>
+<!--/Breadcrumb-->
+    <div class=	"navbar container-fluid">
+	<form action="addbuyinvoice.php" method="post" class="addinvoiceform reload">
+		<div class="row">
+			<div class="col-sm-3">
+			    <div class="row">
+				<div class="col-sm-12">
+				  <label class="margin-top">{$_seller}</label>
+				  <div class="input-group input-group-sm" id="seller">
+				    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addseller" aria-expanded="false" title="{$_addseller}"><i class="fa fa-plus"></i></a></span>
+				    <select class="btn btn-default  chosen-select" id="custlist" style="width:100%;border-radius:0" name="buyseller">
+				      <option value="empty"></option>
+				      {foreach $seller as $sl}
+					<option value="{$sl.seller_id}">{$sl.seller_name}</option>
+				      {/foreach}
+				    </select>
+				  </div>
+				  
+				</div>
+			    </div><!--/row-->
+			    <div class="row" style="padding:15px;">
+				<label class="margin-top">{$_desc}</label>
+				<textarea class="form-control" type="text" name="buyinvoicedesc"></textarea>
+			    </div><!--/row-->
+			</div><!--/col-sm-3-->
+			<div class="col-sm-3 col-sm-offset-5">
+			    <label class="margin-top">{$_date}</label>
+			    <input type="date" class="form-control" name="buydate" value="{$smarty.now|date_format:'%Y-%m-%d'}">
+			    <label class="margin-top">{$_virtual_product}</label>
+			    <input class="notvirtual margin-top" type="checkbox" name="virtual"/><span class="alert-info"> {$_dont_pay}</span> <br />
+			    <div class="buybank">
+			      <label class="margin-top">{$_pay_amount}</label>
+			      <input type="number" name="buypayment" class="form-control payprice" step="0.01" autocomplete="off" placeholder="{$_price}" />
+			      <label class="margin-top">{$_bank_name}</label>
+			      <select class="form-control" name="buybank">
+				<option value="empty" ></option>
+				{foreach $bank as $bnk}
+				  <option value="{$bnk.bank_id}" >{$bnk.bank_name}</option>
+				{/foreach}
+			      </select>
+			    </div>
+			</div>
+		</div>
+		<div class="row margin-top">
+		  <div {if $screen == 'phone'} style="overflow:auto" {/if}>
+		      <table class="table table-bordered table-hover" id="tab_logic">
+				<thead class="btn-primary">
+					<tr >
+					    <th class="text-center" style="width:1%">#</th>
+					    <th class="text-center" style="width:50%">{$_stock_name}</th>
+					    <th class="text-center" style="width:10%">{$_price_in}</th>
+					    <th class="text-center" style="width:8%">{$_price_out}</th>
+					    <th class="text-center" style="width:8%">{$_tax}</th>
+					    <th class="text-center" style="width:13%">{$_amount}</th>
+					    <th class="text-center" style="width:10%">{$_subtotal}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="satir0" class="data-wrapper satir">
+					    <td class=""><i class="delrow fa fa-times-circle"></i></td>
+					    <td>
+					      <select class="name" name="buyproductname[]">
+					      <option value="0"></option>
+					      {foreach $stock as $s}
+						<option value="{$s.stock_id}">{$s.stock_name}</option>
+					      {/foreach}
+					      </select>
+					    </td>
+					    <td>
+						  <input type="text" name='buyprice[]'  placeholder='{$_price}' class="form-control buyprice" ></input>
+					    </td>
+					    <td>
+						  <input type="text" name='saleprice[]'  placeholder='{$_price}' class="form-control saleprice" ></input>
+					    </td>
+					    <td>
+					      <select class="btn btn-default form-control tax" name="buytax[]">
+					      {foreach $taxs as $t}
+						<option value="{$t.tax_id}">{$t.tax_tax}</option>
+					      {/foreach}
+					      </select>
+					    </td>
+					    <td><input type="number" name='buyamount[]'  placeholder='{$_amount}' class="form-control buyamount" value="0" /></td>
+					    <td style="padding-top:15px;font-weight:bold;text-align: right;"><span>{$_currency}</span><span class="subtotal">0</span></td>
+					</tr>
+				</tbody>
+			</table>
+		  </div>
+		  <button class="btn btn-success margin-top" id="binvsubmit">{$_ok}</button>
+		  <a id="add_row" class="btn btn-default margin-top">{$_add_row}</a>
+		  </form>
+		      <div class="row pull-right margin-top">
+			      <div class="col-sm-6">{$_product_var}</div><div class="col-sm-6" id="totalamount">1</div>
+			      <div class="col-sm-6">{$_total}</div><div class="col-sm-6"><span>{$_currency}</span><span id="invtotal">0</span></div>
+			      <input type="hidden" name="invtotal" />
+		      </div>
+		</div>
+    </div><!--navbar-->
+</div><!--container body-bg-->
+
+{include file='themes/default/seller/addseller.html'}
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+
+$(".chosen-select").chosen();
+$(".buybank-select").chosen();
+
+//Search product 
+$("select.name").on("change", function(){
+    var idm = $(this).val();
+    var idsi = $(this).closest("tr").attr('id');
+    $.ajax({
+	    type:'POST',
+	    url: 'addinvoice.php',
+		data : { 'id':idm, 'idsi':idsi},
+		success:function(t){
+		  
+		}
+	  });
+});
+
+//For add row
+var newrow =1;
+var clone = $("table tr.data-wrapper:first").clone(true);
+$('select.name').chosen();
+$('body').on('click', '#add_row', function() {
+    var ParentRow = $("table tr.data-wrapper").last();
+    clone.clone(true).insertAfter(ParentRow);
+    $('tr.data-wrapper:last select.name').chosen();
+    $("table tr.data-wrapper").last().attr('id', 'satir'+newrow++);
+});
+
+// For remove row
+$(document).on('click', '.delrow', function () {
+     $(this).closest('tr').remove();
+     var redamount = parseInt($("#totalamount").text());
+     redamount--;
+     $("#totalamount").text(redamount);
+     return false;
+ });
+
+//Count products
+var sumamount = 1;
+$(document).on('click', '#add_row', function () {    
+          sumamount++; 
+	  $("#totalamount").text(sumamount);
+ });
+ 
+//Get discount amount
+$(".payprice").on("input", function(){
+    var dis = $(".payprice").val();
+    $("#totaldiscount").text(dis);
+});
+
+ 
+ //For sub total
+$(document).on('change', '.buyamount', sumsubtotal);
+function sumsubtotal(){
+	var gprice = parseInt($(this).closest("tr").find(".buyprice").val());
+	var gamount = parseInt($(this).closest("tr").find(".buyamount").val());
+	var st = parseInt(gprice*gamount);
+	$(this).closest("tr").find(".subtotal").text(st.toFixed(2));
+	return sumsubtotal;
+}
+
+// For invoice total price
+$(document).on('change', '.buyamount', calculateSum);
+ 
+function calculateSum() {
+ 
+        var sum = 0;
+        $(".subtotal").each(function() {
+                sum += parseInt($(this).text());
+                });
+        $("#invtotal").html(sum.toFixed(2));
+        $("input[name='invtotal']").val(sum.toFixed(2));
+        $(".payprice").val(sum.toFixed(2));
+}
+//This for confirm pay to seller on addstockhtml and addbuyinvoice.html
+$("#binvsubmit").click(function(){
+    if($(".notvirtual").is(':checked'))
+    {
+      $("#binvsubmit").attr("type", "submit");
+    }
+    else
+    {
+      var tinv = $("input[name='buypayment']").val();
+      if(confirm(tinv + " {$_confirm_pay_to_seller}")){
+	  $("#binvsubmit").attr("type", "submit");
+      }
+      else{
+	  return false;
+      }
+    }
+});
+
+//end
+});
+</script>

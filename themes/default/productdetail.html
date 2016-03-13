@@ -1,0 +1,283 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+      {foreach $stock as $s}
+	    <!--Breadcrumb-->
+	    <ol class="breadcrumb hidden-print">
+	      <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+	      <li><a href="stock.php">{$_stock_list}</a></li>
+	      <li><a href="stock.php?cid={$s.category_id}">{$s.category_name}</a></li>
+	      <li class="active">{$s.stock_name}</li>
+	    </ol>
+	    <!--/Breadcrumb-->
+	      <div class="col-xs-12 hidden-print padding well">
+				<div class="row relative">
+					      <div class="col-sm-6 col-md-5">
+						      {if $total == 0}
+							    <img src="{$main_img}/noimage-large.jpg" alt="" class="img-thumbnail" />
+						      {else}
+							<div id="thumb-large">
+								<img src="{$main_img}/products/{$s.stock_id}/large/{$start}-large.jpg" alt="" class="img-thumbnail" />
+							</div>
+						      {/if}
+						      <div class="col-lg-12 hidden-xs hidden-sm">
+							  <div class="col-lg-12 margin-top">
+							      {if $total == 0}
+								    <img src="{$main_img}/noimage-small.jpg" alt="" class="img-thumbnail" />
+							      {else}
+								    {foreach $images as $image}
+									  <div class="col-lg-2" id="thumb-small">
+									    <img src="{$main_img}/products/{$image.images_stock_id}/small/{$image.images_id}-small.jpg" alt="" class="img-thumbnail" value="{$image.images_id}" />
+									  </div>
+								    {/foreach}
+							      {/if}
+							  </div>
+						      </div>
+					      </div>
+					      <div class="col-sm-6 col-md-7 hidden-print">
+						    <h4>{$s.stock_name}</h4>
+						    <div class="col-sm-6">
+							    <small><cite>
+								  {$s.stock_short_detail}
+							    </cite></small>
+							    <div style="margin-top:15px">
+								  <span><b>{$_stock_amount} :</b></span><span> {$s.stock_amount} </span>{if $s.stock_amount == 1}<span class="btn-danger">{$_stock_last}</span>{else if $s.stock_amount == 0}<span class="btn-danger">{$_no_stock}</span>{/if}
+							    </div>
+							    <div style="margin-top:15px">
+								  {if !$s.tax_tax == ""}<span><b>{$_tax_name} :</b></span><span>% </span><span> {$s.tax_tax} </span>{/if}
+							    </div>
+							    <div style="margin-top:15px">
+								  <button data-toggle="collapse" href="#buystock" class="btn btn-green btn-xs">{$_buy}</button>
+								  <button data-toggle="collapse" href="#sellstock" class="btn btn-blue btn-xs">{$_sale}</button>
+								  <button class="btn btn-red btn-xs" role="button" data-toggle="collapse" href="#delproduct" aria-expanded="false">{$_delete}</button>
+								  <a href="editproduct.php?sid={$s.stock_id}" class="btn btn-yellow btn-xs">{$_edit}</a>
+							    </div>
+						      </div>
+						      <div class="col-sm-6">
+							      <div class="row stprice"><h1><span>{$_currency}</span><span class="tprice">{$s.stock_price_out}</span></h1></div>
+							      <div class="row padding col-sm-offset-4" style="margin-top:25px;text-align: center;">
+								<a role="button" data-toggle="collapse" href="#printsn" aria-expanded="false"><img alt="{$s.stock_no}" src="configs/barcode.php?size=60&text={$s.stock_no}" /></a><br />
+								<span style="font-size:25px">{$s.stock_no}</span>
+							      </div>
+						      </div>
+					      </div>
+			      </div>
+	      </div>
+	      <div class="hidden-print" style="padding: 0 10px;background:#fff">{$s.stock_detail}</div>
+	{/foreach}
+	      <div class="col-xs-12 well hidden-print">
+		    <div id="pract" style="width:100%; height:400px;"></div>
+		    <div style="display:none">
+			  {foreach $ph as $m}
+				<span class="sale{$m.pm} sale">{$m.total}</span>
+				<span class="income{$m.pm} income" type="text">{$m.totalprice}</span>
+			  {/foreach}
+			  {foreach $buyinvoice as $o}
+				<span class="buy{$o.pm} buy" type="text">{$o.total}</span>
+				<span class="op{$o.pm} outpayment" type="text">{$o.totalprice}</span>
+			  {/foreach}
+		    </div>
+		    <strong>{$_total_buy}: </strong><span id="totalbuy">0</span> {$_piece}<br />
+		    <strong>{$_total_payment}: </strong>{$_currency}<span id="outpayment">0</span><br />
+		    <strong>{$_total_sale}: </strong><span id="totalsale">0</span> {$_piece}<br />
+		    <strong>{$_total_income}: </strong>{$_currency}<span id="income">0</span>
+	      </div>
+</div><!-- container body-bg-->
+{include file='themes/default/stock/delstock.html'}
+{include file='themes/default/stock/sellstock.html'}
+{include file='themes/default/stock/printbarcode.html'}
+{include file='themes/default/footer.html'}
+{include file='themes/default/stock/addstock.html'}
+{include file='themes/default/customer/adduser.html'}
+<script>
+$(function(){
+     
+	var ocak = parseInt($(".sale1").text());
+	var subat = parseInt($(".sale2").text());
+	var mart = parseInt($(".sale3").text());
+	var nisan = parseInt($(".sale4").text());
+	var mayis = parseInt($(".sale5").text());
+	var haziran = parseInt($(".sale6").text());
+	var temmuz = parseInt($(".sale7").text());
+	var agustos = parseInt($(".sale8").text());
+	var eylul = parseInt($(".sale9").text());
+	var ekim = parseInt($(".sale10").text());
+	var kasim = parseInt($(".sale11").text());
+	var aralik = parseInt($(".sale12").text());
+	if(isNaN(ocak)){ var ocak = 0 }
+	if(isNaN(subat)){ var subat = 0 }
+	if(isNaN(mart)){ var mart = 0 }
+	if(isNaN(nisan)){ var nisan = 0 }
+	if(isNaN(mayis)){ var mayis = 0 }
+	if(isNaN(haziran)){ var haziran = 0 }
+	if(isNaN(temmuz)){ var temmuz = 0 }
+	if(isNaN(agustos)){ var agustos = 0 }
+	if(isNaN(eylul)){ var eylul = 0 }
+	if(isNaN(ekim)){ var ekim = 0 }
+	if(isNaN(kasim)){ var kasim = 0 }
+	if(isNaN(aralik)){ var aralik = 0 }
+	
+	var ocakbuy = parseInt($(".buy1").text());
+	var subatbuy = parseInt($(".buy2").text());
+	var martbuy = parseInt($(".buy3").text());
+	var nisanbuy = parseInt($(".buy4").text());
+	var mayisbuy = parseInt($(".buy5").text());
+	var haziranbuy = parseInt($(".buy6").text());
+	var temmuzbuy = parseInt($(".buy7").text());
+	var agustosbuy = parseInt($(".buy8").text());
+	var eylulbuy = parseInt($(".buy9").text());
+	var ekimbuy = parseInt($(".buy10").text());
+	var kasimbuy = parseInt($(".buy11").text());
+	var aralikbuy = parseInt($(".buy12").text());
+	if(isNaN(ocakbuy)){ var ocakbuy = 0 }
+	if(isNaN(subatbuy)){ var subatbuy = 0 }
+	if(isNaN(martbuy)){ var martbuy = 0 }
+	if(isNaN(nisanbuy)){ var nisanbuy = 0 }
+	if(isNaN(mayisbuy)){ var mayisbuy = 0 }
+	if(isNaN(haziranbuy)){ var haziranbuy = 0 }
+	if(isNaN(temmuzbuy)){ var temmuzbuy = 0 }
+	if(isNaN(agustosbuy)){ var agustosbuy = 0 }
+	if(isNaN(eylulbuy)){ var eylulbuy = 0 }
+	if(isNaN(ekimbuy)){ var ekimbuy = 0 }
+	if(isNaN(kasimbuy)){ var kasimbuy = 0 }
+	if(isNaN(aralikbuy)){ var aralikbuy = 0 }
+	
+	var ocakop = parseInt($(".op1").text());
+	var subatop = parseInt($(".op2").text());
+	var martop = parseInt($(".op3").text());
+	var nisanop = parseInt($(".op4").text());
+	var mayisop = parseInt($(".op5").text());
+	var haziranop = parseInt($(".op6").text());
+	var temmuzop = parseInt($(".op7").text());
+	var agustosop = parseInt($(".op8").text());
+	var eylulop = parseInt($(".op9").text());
+	var ekimop = parseInt($(".op10").text());
+	var kasimop = parseInt($(".op11").text());
+	var aralikop = parseInt($(".op12").text());
+	if(isNaN(ocakop)){ var ocakop = 0 }
+	if(isNaN(subatop)){ var subatop = 0 }
+	if(isNaN(martop)){ var martop = 0 }
+	if(isNaN(nisanop)){ var nisanop = 0 }
+	if(isNaN(mayisop)){ var mayisop = 0 }
+	if(isNaN(haziranop)){ var haziranop = 0 }
+	if(isNaN(temmuzop)){ var temmuzop = 0 }
+	if(isNaN(agustosop)){ var agustosop = 0 }
+	if(isNaN(eylulop)){ var eylulop = 0 }
+	if(isNaN(ekimop)){ var ekimop = 0 }
+	if(isNaN(kasimop)){ var kasimop = 0 }
+	if(isNaN(aralikop)){ var aralikop = 0 }
+	
+	var ocakincome = parseInt($(".income1").text());
+	var subatincome = parseInt($(".income2").text());
+	var martincome = parseInt($(".income3").text());
+	var nisanincome = parseInt($(".income4").text());
+	var mayisincome = parseInt($(".income5").text());
+	var haziranincome = parseInt($(".income6").text());
+	var temmuzincome = parseInt($(".income7").text());
+	var agustosincome = parseInt($(".income8").text());
+	var eylulincome = parseInt($(".income9").text());
+	var ekimincome = parseInt($(".income10").text());
+	var kasimincome = parseInt($(".income11").text());
+	var aralikincome = parseInt($(".income12").text());
+	if(isNaN(ocakincome)){ var ocakincome = 0 }
+	if(isNaN(subatincome)){ var subatincome = 0 }
+	if(isNaN(martincome)){ var martincome = 0 }
+	if(isNaN(nisanincome)){ var nisanincome = 0 }
+	if(isNaN(mayisincome)){ var mayisincome = 0 }
+	if(isNaN(haziranincome)){ var haziranincome = 0 }
+	if(isNaN(temmuzincome)){ var temmuzincome = 0 }
+	if(isNaN(agustosincome)){ var agustosincome = 0 }
+	if(isNaN(eylulincome)){ var eylulincome = 0 }
+	if(isNaN(ekimincome)){ var ekimincome = 0 }
+	if(isNaN(kasimincome)){ var kasimincome = 0 }
+	if(isNaN(aralikincome)){ var aralikincome = 0 }
+
+     
+     
+     $('#pract').highcharts({
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: '{$_acts}'
+        },
+        xAxis: {
+            categories: ["{$_jan}","{$_feb}","{$_mar}","{$_apr}","{$_may}","{$_jun}","{$_jul}","{$_aug}","{$_sep}","{$_oct}","{$_nov}","{$_dec}"]
+        },
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        series: [{
+            name: '{$_sales_history}',
+            data: [ocak, subat, mart, nisan, mayis, haziran, temmuz, agustos, eylul, ekim, kasim, aralik ]
+        }, 
+        {
+            name: '{$_pay}',
+            data: [ocakop, subatop, martop, nisanop, mayisop, haziranop, temmuzop, agustosop, eylulop, ekimop, kasimop, aralikop]
+        },
+        {
+            name: '{$_income}',
+            data: [ocakincome, subatincome, martincome, nisanincome, mayisincome, haziranincome, temmuzincome, agustosincome, eylulincome, ekimincome, kasimincome, aralikincome]
+        },
+        {
+            name: '{$_buy_proccess}',
+            data: [ocakbuy, subatbuy, martbuy, nisanbuy, mayisbuy, haziranbuy, temmuzbuy, agustosbuy, eylulbuy, ekimbuy, kasimbuy, aralikbuy ]
+        }]
+    });   
+
+    
+    //Total in
+    var buy = 0;
+    var sale = 0;
+    var outpayment = 0;
+    var income = 0;
+    $(".sale").each(function() {
+	    sale += parseInt($(this).text());
+    });
+    $(".buy").each(function() {
+	    buy += parseInt($(this).text());
+    });
+    $(".outpayment").each(function() {
+	    outpayment += parseInt($(this).text());
+    });
+    $(".income").each(function() {
+	    income += parseInt($(this).text());
+    });
+    $("#totalsale").html(sale);
+    $("#totalbuy").html(buy);
+    $("#outpayment").html(outpayment);
+    $("#income").html(income);
+    
+    
+$("div#thumb-small img").on("click", function(){
+  var d = $(this).attr("value");
+  $("div#thumb-large").html('<img src="{$main_img}/products/{$s.stock_id}/large/'+d+'-large.jpg" alt="" class="img-thumbnail" />');
+});
+
+//Print stock no
+$('.printMe').click(function(){
+     window.print();
+});
+
+//This for confirm pay to seller on addstockhtml and addbuyinvoice.html
+$("#binvsubmit").click(function(){
+    if($(".notvirtual").is(':checked'))
+    {
+      $("#binvsubmit").attr("type", "submit");
+    }
+    else
+    {
+      var tinv = $("input[name='buypayment']").val();
+      if(confirm(tinv + " {$_confirm_pay_to_seller}")){
+	  $("#binvsubmit").attr("type", "submit");
+      }
+      else{
+	  return false;
+      }
+    }
+});
+
+// End of function
+});
+</script>

@@ -1,0 +1,70 @@
+<div class="addtaxprofitright col-sm-12"><!--Right Side-->
+    	<div class="row"><!--Tax-->
+	      <button class="btn btn-yellow btn-xs" data-toggle="collapse" href="#addlang" aria-expanded="false" title="{$_add_language}"><i class="fa fa-plus"></i> {$_add_language}</button>
+	      <div class="well panel panel-default">
+		      <h4 class="panel-heading headers">{$_languages}</h4>
+		      <table class="table table-hover" id="dev-table">
+			      <thead>
+				<tr>
+					<th>#</th>
+					<th>{$_language_name}</th>
+					<th style="text-align:right">{$_detail}</th>
+				</tr>
+			      </thead>
+			      <tbody>
+				<tr>
+					<td>0</td>
+					<td>{$_default_lang}</td>
+					<td style="text-align:right">
+					  <button class="btn langchange btn-default btn-xs" alt="default" title="{$_click_for_active}">{$_click_for_active}</button>
+					</td>
+				  </tr>
+				{foreach $languagelist as $t}
+				  <tr>
+					<td>{$t.language_id}</td>
+					<td>{$t.language_name}</td>
+					<td style="text-align:right">
+					  <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#dellanguage-{$t.language_id}" data-id="{$t.language_id}"><i class="fa fa-trash"></i></button>
+					  <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#editlanguage-{$t.language_id}" data-id="{$t.language_id}"><i class="fa fa-pencil-square-o"></i></button>
+					  <button class="btn langchange {if $t.language_active == 1}alert-success{else}alert-danger{/if} btn-xs" alt="{$t.language_id}" title="{$_click_for_active}"><i class="fa {if $t.language_active == 1}fa-check-circle{else}fa-times-circle{/if}"></i></i></button>
+					</td>
+				  </tr>
+				  {include file='themes/default/language/editlang.html'}
+				  {include file='themes/default/language/dellang.html'}
+				{/foreach}
+			      </tbody>
+		      </table>
+	      </div>
+<!--invoiceadj-->
+	      <button class="btn btn-blue btn-xs" data-toggle="collapse" href="#addadj" aria-expanded="false" title="{$_add_invoiceadj}"><i class="fa fa-plus"></i> {$_add_invoiceadj}</button>
+	      <div class="well panel panel-default">
+		<h4 class="panel-heading headers">Fatura Öneki</h4>
+		      <table class="table table-hover" id="dev-table">
+			      <thead>
+				<tr>
+					<th>#</th>
+					<th>Önek</th>
+					<th style="text-align:right">{$_detail}</th>
+				</tr>
+			      </thead>
+			      <tbody>
+				{foreach $invoiceadj as $i}
+				  <tr>
+					<td>{$i.invoiceadj_id}</td>
+					<td>{$i.invoiceadj_name}</td>
+					<td style="text-align:right">
+					  <button class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#delinvoiceadj-{$i.invoiceadj_id}" data-id="{$i.invoiceadj_id}"><i class="fa fa-trash"></i></button>
+					  <button class="btn btn-info btn-xs" data-toggle="collapse" data-target="#editinvoiceadj-{$i.invoiceadj_id}" data-id="{$i.invoiceadj_id}"><i class="fa fa-pencil-square-o"></i></button>
+					</td>
+				  </tr>
+				  {include file='themes/default/invoiceadj/editadj.html'}
+				  {include file='themes/default/invoiceadj/deladj.html'}
+				{/foreach}
+			      </tbody>
+		      </table>
+	      </div>
+	</div>
+<!--invoiceadj finish-->
+</div><!--/Right Side -->
+{include file='themes/default/language/addlang.html'}
+{include file='themes/default/invoiceadj/addadj.html'}

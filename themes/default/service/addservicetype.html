@@ -1,0 +1,23 @@
+<div class="collapse topwind" id="addservicetype">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close addservicetype" data-toggle="collapse" href="#addservicetype" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_add_service_type}</div>
+	      <div class="panel-body pan">
+		      <form class="noload" action="addservice.php" method="POST">
+			    <div class="form-body pal">
+				    <div class="navbar">
+					  <!-- Text input-->
+					  <h4 class="headers">{$_service_type}</h4>
+					  <div class="form-group">
+						<input type="text" class="form-control" name="addservicetype"  />
+					  </div>
+
+					  <div class="pull-right">
+					    <button type="submit" class="btn btn-primary btn-xs">{$_ok}</button>
+					  </div>
+				    </div><!--/navbar-->
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

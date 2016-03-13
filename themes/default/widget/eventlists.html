@@ -1,0 +1,40 @@
+<div class="panel">
+	  <div class="portlet-header border-bottom invoice-icon">
+	     <span class="pull-right addevent" style="margin-right:10px;" data-toggle="collapse" href="#addevent"><i class="fa fa-plus-square"></i></span>
+	    <i class="glyphicon glyphicon-home" style="font-size: 20px"></i>
+	    <span class="invoice-header">{$_events}</span>
+	</div>
+	     <div class="events">
+		  <table class="table table-hover">
+		    <tbody>
+			{foreach $events as $e}
+			{include file='themes/default/event/editevent.html'}
+			    <tr>
+				    <td style="width:15%">
+				      <span class="label label-default">
+					{$e.day} {Check::datetr($e.month)}
+				      </span>  
+				    </td>
+				    <td style="width:80%">
+					<span class="event-detail {if $e.event_status==1}event-complete{/if}" title="{$e.event_id}">
+					  <input type="checkbox" {if $e.event_status==1}checked{/if} class="eventcomp"></input> 
+					  <input type="hidden" class="eventid" value="{$e.event_id}"></input> 
+					  {$e.event_detail}
+					 </span>
+					 <span class="label {if $e.event_level==1}label-danger{elseif $e.event_level==2}label-warning{else}label-default{/if}">
+					    {if $e.event_level==1}{$_event_one}{elseif $e.event_level==2}{$_event_two}{else}{$_event_three}{/if}
+					  </span>
+				    </td>
+				    <td style="width:5%" title="{$e.event_id}">
+					  <a class="fa fa-pencil-square-o eventedit" data-toggle="collapse" href="#editevent-{$e.event_id}"></a>
+					  <i class="fa fa-trash-o colorRed eventdel"></i>
+				    </td>
+				    {foreachelse}
+					<span class="alert-info"> {$_event_not_found}</span>
+				    {/foreach}
+			    </tr>
+		    </tbody>
+		  </table>
+	     </div>
+	</div>
+{include file='themes/default/event/addevent.html'}

@@ -1,0 +1,25 @@
+<div class="collapse topwind" id="addcategory">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close" data-toggle="collapse" href="#addcategory" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_add_category}</div>
+	      <div class="panel-body pan">
+		      <form action="addcategory.php" type="post" class="addcategoryform reload">
+			    <div class="form-body pal">
+				    <div class="row">
+					  <!--       Add category collapse -->
+					  <input type="text" placeholder="{$_category_name}" name="catname" class="form-control" />
+					  <input type="text" placeholder="{$_category_detail}" name="catdetail" class="form-control margin-top" />
+					  <select name="subcat" class="margin-top form-control">
+						<option value="0">{$_main_category}</option>
+						{foreach $categories as $ss}
+							<option value="{$ss.category_id}">{$ss.category_name}</option>
+						{/foreach}
+					  </select>
+					  <button type ="submit" class="btn btn-info btn-sm margin-top"><i class="glyphicon glyphicon-ok"></i>{$_add_category}</button>
+					  <!--       Add category collapse -->
+				    </div><!--/row-->
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

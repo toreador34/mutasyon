@@ -1,0 +1,49 @@
+<!-- Bank Lists -->
+<div class="margin-top panel">
+	<div class="portlet-header border-bottom invoice-icon">
+	     <span class="pull-right addevent" style="margin-right:10px;" data-toggle="collapse" href="#addbank"><i class="fa fa-plus-square"></i></span>
+	    <i class="glyphicon glyphicon-home" style="font-size: 20px"></i>
+	    <span class="invoice-header">{$_bank_name}</span>
+	</div>
+	<div id="bank" class="row1 last-customer-list" {if $screen == 'phone'} style="overflow:auto" {/if}>
+		<table class="table table-hover" id="dev-table">
+		      <thead>
+			    <th>{$_bank_name}</td>
+			    <th><i class="fa fa-arrow-up colorRed"></i>  {$_payout}</td>
+			    <th><i class="fa fa-arrow-down colorGreen"></i>  {$_payin}</td>
+			    <th>{$_paybalance}</td>
+		      </thead>
+		      {foreach $bank as $bnk}
+		      <tbody>
+			      <tr><!-- List Start -->
+				      <td><a href="settings.php">{$bnk.bank_name}</a></td>
+				      <td>
+					  <a href="buypayments.php">
+					      <span>{$_currency}</span>
+					      {if round(($bnk.out_total),2) == NULL}
+						  <span>0</span>
+					      {else}
+						  <span>{($bnk.out_total)|number_format:2:".":""}</span>
+					      {/if}
+					  </a>
+				      </td>
+				      <td><a href="payments.php"><span>{$_currency}</span>{$bnk.in_total|number_format:2:".":""}</a></td>
+				      <td>
+					  <span>{$_currency}</span>
+					  <a href="payments.php">
+						{if $bnk.in_total == NULL}
+						      <span>0</span>
+						{else}
+						      <span>{($bnk.in_total -($bnk.out_total))|number_format:2:".":""}</span>
+						{/if}
+					  </a>
+				      </td>
+			      </tr><!-- List Finish -->
+		      </tbody>
+		      {/foreach}
+		</table>
+	</div><!-- /row1 -->
+</div>
+<!-- /Bank Lists --> 
+
+{include file='themes/default/bank/addbank.html'}

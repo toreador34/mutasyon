@@ -1,0 +1,344 @@
+{include file='themes/default/header.html'} 
+<div class="container body-bg">
+	<!--Breadcrumb-->
+	  <ol class="breadcrumb hidden-print">
+	    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+	    <li class="active">{$_search}</li>
+	  </ol>
+	<!--/Breadcrumb-->
+	<div class="col-xs-12">
+		<div class="row">
+		      <div class="col-xs-12">
+			    <div class="well">
+				  {include file='themes/default/header/search.html'}
+			    </div>
+		      </div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+			    <div class="panel-group" id="accordion"><!--Stock-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#stock"><span class="fa fa-file-text">
+						</span> {$_stock_list}</a><span id="stocktc" class="badge badge-orange">{$countstock}</span>
+					    </h4>
+					</div>
+					<div id="stock" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+						      {foreach $stock as $st}
+							    <div class="col-sm-2">
+								  <div class="prbox {if $st.stock_amount == 0}alert-danger{else}alert-success{/if}">
+									<div class="productlist">
+									      <a href="productdetail.php?sid={$st.stock_id}">
+										    <img src="{if $st.images_id}{$main_img}/products/{$st.stock_id}/large/{$st.images_id}-large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$st.images_title}" />
+									      </a>
+									</div>
+									<div class="prname">
+									      <span><a href="productdetail.php?sid={$st.stock_id}"><span class="names">{$st.stock_name|truncate:30}</span></a></span>
+									      <input type="hidden" class="ctname" value="{$st.category_name}" />
+									</div>
+									<div class="prdetail">
+									      {if $st.stock_detail == ""}Açıklama Bulunamadı!{else}{$st.stock_detail|escape:'htmlall':'UTF-8'|truncate:40}{/if}
+									</div>
+									<div class="pramount">
+									      {if $st.stock_amount == 0}Stokta Kalmadı!{else}<span>Stok Miktarı :</span>{$st.stock_amount}{/if}
+									</div>
+									<div class="prtotal">
+									      <span>Satış Fiyatı :</span><span>{$_currency}</span>{$st.stock_price_out}
+									</div>
+								  </div>
+							    </div>
+						      {/foreach}
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    <div class="panel-group" id="accordion"><!--Customer-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#customer"><span class="fa fa-users">
+						</span> {$_customer}</a><span id="custtc" class="badge badge-blue">{$countcust}</span>
+					    </h4>
+					</div>
+					<div id="customer" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+							<table class="table table-hover table-bordered table-striped">
+								<thead>
+								    <tr>
+									  <th>ID</th>
+									  <th>{$_customer}</th>
+									  <th>Mail</th>
+									  <th>Web</th>
+									  <th>Telefon</th>
+									  <th>Adres</th>
+								    </tr>
+								</thead>
+								<tbody>
+								  {foreach $customer as $row}
+								    <tr>
+									<td>{$row.cust_id}</td>
+									<td> 
+									    <a class="h5" href="custdetail.php?cid={$row.cust_id}">{$row.cust_name}</a>
+									</td>
+									<td>{$row.cust_mail}</td>
+									<td>{$row.cust_web}</td>
+									<td>{$row.cust_tel}</td>
+									<td>{$row.cust_address}</td>
+								    </tr>
+								  {/foreach}
+								</tbody>
+							</table>
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    
+			    <div class="panel-group" id="accordion"><!--Buyinvoice-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#buyinvoice"><span class="fa fa-plus-square-o">
+						</span> {$_buyinvoice}</a><span id="buyinvtc" class="badge badge-red">{$countbinv}</span>
+					    </h4>
+					</div>
+					<div id="buyinvoice" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+							<table class="table">
+							    <thead>
+								<tr class="filters">
+								    <th style="width:16%">{$_no}</th>
+								    <th style="width:10%">Açıklama</th>
+								    <th style="width:10%">{$_seller}</th>
+								    <th style="width:12%">{$_user}</th>
+								    <th style="width:11%">{$_bank}</th>
+								    <th style="width:8%">{$_pay}</th>
+								    <th style="width:8%">{$_remain}</th>
+								    <th style="width:9%">{$_date}</th>
+								    <th style="width:10%">{$_detail}</th>
+								</tr>
+							    </thead>
+							    <tbody>
+							      {foreach $buyinvoice as $binv}
+								  <tr>
+									<td>
+									<a href="invoicedetail.php?bid={$binv.bi_id}" class="{if $binv.pay_total<$binv.invoice_total}btn-warning{else}btn-success{/if} invoice-status">{$binv.bi_no}</a>
+									</td>
+									<td style="font-size:11px">{$binv.bi_desc}</td>
+									<td><a href="custdetail.php">{$binv.seller_name}</a></td>
+									<td><a href="settings.php">{$binv.name_surname}</a></td>
+									<td><a href="settings.php">{$binv.bank_name}</a></td>
+									<td>{if $binv.pay_total== ""}<span>{$_currency}</span>0{else}<span>{$_currency}</span>{$binv.pay_total}{/if}</td>
+									<td><span>{$_currency}</span>{$binv.invoice_total - $binv.pay_total}</td>
+									<td>{$binv.bi_date}</td>
+									<td>
+									    <i class="glyphicon glyphicon-envelope" style="margin-right: 5px;font-size: 17px;" title="E-posta olarak yolla"></i>
+									    <i class="glyphicon glyphicon-file" style="margin-right: 5px;font-size: 17px;color: #d9534f" title="PDF olarak göster"></i>
+									    <i class="glyphicon glyphicon-save" alt="E-posta olarak yolla" title="Bilgisayarıma indir"></i>
+									</td>
+								    </tr>
+							      {/foreach}
+							    </tbody>
+							</table>
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    
+			    <div class="panel-group" id="accordion"><!--Invoice-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#invoice"><span class="fa fa-minus-square-o">
+						</span> {$_invoice}</a><span id="invtc" class="badge badge-green">{$countinv}</span>
+					    </h4>
+					</div>
+					<div id="invoice" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+							<table class="table">
+							      <thead>
+								  <tr class="filters">
+								      <th style="width:5%">#</th>
+								      <th style="width:16%">{$_no}</th>
+								      <th style="width:10%">{$_desc}</th>
+								      <th style="width:10%">{$_customer}</th>
+								      <th style="width:12%">{$_user}</th>
+								      <th style="width:11%">{$_bank}</th>
+								      <th style="width:8%">{$_pay}</th>
+								      <th style="width:8%">{$_remain}</th>
+								      <th style="width:9%">{$_date}</th>
+								      <th style="width:10%">{$_detail}</th>
+								  </tr>
+							      </thead>
+							      <tbody>
+								{foreach $invoice as $inv}
+								    <tr {if $inv.invoice_cancelled==1} style="text-decoration: line-through;color:gray" {/if}>
+									  <td>{$inv.invoice_id}</td>
+									  <td>
+									  <a class="label {if ($inv.paytotal)<($inv.invtotal-$inv.invoice_discount)}label-warning{else if $inv.invoice_cancelled == 1}label-danger{else if $inv.invoice_providers != 0 and $inv.insertedservice_price == NULL}label-violet{else}label-success{/if} invoice-status" href="invoicedetail.php?{if $inv.invoice_providers != 0}seid{else}iid{/if}={$inv.invoice_id}">{$inv.invoice_no}</a>
+									  </td>
+									  <td style="font-size:11px">{$inv.invoice_description}</td>
+									  <td><a href="custdetail.php?cid={$inv.invoice_customer_id}">{$inv.cust_name}</a></td>
+									  <td><a href="settings.php">{$inv.name_surname}</a></td>
+									  <td>
+										{if $inv.bank_name != NULL}
+										      <a href="settings.php">{$inv.bank_name}</a>
+										{else}
+										      <a href="#">{$inv.providers_name}</a>
+										{/if}
+									  </td>
+									  <td>
+										<a href="payments.php">
+										      <span>{$_currency}</span>
+										      {if $inv.invoice_providers == 0}
+											    {if $inv.paytotal== ""}
+												  0
+											    {else}
+												  {$inv.paytotal}
+											    {/if}
+										      {else}
+											    {if $inv.payservtotal== ""}
+												  0
+											    {else}
+												  {$inv.payservtotal}
+											    {/if}
+										      {/if}
+										</a>
+									  </td>
+									  <td>
+										<span>{$_currency}</span>
+										{if $inv.invoice_providers == 0}
+										      {($inv.invtotal - $inv.invoice_discount- $inv.paytotal)|number_format:2:".":""}
+										{else}
+										    {($inv.servtotal - $inv.invoice_discount- $inv.payservtotal)|number_format:2:".":""}
+										{/if}
+									  </td>
+									  <td>{$inv.invoice_date}</td>
+									  <td>
+									      <i class="glyphicon glyphicon-envelope" style="margin-right: 5px;font-size: 17px;" title="E-posta olarak yolla"></i>
+									      <i class="glyphicon glyphicon-file" style="margin-right: 5px;font-size: 17px;color: #d9534f" title="PDF olarak göster"></i>
+									      <i class="glyphicon glyphicon-save" alt="E-posta olarak yolla" title="Bilgisayarıma indir"></i>
+									  </td>
+								      </tr>
+								{/foreach}
+							      </tbody>
+							 </table>
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    
+			    <div class="panel-group" id="accordion"><!--Payments-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#payments"><span class="fa fa-money">
+						</span> {$_sales_list_payment}</a><span id="payintc" class="badge badge-orange">{$countpi}</span>
+					    </h4>
+					</div>
+					<div id="payments" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+								<table class="table table-hover table-bordered table-striped">
+									<thead>
+									    <tr class="filters">
+										<th style="width:4%">#</th>
+										<th style="width:18%">{$_desc}</th>
+										<th style="width:14%">{$_customer}</th>
+										<th style="width:13%">Tür</th>
+										<th style="width:17%">{$_bank}</th>
+										<th style="width:14%">{$_user}</th>
+										<th style="width:8%">{$_amount}</th>
+										<th style="width:10%">{$_date}</th>
+									    </tr>
+									</thead>
+									<tbody>
+									  {foreach $paymentlist as $p}
+									    <tr>
+										<td><a href="receipt.php?pid={$p.payment_id}">{$p.payment_id}</a></td>
+										<td>{$p.payment_desc|escape:'htmlall':'UTF-8'}</td>
+										<td><a href="{if $p.cust_id != ""}custdetail.php?cid={$p.cust_id}{else}#{/if}">{$p.cust_name|escape:'html':'UTF-8'}</a></td>
+										<td>
+										      <a href="invoicedetail.php?iid={$p.invoice_id}" style="padding:2px">
+											    <span>
+												  {if $p.payment_in_out == "out"}
+													<i class="fa fa-sign-out" style="color:#bf4346"></i>
+												  {else}
+													<i class="fa fa-sign-in" style="color:darkgreen"></i>
+												  {/if}
+											    </span> 
+											    {$p.paytype_name}
+										      </a>
+										</td>
+										<td><a href="#">{$p.bank_name}</a></td>
+										<td>{$p.name_surname}</td>
+										<td><span>{$_currency}</span><span class="pays">{$p.payment_amount}</span></td>
+										<td>{$p.payment_date}</td>
+									    </tr>
+									  {/foreach}
+									</tbody>
+								</table>
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    
+			    <div class="panel-group" id="accordion"><!--Payments Out-->
+				 <div class="panel panel-default">
+					<div class="panel-heading">
+					    <h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#payout"><span class="fa fa-money">
+						</span> {$_buy_list_payment}</a><span id="payouttc" class="badge badge-red">{$countpo}</span>
+					    </h4>
+					</div>
+					<div id="payout" class="panel-collapse collapse">
+						<div class="panel-body" {if $screen == 'phone'} style="overflow:auto" {/if}>
+						      <table class="table table-bordered table-striped">
+							    <thead>
+								<tr class="filters">
+								    <th style="width:4%">#</th>
+								    <th style="width:24%">{$_seller}</th>
+								    <th style="width:25%">{$_desc}</th>
+								    <th style="width:15%">{$_bank}</th>
+								    <th style="width:12%">{$_user}</th>
+								    <th style="width:8%">{$_amount}</th>
+								    <th style="width:10%">{$_date}</th>
+								</tr>
+							    </thead>
+							    <tbody>
+							      {foreach $payoutlist as $po}
+								<tr>
+								    <td>{$po.bpayments_id}</td>
+								    <td><a href="custdetail.php?seid={$po.seller_id}">{$po.seller_name}</a></td>
+								    <td><a href="invoicedetail.php?bid={$po.bi_id}" class="invoice-status"><i class="fa fa-sign-out" style="color:#bf4346"></i> {$po.payment_desc}</a></td>
+								    <td><a href="#">{$po.bank_name}</a></td>
+								    <td>{$po.name_surname}</td>
+								    <td><span>{$_currency}</span><span class="pays">{$po.payment_amount}</span></td>
+								    <td>{$po.payment_date}</td>
+								</tr>
+							      {/foreach}
+							    </tbody>
+							</table>
+						</div><!--/panel-body-->
+					</div><!--/panel-collapse collapse-->
+				 </div><!--/panel panel-default-->
+			    </div><!--/panel-group-->
+			    
+			    
+			</div>
+		</div>	    
+	</div><!--/col-xs-12-->
+</div>
+{foreach $topsearch as $sc}
+      <span id="sc" style="display:none">{$sc}</span>
+{/foreach}
+{include file='themes/default/footer.html'}
+<script>
+  var text = $("#sc").text();
+  $('div.collapse').highlight(text);  
+</script>

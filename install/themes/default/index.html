@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$_setup_header}</title>
+    <link rel="stylesheet" href="{$css}/bootstrap.min.css">
+    <link rel="stylesheet" href="{$css}/font-awesome.min.css">
+    <link rel="stylesheet" href="{$css}/style.css">
+  </head>
+  <body>
+    <div class="container top_container hidden-print">
+	    <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
+		  <div class="container">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+		      </button>
+		      <div class="navbar-header">
+		      <a class="navbar-brand" href="#">{$_setup_header}</a>
+		  </div>
+		  <div class="pull-right" style="margin-top:10px;">
+			<span><a href="lang.php?lang=tr">Türkçe</a></span>
+			<span style="margin-left:10px;"><a href="lang.php?lang=en">English</a></span>
+		  </div>
+	    </nav>
+    <div class="container" style="margin-top:52px;">
+	  <div class="col-xs-12">
+		<div class="col-sm-4 hidden-xs">
+		      <div class="box">
+			  <div class="box-content">
+				  <div class="step1">
+					<h1 class="tag-title">{$_for_inf}</h1>
+					<div class="alert alert-info">
+					      <label>{$_lserver}</label><p>{$_lserveri}</p>
+					      <label>{$_ldbname}</label><p>{$_ldbnamei}</p>
+					      <label>{$_ldbuser}</label><p>{$_ldbuseri}</p>
+					      <label>{$_lpassword}</label><p>{$_lpasswordi}</p>
+					
+					</div>
+				  </div>
+			  </div>
+		      </div>
+		</div>
+		<div class="col-sm-8 col-xs-12">
+			<div class="step1">
+			      <h1>{$_test_connection}</h1>
+			      <form method="POST">
+				    <div class="form-group">
+					  <label for="exampleInputEmail1">{$_lserver}</label>
+					  <input type="text" class="form-control" name="server" value="localhost">
+				    </div>
+				    <div class="form-group">
+					  <label for="exampleInputEmail1">{$_ldbname}</label>
+					  <input type="text" class="form-control" name="db">
+				    </div>
+				    <div class="form-group">
+					  <label for="exampleInputEmail1">{$_ldbuser}</label>
+					  <input type="text" class="form-control" name="user" >
+				    </div>
+				    <div class="form-group">
+					  <label for="exampleInputEmail1">{$_lpassword}</label>
+					  <input type="password" class="form-control" name="password">
+				    </div>
+				    <button type="submit" name="datebase" class="btn btn-success">{$_test_connection}</button>
+			      </form>
+			</div>
+		</div>
+	  </div>
+    </div>
+  </body>
+</html>

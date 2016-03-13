@@ -1,0 +1,86 @@
+<div class="addcatleft col-sm-3"><!--Left Side -->
+  <h4 class="headers" style="">{$_add_category}</h4>
+  <form action="addcategory.php" type="post" class="addcategoryform noload">
+      <input type="text" placeholder="{$_category_name}" name="catname" class="form-control" />
+      <input type="text" placeholder="{$_category_detail}" name="catdetail" class="form-control margin-top" />
+      <div class="rfcatl">
+      <select name="subcat" class="margin-top form-control">
+	<option value="0">{$_main_category}</option>
+	{foreach $categories as $ct}
+	    <option value="{$ct.category_id}">{$ct.category_name}</option>
+	{/foreach}
+      </select>
+      </div>
+      <button type ="submit" class="btn btn-info btn-sm margin-top"><i class="glyphicon glyphicon-ok"></i>{$_add_category}</button>
+  </form>
+</div><!--/Left Side -->
+<div class="addcatright col-sm-9"><!--Right Side-->
+    	<div class="row">
+	      <div class="well panel panel-default">
+			<h4 class="panel-heading headers">Kategoriler</h4>
+			<select id="catlist" name="catlist" class="margin-top form-control">
+			  <option value="all">{$_all}</option>
+			  {foreach $categories as $mng}
+			      <option value="{$mng.category_id}">{$mng.category_name}</option>
+			  {/foreach}
+			</select>
+			<div class="rfcat">
+				<table class="table table-hover" id="dev-table">
+					<thead>
+					  <tr>
+						  <th>#</th>
+						  <th>{$_category_name}</th>
+						  <th>{$_detail}</th>
+					  </tr>
+					</thead>
+					<tbody id="list">
+					  {foreach $subcategory as $sub}
+					    <tr>
+						  <td>{$sub.category_id}</td>
+						  <td><span>{if $sub.category_sub >0}{$sub.mainname} >>{else}{/if}</span> {$sub.subname}</td>
+						  <td>
+						    <button class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#delcat-{$sub.category_id}" data-id="{$sub.category_id}">{$_delete}</button>
+						    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#editcat-{$sub.category_id}" data-id="{$sub.category_id}">{$_edit}</button>
+						  </td>
+					    </tr>
+					  <!-- Category Delete Modal -->
+					      {include file='themes/default/category/delcategory.html'}
+					  <!-- Modal --> 
+					  <!-- Category Edit Modal -->
+					      <div class="modal fade" id="editcat-{$sub.category_id}" tabindex="-1" role="dialog" aria-labelledby="editcategory">
+						<div class="modal-dialog" role="document">
+						  <div class="modal-content">
+						    <div class="modal-header">
+						      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						      <h4 class="modal-title"><span style="color:#d9534f">{$sub.category_name}</span> {$_edit_category}</h4>
+						    </div>
+						    <div class="modal-body">
+						      <form  class="editcatform reload" action="addcategory.php" method="POST">
+							<label>{$_category_name}</label>
+							<input type="text" name="editcatname" value="{$sub.category_name}" class="form-control" />
+							<select name="editcatlist" class="margin-top form-control">
+							  <option value="0">{$_main_category}</option>
+							  {foreach $categories as $mng}
+							      <option value="{$mng.category_id}" {if $sub.category_sub == $mng.category_id}selected{/if}>{$mng.category_name}</option>
+							  {/foreach}
+							</select>
+							<input type="hidden" name="editcatid" value="{$sub.category_id}" />
+						      </div>
+						      <div class="modal-footer" style="position: relative;">
+							<button type="submit" class="btn" style="position: absolute;left:10px">{$_edit}</button>
+							<button type="button" class="btn btn-primary" id="close" data-dismiss="modal">{$_close}</button>
+						      </form>
+						    </div>
+						  </div>
+						</div>
+					      </div>
+					  <!-- Modal --> 
+					  {/foreach}
+					  <tr id="sonuc">
+					  </tr>
+					</tbody>
+				</table>
+			</div>
+	      </div>
+	</div>
+</div><!--/Right Side -->

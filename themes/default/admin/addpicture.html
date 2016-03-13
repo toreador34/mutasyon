@@ -1,0 +1,20 @@
+<!-- Modallar  -->
+<div class="collapse topwind" id="addadminpicture">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close paymentm" data-toggle="collapse" href="#addadminpicture" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_change_picture}</div>
+	      <div class="panel-body pan">
+		      <form id="adminPicture" action="edit.php" method="POST" enctype="multipart/form-data">
+			    <div class="form-body pal">
+				    <div class="navbar">
+					<label for="pic">{$_choose_file}</label>
+					<input type="file" id="pic" name="admin_pic">
+					<input type="hidden" value="{$admin_id}" name="id">
+					<p class="help-block">JPEG {$_file_type}</p>
+					<button type="submit" class="btn btn-primary">{$_ok}</button>
+				    </div><!--/row-->
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

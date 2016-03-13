@@ -1,0 +1,17 @@
+<div class="collapse topwind" id="deltax-{$t.tax_id}">
+      <div class="panel panel-red" style="background:#fff;">
+	      <button type="button" class="close deltaxm" data-toggle="collapse" href="#deltax-{$t.tax_id}" style="margin-right:10px;margin-top:8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$t.tax_tax} - {$_delete_tax}</div>
+	      <div class="panel-body pan">
+		      <form id="paymentform" action="addtaxprofit.php" method="POST" class="noload">
+			      <div class="form-body pal">
+					<div class="navbar">
+					      <span style="color:red">{$_delete_tax_message}</span>
+					      <input type="hidden" name="deltaxid" value="{$t.tax_id}" />
+					      <button type ="submit" class="btn btn-info btn-sm margin-top"><i class="glyphicon glyphicon-ok"></i>{$_delete}</button>
+					</div><!--/row-->
+			      </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

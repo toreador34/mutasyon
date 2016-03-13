@@ -1,0 +1,136 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li class="active">{$_invoice}</li>
+  </ol>
+<!--/Breadcrumb-->
+    <div class="container-fluid">
+	  <a href="addinvoice.php" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-plus"></i> {$_add_invoice}</a>
+	  <a href="addservice.php" class="btn btn-green pull-left" style="margin-left:10px"><i class="glyphicon glyphicon-plus"></i> {$_add_service}</a>
+    </div>
+    <div class="container-fluid">
+	  <div class="panel panel-default filterable">
+			  <div class="panel-heading">
+			      <h3 class="panel-title">Faturalar</h3>
+			      <div class="pull-right">
+				  <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> {$_filter}</button>
+			      </div>
+			  </div>
+			  <div {if $screen == 'phone'} style="overflow:auto" {/if}>
+				<table class="table">
+				    <thead>
+					<tr class="filters">
+					    <th style="width:5%"><input type="text" class="form-control" placeholder="#" disabled></th>
+					    <th style="width:16%"><input type="text" class="form-control" placeholder="{$_no}" disabled></th>
+					    <th style="width:10%"><input type="text" class="form-control" placeholder="{$_desc}" disabled></th>
+					    <th style="width:10%"><input type="text" class="form-control" placeholder="{$_customer}" disabled></th>
+					    <th style="width:12%"><input type="text" class="form-control" placeholder="{$_user}" disabled></th>
+					    <th style="width:11%"><input type="text" class="form-control" placeholder="{$_bank}" disabled></th>
+					    <th style="width:8%"><input type="text" class="form-control" placeholder="{$_pay}" disabled></th>
+					    <th style="width:8%"><input type="text" class="form-control" placeholder="{$_remain}" disabled></th>
+					    <th style="width:9%"><input type="text" class="form-control" placeholder="{$_date}" disabled></th>
+					    <th style="width:10%"><input type="text" class="form-control" placeholder="{$_detail}" disabled></th>
+					</tr>
+				    </thead>
+				    <tbody>
+				      {foreach $invoice as $inv}
+					  <tr {if $inv.invoice_cancelled==1} style="text-decoration: line-through;color:gray" {/if}>
+						<td>{$inv.invoice_id}</td>
+						<td>
+						<a class="label 
+						      {if $inv.invtotal != NULL}
+							    {if $inv.invoice_providers != 0 AND $inv.insertedservice_price == NULL}
+								  label-violet
+							    {else if ($inv.paytotal+$inv.invoice_discount-$inv.invtotal)== 0}
+								  label-green
+							    {else}
+								  label-warning
+							    {/if}
+						      {else if $inv.servtotal != NULL}
+							    {if $inv.invoice_providers != 0 AND $inv.insertedservice_price == NULL}
+								  label-violet
+							    {else if ($inv.payservtotal+$inv.invoice_discount-$inv.servtotal)== 0}
+								  label-green
+							    {else}
+								  label-warning
+							    {/if}
+						      {/if}
+						" href="invoicedetail.php?{if $inv.invoice_providers != 0}seid{else}iid{/if}={$inv.invoice_id}">{$inv.invoice_no}</a>
+						</td>
+						<td style="font-size:11px">{$inv.invoice_description}</td>
+						<td><a href="custdetail.php?cid={$inv.invoice_customer_id}">{$inv.cust_name}</a></td>
+						<td><a href="settings.php">{$inv.name_surname}</a></td>
+						<td>
+						      {if $inv.bank_name != NULL}
+							    <a href="settings.php">{$inv.bank_name}</a>
+						      {else if $inv.providers_name != NULL}
+							    <a href="#">{$inv.providers_name}</a>
+						      {else}
+							    <a href="#">{$company_name}</a>
+						      {/if}
+						</td>
+						<td>
+						      <a href="payments.php">
+							    <span>{$_currency}</span>
+							    {if $inv.invoice_providers == 0}
+								  {if $inv.paytotal== ""}
+									0
+								  {else}
+									{$inv.paytotal}
+								  {/if}
+							    {else}
+								  {if $inv.payservtotal== ""}
+									0
+								  {else}
+									{$inv.payservtotal}
+								  {/if}
+							    {/if}
+						      </a>
+						</td>
+						<td>
+						      <span>{$_currency}</span>
+						      {if $inv.invoice_providers == 0}
+							    {($inv.invtotal - $inv.invoice_discount- $inv.paytotal)|number_format:2:".":""}
+						      {else}
+							   {($inv.servtotal - $inv.invoice_discount- $inv.payservtotal)|number_format:2:".":""}
+						      {/if}
+						</td>
+						<td>{$inv.invoice_date}</td>
+						<td>
+						    <i class="glyphicon glyphicon-envelope" style="margin-right: 5px;font-size: 17px;" title="E-posta olarak yolla"></i>
+						    <i class="glyphicon glyphicon-file" style="margin-right: 5px;font-size: 17px;color: #d9534f" title="PDF olarak göster"></i>
+						    <i class="glyphicon glyphicon-save" alt="E-posta olarak yolla" title="Bilgisayarıma indir"></i>
+						</td>
+					    </tr>
+				      {/foreach}
+				    </tbody>
+				</table>
+			  </div>
+		      </div>
+		      <div>
+		      <span class="label label-warning invoice-status">{$_invoice_not_paid}</span>
+		      <span class="label label-green invoice-status">{$_invoice_paid}</span>
+		      <span class="label label-violet invoice-status">{$_invoice_wait}</span>
+		      <div style="padding-left:15px">
+			  <ul class="pagination">
+				{if Check::getValue("page") > 1}
+				  <li><a href="?page={Check::getValue("page")-1}"><<</a></li>
+				{else}
+				  <li><a><<</a></li>
+				{/if}
+				{for $i = 1 to $pagetotal}
+				  <li {if Check::getValue("page")==$i} class="active" {/if}><a href="?page={$i}">{$i}</a></li>
+				{/for}
+				{if Check::getValue("page") < $pagetotal}
+				  <li><a href="?page={Check::getValue("page")+1}">>></a></li>
+				{else}
+				  <li><a>>></a></li>
+				{/if}
+			  </ul>
+		      </div>
+	  </div>
+     </div><!--/container-fluid-->
+</div><!--/container-->
+{include file='themes/default/footer.html'} 

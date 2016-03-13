@@ -1,0 +1,71 @@
+<!-- Modallar  -->
+<div class="collapse topwind" id="paytoproviders">
+      <div class="panel panel-red" style="background:#fff;">
+	      <button type="button" class="close paytoprovidersm" data-toggle="collapse" href="#paytoproviders" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_payment}</div>
+	      <div class="panel-body pan">
+		      <form class="reload" action="payments.php" method="POST">
+			    <div class="form-body pal">
+				    <div class="navbar">
+				    
+					 <div class="col-md-12">
+					    <div class="form-group">
+						<label for="inputName" class="control-label">{$_set_providers_pay}</label>
+						<div class="input-icon right">
+						      <span style="font-size: 25px;font-weight: bold;"><span>{$_currency}{$i.invoice_providers_price - $i.payouttotal}</span>
+						      {if ($i.invoice_providers_price - $i.payouttotal)!=0}
+							    <input type="hidden" name="ptotalpayment2" value="{$i.invoice_providers_price - $i.payouttotal}" />
+						      {else}
+							    <input type="hidden" name="ptotalpayment2" value="zero" />
+						      {/if}
+						</div>
+					    </div>
+					  </div>
+				    
+					 <div class="col-md-12">
+					    <div class="form-group">
+						<label for="inputName" class="control-label">{$_pay_amount}</label>
+						<div class="input-icon right">
+						    <i class="fa fa-credit-card"></i>
+						    <input type="number" name="ppayment" class="form-control" step="0.01" autocomplete="off" />
+						    {if $page_name == 'invoicedetail'}
+							  <input type="hidden" name="ppserviceid" value="{Check::getValue("seid")}" class="form-control" />
+							  <input type="hidden" name="providersid" value="{$i.invoice_providers}" class="form-control" />
+							  <input type="hidden" name="serviceinvoiceno" value="{$i.invoice_no}" class="form-control" />
+							  <input type="hidden" name="ppremain" value="{$i.invoice_no}" class="form-control" />
+						    {/if}
+					      </div>
+					    </div>
+					  </div>
+					  
+					 <div class="col-sm-12">
+					      <label class="margin-top">{$_bank_name}</label>
+					      <div class="input-group input-group-sm" id="bankn">
+						    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addbank" aria-expanded="false" title="{$_add_paytype}"><i class="fa fa-plus"></i></a></span>
+						    <select class="form-control" name="ppbanklist">
+							    <option value="empty"></option>
+							    {foreach $bank as $bnk}
+								    <option value="{$bnk.bank_id}">{$bnk.bank_name}</option>
+							    {/foreach}
+						    </select>
+					      </div>
+					</div>
+					 
+					 <div class="col-md-12">
+						  <div class="form-group">
+						      <label for="inputWebsite" class="control-label">{$_date}</label>
+						      <div class="input-icon right">
+							    <i class="fa fa-calendar"></i>
+							    <input type="date" class="form-control" name="ppdate" value="{$smarty.now|date_format:'%Y-%m-%d'}" style="font-size: 11px;">
+						      </div>
+						  </div>
+					 </div>
+					<div class="pull-right">
+					    <button type="submit" class="btn btn-primary btn-xs">{$_ok}</button>
+					</div>
+				    </div><!--/navbar-->
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->

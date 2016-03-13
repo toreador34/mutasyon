@@ -1,0 +1,27 @@
+<!-- Last invoices -->
+<div class="bodylists margin-top">
+	<div class="event-heading border-bottom invoice-icon">
+		    <a class="pull-right addevent" style="margin-right:10px;" href="addinvoice.php"><i class="fa fa-plus-square"></i></a>
+		    <i class="glyphicon glyphicon-list" style="font-size: 20px"></i>
+		    <span class="invoice-header">{$_last_invoices}</span>
+	</div>
+	<div class="row1 last-customer-list">
+		<table class="table table-hover" id="dev-table">
+		  <tbody>
+			{foreach $invoicelist as $b}
+		    <tr><!-- List Start -->
+		      <td class="last-invoices">
+			<div>
+			  <h6><a href="invoicedetail.php?iid={$b.invoice_id}">{$b.invoice_no}</a></h6>
+			  <span class="progress-bar relative {if ($b.ip_total- $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total == 0 } progress-bar-success {elseif ($b.ip_total - $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total >=0 and ($b.ip_total - $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total < 50} progress-bar-warning {else}  progress-bar-danger{/if}" role="progressbar" aria-valuenow="{($b.ip_total- $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total}" aria-valuemin="0" aria-valuemax="100" style="width: {100-(($b.ip_total- $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total)}%;">
+			    {round(100-(($b.ip_total- $b.invoice_discount - $b.paymenttotal)*100/$b.ip_total))}%
+			  </span>
+			</div>
+		      </td>
+		    </tr><!-- List Finish -->
+			  {/foreach}   
+		  </tbody>
+		</table>
+	</div><!-- /row1 last-customer-list -->
+</div>
+<!-- /Last invoices --> 

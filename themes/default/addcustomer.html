@@ -1,0 +1,116 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+    <div class=	"col-sm-7 col-xs-12">
+		<h4 style="color:#aaa;text-transform">{$_addcustomer}</h4>
+		<table class="table table-striped" id="dev-table">
+	      <fieldset class="addcustField">
+		<form class="reload" action="addcustomer.php" method="POST">
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_customer_name}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_customer_name}" class="form-control custName" name="custName" />
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_tel}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_tel}" class="form-control" name="custTel">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_email}</label>
+		      <div class="col-sm-8">
+			<input type="email" placeholder="{$_email}" class="form-control" name="custMail">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_web}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_web}" class="form-control" name="custWeb">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_address}</label>
+		      <div class="col-sm-8">
+			<input type="textarea" placeholder="{$_address}" class="form-control" name="custAddress">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div style="clear:both;text-align: right;margin-right: 12px;">
+			    <label>{$_active_it} </label>
+			    <input type="checkbox" name="active" />
+		    </div>
+
+		    <div class="form-group">
+		      <div class="col-sm-offset-2 col-sm-10">
+			<div class="pull-right">
+			  <button type="submit" class="btn btn-primary btn-xs" disabled>{$_ok}</button>
+			</div>
+		      </div>
+		    </div>
+		</form>
+	      </fieldset>
+	</table>
+    </div><!--col-sm-7-->
+   {if $screen == 'computer'}
+   <div class="col-sm-5 hidden-xs">
+	<h4 style="color:#aaa;text-transform;margin-bottom:20px">{$_preview}</h4>
+	<div class="well margin-top">
+	    <h3 class="name"></h3>
+	    <small><cite><span class="address"></span><i class="glyphicon glyphicon-map-marker">
+	    </i></cite></small>
+	    <p>
+		<i class="glyphicon glyphicon-envelope"></i><span class="mail"></span>
+		<br />
+		<i class="glyphicon glyphicon-globe"></i><a href="#"><span class="web"></span></a>
+		<br />
+		<i class="glyphicon glyphicon-earphone"></i><span class="tel"></span>
+	    </p>
+	</div>
+    </div><!--col-sm-5 finish -->
+    {/if}
+</div><!--container body-bg-->
+{include file='themes/default/footer.html'}
+<script>
+$(function(){
+  
+  $("input[name=custName]").on("change", function(){
+    var name = $("input[name='custName']").val();
+    $(".name").text(name);
+    if($("input[name='custName']").val().lenght == 0)
+    {
+      $(".btn-primary").prop("disabled", true);
+    }
+    else
+    $(".btn-primary").prop("disabled", false);
+  });
+  $("input[name=custTel]").on("change", function(){
+    var name = $("input[name='custTel']").val();
+    $(".tel").text(name);
+  });
+  $("input[name=custMail]").on("change", function(){
+    var name = $("input[name='custMail']").val();
+    $(".mail").text(name);
+  });
+  $("input[name=custWeb]").on("change", function(){
+    var name = $("input[name='custWeb']").val();
+    $(".web").text(name);
+  });
+  $("input[name=custAddress]").on("change", function(){
+    var name = $("input[name='custAddress']").val();
+    $(".address").text(name);
+  });
+  
+//end
+});
+</script>

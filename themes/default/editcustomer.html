@@ -1,0 +1,12 @@
+<form action="custdetail.php" class="reload" method="POST">
+    <input class="form-control" type="hidden" name="editcustid" value="{$row.cust_id}" />
+    <input class="form-control" type="text" name="editcustname" value="{$row.cust_name}" placeholder="{$_name_surname}" id="name"  />
+    <input class="form-control" type="text" name="editcustaddress" value="{$row.cust_address}" placeholder="{$_address}"  />
+    <input class="form-control" type="text" name="editcustmail" value="{$row.cust_mail}" placeholder="{$_email}"  />
+    <input class="form-control" type="text" name="editcustweb" value="{$row.cust_web}" placeholder="{$_web}"  />
+    <input class="form-control" type="text" name="editcusttel" value="{$row.cust_tel}" placeholder="{$_tel}"  />
+    <div class="button-group margin-top">
+	  <button type="submit" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-ok"></i>{$_ok}</button>
+	  <a id="kurumsil" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#"><i class="glyphicon glyphicon-remove"></i>{$_delete}</a>
+    </div>
+</form>

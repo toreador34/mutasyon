@@ -1,0 +1,75 @@
+<div class="collapse topwind" id="transfer">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close" data-toggle="collapse" href="#transfer" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_transfer}</div>
+	      <div class="panel-body pan">
+		      <form id="paymentform" action="payments.php" method="POST" class="reload">
+		      <div class="form-body pal">
+				<div class="row">
+					<div class="col-md-12">
+					<div class="form-group">
+					    <label for="inputName" class="control-label">{$_pay_amount}</label>
+					    <div class="input-icon right">
+						<i class="fa fa-credit-card"></i>
+						<input type="number" name="tpayment" class="form-control" step="0.01" autocomplete="off" />
+						{if $page_name == 'invoicedetail'}
+						      <input type="hidden" name="invoiceid" value="{Check::getValue("iid")}" class="form-control" />
+						      <input type="hidden" name="customerid" value="{$i.invoice_customer_id}" class="form-control" />
+						      <input type="hidden" name="invoiceno" class="form-control" />
+						{/if}
+					  </div>
+					</div>
+				    </div>
+				    <div class="col-md-12">
+				    <div class="form-group">
+					<label for="inputWebsite" class="control-label">{$_payment_type}</label>
+					<div class="input-icon right">
+					    <select class="form-control" name="paytype">
+					      {foreach $paytype as $typ}
+						      <option value="{$typ.paytype_id}">{$typ.paytype_name}</option>
+					      {/foreach}
+					    </select>
+				    </div>
+				    </div>
+				    </div>
+				    <div class="col-md-12">
+					<div class="form-group">
+					    <label for="inputEmail" class="control-label">{$_date}</label>
+					    <div class="input-icon right">
+						<i class="fa fa-calendar"></i>
+						<input type="date" class="form-control" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}" style="font-size: 11px;">
+						<input type="hidden" name="getremain" class="form-control getremain" />
+					    </div>
+					</div>
+				    </div>
+				    <div class="col-md-12">
+					<div class="form-group">
+					    <label for="inputWebsite" class="control-label">{$_bank_name}</label>
+					    <div class="input-icon right">
+						<i class="fa fa-university"></i>
+						<select class="form-control" name="banklist">
+						  {foreach $bank as $bnk}
+							  <option value="{$bnk.bank_id}">{$bnk.bank_name}</option>
+						  {/foreach}
+						</select>
+					</div>
+				    </div>
+				</div>
+				{if $page_name != 'invoicedetail'}
+					      <div class="col-md-12">
+						    <div class="form-group">
+							  <label for="inputWebsite" class="control-label">{$_desc}</label>
+							  <div class="input-icon right">
+							      <textarea name="desc" class="form-control" row="2"></textarea>
+							  </div>
+						  </div>
+					      </div>
+				{/if}
+			    <div class="form-actions text-right pal">
+				<button type="submit" class="btn btn-info btn-xs margin-top">{$_payment}</button>
+			    </div>
+			</div>
+			</form>
+	      </div>
+      </div>
+</div>

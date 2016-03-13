@@ -1,0 +1,161 @@
+<div class="btn btn-primary" data-toggle="collapse" href="#addbank" aria-expanded="false">{$_addbank}</div>
+ <div class="collapse" id="addbank" style="position:relative">
+	<table class="table table-striped" id="dev-table">
+	      <fieldset class="addbankField">
+		<form  class="addbankform reload" action="bank.php" method="POST">
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_bank_name}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_bank_name}" class="form-control" name="bankName">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_no}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_no}" class="form-control" name="bankNo">
+		      </div>
+		    </div>
+		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_tel}</label>
+		      <div class="col-sm-8">
+			<input type="text" placeholder="{$_tel}" class="form-control" name="bankTel">
+		      </div>
+		    </div>
+		    		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_address}</label>
+		      <div class="col-sm-8">
+			<input type="textarea" placeholder="{$_address}" class="form-control" name="bankAddress">
+		      </div>
+		    </div>
+		    		    
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-sm-4 control-label" for="textinput">{$_is_active}</label>
+		      <div class="col-sm-8">
+			<input type="checkbox"  name="bankActive">
+		      </div>
+		    </div>
+
+		    <div class="form-group">
+		      <div class="col-sm-offset-2 col-sm-10">
+			<div class="pull-right">
+			  <button type="submit" class="btn btn-primary" id="submit">{$_ok}</button>
+			</div>
+		      </div>
+		    </div>
+		</form>
+	      </fieldset>
+	</table>
+</div>
+{foreach $bank as $bnk}
+<div {if $screen == 'phone'} style="overflow:auto" {/if}>
+<table class="table table-striped margin-top">
+	<tr>
+	  <td>
+		<a class="btn btn-info" role="button" data-toggle="collapse" href="#bank-{$bnk.bank_id}" aria-expanded="false" aria-controls="bank" style="width:100%">
+		  {$bnk.bank_name}
+		</a>
+		<div class="collapse" id="bank-{$bnk.bank_id}" style="position:relative">
+			<table class="table table-striped" id="dev-table">
+			
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>{$_bank_number}</th>
+						<th>{$_bank_in}</th>
+						<th>{$_bank_out}</th>
+					</tr>
+				</thead>
+				<tbody>
+				      
+					<tr>
+						<td><a href=# style="color:#000;font-weight:bold">{$bnk.bank_id}</a></td>
+						<td><a href=# style="color:#000;font-weight:bold">{$bnk.bank_no}</a></td>
+						<td class="btn-success"><a href=# style="color:#fff;font-weight:bold">
+						      Varlık
+						</a></td>
+						<td class="btn-danger"><a href=# style="color:#fff;font-weight:bold">
+							Harcama
+						</a></td>
+					</tr>
+					
+				</tbody>
+				
+			</table>
+			<span class="edit-bank"><a class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#bankInf-{$bnk.bank_id}"></a></span>
+		</div>
+	  </td>
+	</tr>
+</table> 
+</div>
+
+ <!-- Modal -->
+      <div class="modal fade" id="bankInf-{$bnk.bank_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">{$_bank_inf_edit}</h4>
+	    </div>
+	    <form action="bank.php" method="post" class="bankeditform">
+		  <div class="modal-body">
+				    <fieldset>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_bank_name}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$bnk.bank_name}" class="form-control" name="bank_name">
+					  <input type="text" value="{$bnk.bank_id}" class="form-control" name="bank_id" style="display:none">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_bank_number}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$bnk.bank_no}" class="form-control" name="bank_no">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_address}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$bnk.bank_address}" class="form-control" name="bank_address">
+					</div>
+				      </div>
+				      <!-- Text input-->
+				      <div class="form-group">
+					<label class="col-sm-3 control-label" for="textinput">{$_tel}</label>
+					<div class="col-sm-9">
+					  <input type="text" value="{$bnk.bank_tel}" class="form-control" name="bank_tel">
+					</div>
+				      </div>
+				      
+				      <!-- Text input-->
+					<div class="form-group">
+					  <label class="col-sm-3 control-label" for="textinput">{$_is_active}</label>
+					  <div class="col-sm-8">
+					    <input type="checkbox" {if $bnk.bank_active ==1}checked="checked"{/if} name="bank_active">
+					  </div>
+					</div>
+				      
+				      <div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					  <div class="pull-right">
+					    <button type="submit" class="btn btn-primary">{$_form_sent}</button>
+				          </div>
+				        </div>
+				      </div>
+		  </div><!--/modal-body -->
+	    </form>
+	  </div>
+	</div>
+      </div>
+  <!-- Modal -->
+{/foreach}

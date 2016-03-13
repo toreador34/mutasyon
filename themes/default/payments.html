@@ -1,0 +1,148 @@
+{include file='themes/default/header.html'}
+<div class="container body-bg">
+<!--Breadcrumb-->
+  <ol class="breadcrumb hidden-print">
+    <li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
+    <li><a href="invoice.php">{$_invoice}</a></li>
+    <li class="active">{$_payment_history}</li>
+  </ol>
+<!--/Breadcrumb-->
+      <div class="navbar" style="padding-top:10px">
+	      <button data-toggle="collapse" href="#payment" class="btn btn-green btn-xs">{$_receipt}</button>
+	      <button class="btn btn-yellow btn-xs">{$_transfer}</button>
+	      <button class="btn btn-red btn-xs">{$_pay_it}</button>
+	      <div class="panel panel-blue filterable" style="background:#fff">
+		      <div class="panel-heading">
+			    <h3 class="panel-title">{$_payment_history}</h3>
+			    <div class="pull-right">
+				  <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> {$_filter}</button>
+			    </div>
+		      </div>
+		      <div class="panel-body">
+				<div {if $screen == 'phone'} style="overflow:auto" {/if}>
+				<table class="table table-hover table-bordered table-striped">
+					<thead>
+					    <tr class="filters">
+						<th style="width:4%"><input type="text" class="form-control" placeholder="#" disabled></th>
+						<th style="width:18%"><input type="text" class="form-control" placeholder="{$_desc}" disabled></th>
+						<th style="width:14%"><input type="text" class="form-control" placeholder="{$_customer}" disabled></th>
+						<th style="width:13%"><input type="text" class="form-control" placeholder="Tür" disabled></th>
+						<th style="width:17%"><input type="text" class="form-control" placeholder="{$_bank}" disabled></th>
+						<th style="width:14%"><input type="text" class="form-control" placeholder="{$_user}" disabled></th>
+						<th style="width:8%"><input type="text" class="form-control" placeholder="{$_amount}" disabled></th>
+						<th style="width:10%"><input type="text" class="form-control" placeholder="{$_date}" disabled></th>
+					    </tr>
+					</thead>
+					<tbody>
+					  {foreach $paymentlist as $p}
+					    <tr>
+						<td><a href="receipt.php?pid={$p.payment_id}">{$p.payment_id}</a></td>
+						<td>{$p.payment_desc}</td>
+						<td>
+						      {if $p.cust_id != ""}
+							    <a href="custdetail.php?cid={$p.cust_id}">{$p.cust_name|escape:'html':'UTF-8'}</a>
+						      {else if $p.payment_seller_id}
+							    <a href="#">{$p.seller_name|escape:'html':'UTF-8'}</a>
+						      {else}
+							    <a href="#">{$p.providers_name|escape:'html':'UTF-8'}</a>
+						      {/if}
+						</td>
+						<td>
+						      {if $p.invoice_id != null}
+							    <a href="invoicedetail.php?iid={$p.invoice_id}" style="padding:2px">
+						      {else if $p.payment_service_id != 0}
+							    <a href="invoicedetail.php?seid={$p.payment_service_id}" style="padding:2px">
+						      {/if}
+							    <span>
+								  {if $p.payment_in_out == "out"}
+									<i class="fa fa-sign-out" style="color:#bf4346"></i>
+								  {else}
+									<i class="fa fa-sign-in" style="color:darkgreen"></i>
+								  {/if}
+							    </span> 
+							    {$p.paytype_name}
+						      </a>
+						</td>
+						<td><a href="#">{$p.bank_name}</a></td>
+						<td>{$p.name_surname}</td>
+						<td><span>{$_currency}</span><span class="pays">{$p.payment_amount}</span></td>
+						<td>{$p.payment_date}</td>
+					    </tr>
+					  {/foreach}
+					</tbody>
+				</table>
+				</div>
+				<div class="col-sm-offset-10" style="margin-bottom:20px">
+				    <div class="col-sm-12">
+					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_payin}</div>
+					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span class="payin"></span></span></div>
+				    </div>
+				    <div class="col-sm-12">
+					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_payout}</div>
+					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span class="payout"></span></span></div>
+				    </div>
+				    <div class="col-sm-12">
+					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_paybalance}</div>
+					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span id="balance"></span></div>
+				    </div>
+			      </div>
+		      </div>
+		</div>
+		<div style="padding-left:15px">
+		      <ul class="pagination">
+			    {if Check::getValue("page") > 1}
+			      <li><a href="?page={Check::getValue("page")-1}"><<</a></li>
+			    {else}
+			      <li><a><<</a></li>
+			    {/if}
+			    {for $i = 1 to $pagetotal}
+			      <li {if Check::getValue("page")==$i} class="active" {/if}><a href="?page={$i}">{$i}</a></li>
+			    {/for}
+			    {if Check::getValue("page") < $pagetotal}
+			      <li><a href="?page={Check::getValue("page")+1}">>></a></li>
+			    {else}
+			      <li><a>>></a></li>
+			    {/if}
+		      </ul>
+		</div>
+	</div>
+</div><!--/container-->
+{include file='themes/default/footer.html'}
+{include file='themes/default/payments/addpayments.html'}
+
+<script>
+$(function(){
+
+calculateSum();
+function calculateSum() {
+ 
+        var out = 0;
+        var inn = 0;
+        $(".pays").each(function() {
+                var c = $(this).closest("tr").find("i").attr("class");
+                if(c == "fa fa-sign-out")
+                {
+			out += parseInt($(this).text());
+                }
+                if(c == "fa fa-sign-in")
+                {
+			inn += parseInt($(this).text());
+                }
+ 
+        });
+        $(".payout").html(out.toFixed(2));
+        var payout = parseInt($(".payout").text());
+        $(".payin").html(inn.toFixed(2));
+        var payin = parseInt($(".payin").text());
+        $("#balance").html((payin-payout).toFixed(2));
+    }
+    
+    $("select[name=invoiceid1]").on("change", function(){
+	  var remain = $(this).val();
+	  $(".getremain").val(remain);
+    });
+    
+
+// End of function
+});
+</script>

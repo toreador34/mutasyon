@@ -1,0 +1,21 @@
+<!--Add Event-->
+	  <div class="collapse topwind" id="addevent">
+	    <div class="well">
+	    <button type="button" class="close addeventm" data-toggle="collapse" href="#addevent"><span aria-hidden="true">×</span></button>
+	      <form class="noload" action="events.php" method="POST">
+		<h4>{$_add_event}</h4>
+		<label class="margin-top">{$_detail}</label>
+		<textarea type="textarea" name="addeventdetail" class="form-control"></textarea>
+		<label class="margin-top">{$_event_level}</label>
+		<select class="form-control" name="addeventlevel">
+		    <option value="3">{$_event_three}</option>
+		    <option value="2">{$_event_two}</option>
+		    <option value="1">{$_event_one}</option>
+		</select>
+		<label class="margin-top">{$_date}</label>
+		<input type="date" name="addeventdate" class="form-control" value="{{"+1 days"|date_format:'%Y-%m-%d'}}" />
+		<button type="submit" class="btn btn-info btn-xs margin-top">{$_add}</button>
+	      </form>
+	    </div>
+	  </div>
+<!--/Add Event-->  

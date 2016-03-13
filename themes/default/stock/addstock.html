@@ -1,0 +1,106 @@
+<div class="collapse topwind" id="buystock">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close" data-toggle="collapse" href="#buystock" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading" id="addstock-heading">{if $page_name == "productdetail"}{$s.stock_name}{/if}</div>
+	      <div class="panel-body pan">
+		 <form id="paymentform" action="addbuyinvoice.php" method="POST" class="reload">
+			<div class="form-actions pal">
+				<div class="row">
+					<div class="col-md-12">
+					    <div class="form-group">
+						<div class="input-icon right">
+						    <i class="fa fa-credit-card"></i>
+						    <input type="number" name="buyprice[]" class="form-control buyprice" step="0.01" autocomplete="off" placeholder="{$_price_in}" />
+						    <input type="hidden" name="buyproductname[]" {if $page_name == "productdetail"}value="{$s.stock_id}"{/if} class="form-control"/>
+						    <input type="hidden" name="invtotal" id="invtotal"/>
+					      </div>
+					    </div>
+					</div>
+					<div class="col-md-12">
+					    <div class="form-group">
+						<div class="input-icon right">
+						    <i class="fa fa-credit-card"></i>
+						    <input type="number" name="saleprice[]" class="form-control saleprice" step="0.01" autocomplete="off" placeholder="{$_price_out}" />
+					      </div>
+					    </div>
+					</div>
+					<div class="col-md-12">
+					      <div class="form-group">
+						  <div class="input-icon right">
+							<input type="number" name="buyamount[]" class="form-control buyamount" placeholder="{$_amount}" />    
+						  </div>
+					      </div>
+					</div>
+					<div class="col-md-12">
+					    <div class="form-group">
+						<label for="inputWebsite" class="control-label">{$_tax}</label>
+						<div class="input-group input-group-sm tax">
+						      <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addtax" aria-expanded="false" title="{$_add_tax}"><i class="fa fa-plus"></i></a></span>
+						      <select name="buytax[]" class="form-control">
+							    {foreach $tax as $t}
+								  <option value="{$t.tax_id}">{$t.tax_tax}</option>
+							    {/foreach}
+						    </select>
+						 </div>
+					    </div>
+					</div>
+					<div class="col-md-12">
+					      <div class="form-group">
+						  <label for="inputWebsite" class="control-label">{$_date}</label>
+						  <div class="input-icon right">
+							<input type="date" class="form-control" name="buydate" value="{$smarty.now|date_format:'%Y-%m-%d'}" />    
+						  </div>
+					      </div>
+					</div>
+					<div class="col-md-12">
+					    <div class="form-group">
+						<label for="inputWebsite" class="control-label">{$_seller}</label>				
+						<div class="input-group input-group-sm" id="seller">
+						      <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addseller" aria-expanded="false" title="{$_addseller}"><i class="fa fa-plus"></i></a></span>
+						      <select class="form-control" name="buyseller">
+								<option value="empty"></option>
+								{foreach $seller as $sll}
+								      <option value="{$sll.seller_id}" {if $page_name == "productdetail"}{if $sll.seller_id == $s.stock_seller_id}selected{/if}{/if} >{$sll.seller_name}</option>
+								{/foreach}
+						      </select>
+						 </div>
+					    </div>
+					</div>
+					<div class="col-md-12">
+					      <div class="form-group">
+						  <label for="inputWebsite" class="control-label">{$_virtual_product}</label>
+						  <div class="input-icon right">
+							<input class="notvirtual" type="checkbox" name="virtual"/><span class="alert-info"> {$_dont_pay}</span>    
+						  </div>
+					      </div>
+					</div>
+					<div class="buybank">
+					      <div class="col-md-12">
+						    <div class="form-group">
+							<input type="number" name="buypayment" class="form-control" step="0.01" autocomplete="off" placeholder="{$_price}" />
+						    </div>
+					      </div>
+					      <div class="col-md-12">
+						  <div class="form-group">
+						      <label class="margin-top">{$_bank_name}</label>				
+						      <div class="input-group input-group-sm bankn">
+							    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addbank" aria-expanded="false" title="{$_addseller}"><i class="fa fa-plus"></i></a></span>
+							    <select class="form-control" name="buybank">
+								  {foreach $bank as $bnk}
+									<option value="{$bnk.bank_id}" >{$bnk.bank_name}</option>
+								  {/foreach}
+							    </select>
+						      </div>
+						  </div>
+					      </div>
+					</div>
+				</div><!--/row-->
+				<button type="submit" class="btn btn-info btn-xs margin-top" id="binvsubmit">{$_payment}</button>
+			</div>
+		</form>
+	      </div>
+      </div>
+</div>
+{include file='themes/default/seller/addseller.html'}
+{include file='themes/default/taxprofit/addtax.html'}
+{include file='themes/default/bank/addbank.html'}
