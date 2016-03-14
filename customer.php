@@ -12,7 +12,7 @@ if(isset($_SESSION['login']))
 		$page = Check::getValue('c');
 		
 		//For delete customer
-		$delUser = Check::getValue('deluserid');
+		$delid = Check::getValue('delid');
 		
 		//For edit customer
 		$name =Check::getValue('custName');
@@ -53,14 +53,26 @@ if(isset($_SESSION['login']))
 		}
 		
 		//For delete user
-		else if($delUser)
+		else if($delid)
 		{
-		  $delete = $db->query("DELETE FROM customer WHERE cust_id = $delUser" );
-		  echo "Müşteri başarıyla silindi";
+		      $delete = $db->prepare("DELETE FROM customer WHERE cust_id = :delid" );
+		      $delete->execute(array(
+					      'delid'=>$delid,
+				      ));
+		      $infworksuccess = $smarty->getVariable('_inf_work_success');
+		      echo $infworksuccess;
+		      echo '<script>$(".customerlist").load(location.href + " .customerlist");</script>';
 		}
 		else
 		{
-		  $customer = $db->query('SELECT * FROM customer WHERE cust_name LIKE "'.$page.'%" ORDER BY cust_name LIMIT 10 ');
+		  if(!$page)
+		  {
+			$customer = $db->query('SELECT * FROM customer LIMIT 10 ');
+		  }
+		  else
+		  {
+			$customer = $db->query('SELECT * FROM customer WHERE cust_name LIKE "'.$page.'%" ORDER BY cust_name ');
+		  }
 		  $smarty->assign(array(
 		  "customer" 	=> $customer,
 		  "page" 	=> $page,

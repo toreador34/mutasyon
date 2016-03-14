@@ -1,0 +1,48 @@
+<div class="collapse topwind" id="addcustomer">
+      <div class="panel panel-green" style="background:#fff;">
+	      <button type="button" class="close addcustomerm" data-toggle="collapse" href="#addcustomer" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
+	      <div class="panel-heading">{$_addcustomer}</div>
+	      <div class="panel-body pan">
+		      <form class="noload" action="addcustomer.php" method="POST">
+			    <div class="form-body pal">
+				    <div class="navbar">
+					  <!-- Text input-->
+					  <div class="form-group">
+						  <input type="text" placeholder="{$_customer_name}" class="form-control" name="custName" id="custName" />
+					  </div>
+					  
+					  <!-- Text input-->
+					  <div class="form-group">
+						  <input type="text" placeholder="{$_tel}" class="form-control" name="custTel" />
+					  </div>
+					  
+					  <!-- Text input-->
+					  <div class="form-group">
+						  <input type="email" placeholder="{$_email}" class="form-control" name="custMail" />
+					  </div>
+					  
+					  <!-- Text input-->
+					  <div class="form-group">
+						  <input type="text" placeholder="{$_web}" class="form-control" name="custWeb" />
+					  </div>
+
+					  <!-- Text input-->
+					  <div style="clear:both;margin-top:20px">
+						  <textarea type="textarea" placeholder="{$_address}" class="form-control" name="custAddress"></textarea>
+					  </div>
+					  
+					  <!-- Text input-->
+					  <div style="clear:both;margin-top:20px">
+						  <label>{$_active_it} </label>
+						  <input type="checkbox" name="active" checked />
+					  </div>
+
+					  <div class="pull-right">
+					    <button type="submit" class="btn btn-primary btn-xs">{$_ok}</button>
+					  </div>
+				    </div><!--/navbar-->
+			    </div><!--/form-body-->
+		      </form>
+	      </div><!--/panel-body-->
+      </div><!--/panel-->
+</div><!--/topwind-->
