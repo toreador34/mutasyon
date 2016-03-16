@@ -145,6 +145,7 @@ $smarty->assign(array(
   
 //   Customer
   '_customer' 						=> "Müşteri",   
+  '_customers' 						=> "Müşteriler",   
   '_is_customer_null' 					=> "Müşteri adı boş olamaz",   
   '_customer_name' 					=> "Müşteri Adı",   
   '_customer_info' 					=> "Müşteri Bilgileri",   

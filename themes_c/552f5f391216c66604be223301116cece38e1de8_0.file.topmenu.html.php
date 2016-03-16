@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-13 19:17:53
+<?php /* Smarty version 3.1.27, created on 2016-03-14 22:07:36
          compiled from "/var/www/html/mutasyon/themes/default/header/topmenu.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:80109851156e5a0c12660a4_42986945%%*/
+/*%%SmartyHeaderCode:139778878756e71a08a6c9e8_21348044%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '80109851156e5a0c12660a4_42986945',
+  'nocache_hash' => '139778878756e71a08a6c9e8_21348044',
   'variables' => 
   array (
     'screen' => 0,
@@ -37,13 +37,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e5a0c128de75_73426241',
+  'unifunc' => 'content_56e71a08a90981_06767340',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e5a0c128de75_73426241')) {
-function content_56e5a0c128de75_73426241 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56e71a08a90981_06767340')) {
+function content_56e71a08a90981_06767340 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '80109851156e5a0c12660a4_42986945';
+$_smarty_tpl->properties['nocache_hash'] = '139778878756e71a08a6c9e8_21348044';
 if ($_smarty_tpl->tpl_vars['screen']->value == 'computer' || $_smarty_tpl->tpl_vars['screen']->value == 'tablet') {?>
 <ul class="nav navbar-nav hidden-xs">
 	<li class="active"><a href="index.php"><i class="fa fa-home"></i> <?php echo $_smarty_tpl->tpl_vars['_home_page']->value;?>

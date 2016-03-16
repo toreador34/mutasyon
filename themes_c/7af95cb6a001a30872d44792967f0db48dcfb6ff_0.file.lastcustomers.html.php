@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-13 19:17:53
+<?php /* Smarty version 3.1.27, created on 2016-03-15 22:17:59
          compiled from "/var/www/html/mutasyon/themes/default/widget/lastcustomers.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:126608715356e5a0c137b9f3_49830121%%*/
+/*%%SmartyHeaderCode:213168554956e86df78ac5e7_52265156%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7af95cb6a001a30872d44792967f0db48dcfb6ff' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/widget/lastcustomers.html',
-      1 => 1456420643,
+      1 => 1457984854,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '126608715356e5a0c137b9f3_49830121',
+  'nocache_hash' => '213168554956e86df78ac5e7_52265156',
   'variables' => 
   array (
     '_customer_list' => 0,
@@ -26,18 +26,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e5a0c1390589_13986064',
+  'unifunc' => 'content_56e86df78d60b4_03448431',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e5a0c1390589_13986064')) {
-function content_56e5a0c1390589_13986064 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56e86df78d60b4_03448431')) {
+function content_56e86df78d60b4_03448431 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '126608715356e5a0c137b9f3_49830121';
+$_smarty_tpl->properties['nocache_hash'] = '213168554956e86df78ac5e7_52265156';
 ?>
 <!-- Last customers -->
 <div class="panel">
 	<div class="portlet-header box border-bottom invoice-icon">
-		    <span class="pull-right addevent" style="margin-right:10px;" data-toggle="collapse" href="#adduser"><i class="fa fa-plus-square"></i></span>
+		    <span class="pull-right addevent" style="margin-right:10px;" data-toggle="collapse" href="#addcustomer"><i class="fa fa-plus-square"></i></span>
 		    <i class="glyphicon glyphicon-user" style="font-size: 20px"></i>
 		    <span class="invoice-header"><?php echo $_smarty_tpl->tpl_vars['_customer_list']->value;?>
 </span>
@@ -86,7 +86,7 @@ $_smarty_tpl->tpl_vars['cust'] = $foreach_cust_Sav;
 	</div>
  </div>
 <!-- /Last customers -->
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/customer/adduser.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/customer/addcustomer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php }

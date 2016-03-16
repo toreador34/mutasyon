@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-13 19:17:53
+<?php /* Smarty version 3.1.27, created on 2016-03-15 22:17:59
          compiled from "/var/www/html/mutasyon/themes/default/providers/addproviders.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:5935321356e5a0c136d1f9_13848082%%*/
+/*%%SmartyHeaderCode:83722877556e86df7899781_92320243%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5935321356e5a0c136d1f9_13848082',
+  'nocache_hash' => '83722877556e86df7899781_92320243',
   'variables' => 
   array (
     '_add_providers' => 0,
@@ -26,13 +26,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e5a0c1377f21_78316657',
+  'unifunc' => 'content_56e86df78a80d2_82727883',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e5a0c1377f21_78316657')) {
-function content_56e5a0c1377f21_78316657 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56e86df78a80d2_82727883')) {
+function content_56e86df78a80d2_82727883 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '5935321356e5a0c136d1f9_13848082';
+$_smarty_tpl->properties['nocache_hash'] = '83722877556e86df7899781_92320243';
 ?>
 <div class="collapse topwind" id="addproviders">
       <div class="panel panel-red" style="background:#fff;">

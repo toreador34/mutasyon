@@ -3,20 +3,19 @@
 <!--Breadcrumb-->
   <ol class="breadcrumb hidden-print">
 	<li><a href="index.php"><i class="fa fa-home" style="font-size: 20px;color:#000"></i></a></li>
-	<li><a href="buyinvoice.php">{$_buyinvoice}</a></li>
-	<li class="active">{$_add_invoice}</li>
+	<li class="active">{$_customers}</li>
   </ol>
 <!--/Breadcrumb-->
       <div class="col-xs-12">
 	    <div class="row panel-heading" style="background:#000">
 		  <span class="pull-left" style="font-weight:bold;color:#fff">
-			<i class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#addcustomer"></i>{$_addcustomer}
+			<a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="{$_addcustomer}"><i class="glyphicon glyphicon-plus"></i> {$_addcustomer}</a>
 		  </span>
 	    </div>
 	    <div class="customerlist">
 	    {foreach $customer as $row}
 	    <div class="col-sm-3 col-xs-11 margin-top">
-		  <div class="panel panel-red" style="background:#fff;">
+		  <div class="panel {if $row.cust_status == 1}panel-blue{else}panel-default{/if}" style="background:#fff;">
 			  <div class="panel-heading"><a href="custdetail.php?cid={$row.cust_id}" style="color:#fff;font-weight:bold">{$row.cust_name}</a></div>
 			  <div class="panel-body pan">
 					      <div class="custlistimage col-sm-5" style="padding:5px">
