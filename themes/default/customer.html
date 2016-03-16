@@ -8,15 +8,15 @@
 <!--/Breadcrumb-->
       <div class="col-xs-12">
 	    <div class="row panel-heading" style="background:#000">
-		  <span class="pull-left" style="font-weight:bold;color:#fff">
-			<a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="{$_addcustomer}"><i class="glyphicon glyphicon-plus"></i> {$_addcustomer}</a>
+		  <span class="pull-left">
+			<a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="{$_addcustomer}" style="font-weight:bold;color:#fff"><i class="glyphicon glyphicon-plus"></i> {$_addcustomer}</a>
 		  </span>
 	    </div>
 	    <div class="customerlist">
 	    {foreach $customer as $row}
 	    <div class="col-sm-3 col-xs-11 margin-top">
-		  <div class="panel {if $row.cust_status == 1}panel-blue{else}panel-default{/if}" style="background:#fff;">
-			  <div class="panel-heading"><a href="custdetail.php?cid={$row.cust_id}" style="color:#fff;font-weight:bold">{$row.cust_name}</a></div>
+		  <div class="panel {if $row.cust_status == 1}panel-grey{else}panel-default{/if}" style="background:#fff;">
+			  <div class="panel-heading"><a href="custdetail.php?cid={$row.cust_id}" style="color:{if $row.cust_status == 1}#fff{else}#aaa{/if};font-weight:bold">{$row.cust_name}</a></div>
 			  <div class="panel-body pan">
 					      <div class="custlistimage col-sm-5" style="padding:5px">
 						    <img src="{$main_img}/customers/{$row.cust_id}.png" alt="" class="img-responsive" onError="this.onerror=null;this.src='img/user.png';" />
@@ -41,6 +41,15 @@
 							  </tbody>
 						      </table>
 						      <span class="btncustlist">
+							  {if $row.cust_status == 1}
+								<span class="status" active="{$row.cust_id}" status="0" title="{$_active}">
+									<i class="fa fa-check-circle-o" style="color:white;font-size: 20px;cursor:pointer"></i>
+								</span>
+							  {else}
+								<span class="status" active="{$row.cust_id}" status="1" title="{$_passive}">
+									<i class="fa fa-ban" style="color:#aaa;font-size: 15px;cursor:pointer"></i>
+								</span>
+							  {/if}
 							  <a class="h5" href="addinvoice.php?cid={$row.cust_id}" title="{$_add_invoice}">
 								<span class="label label-info">
 								      <i class="fa fa-files-o"></i>
@@ -79,7 +88,7 @@
 <script>
 $(function(){
 
-  // Add Customer
+  // Delete Customer
   $(document).on("click", ".delcustomer", function(event){
     var delid = $(this).attr("delid");
     if(confirm("{$_delete_customer_message}")){
@@ -96,6 +105,21 @@ $(function(){
       else{
 	  return false;
       }
+  });
+
+  // Delete Customer
+  $(document).on("click", ".status", function(event){
+    var status = $(this).attr("status");
+    var active = $(this).attr("active");
+    $.ajax({
+      type:'POST',
+      url: 'customer.php',
+	  data : { 'status':status, 'active':active },
+	  success:function(t){
+	      $("div.work-inf").addClass("display-block");
+	      $("div.work-inf").html(t);
+	  }
+    });
   });
 
 // End of function

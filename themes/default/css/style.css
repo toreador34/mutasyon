@@ -283,6 +283,11 @@ img.user-img {
     right: -54px;
     bottom: 2px;
 }
+.status {
+    position: absolute;
+    top: -164px;
+    right: 55px;
+}
 .btncustlist span{
     padding:4px
 }

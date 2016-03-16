@@ -119,7 +119,8 @@ $smarty->assign(array(
   
   
   '_active' 						=> "Aktif",  
-  '_active_it' 						=> "Aktif Et",  
+  '_passive' 						=> "Pasif",  
+  '_active_it' 						=> "Aktif Et",   
   '_add_new_password' 					=> "Yeni Şifrenizi Giriniz",  
   '_address' 						=> "Adres",   
   '_again' 						=> "Tekrar",

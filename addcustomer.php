@@ -119,7 +119,8 @@ if($_SESSION['login']){
 				  if($addcustomer)
 				  {
 					echo "Müşteri başarıyla eklendi";
-					echo '<script>$(".customer").load(location.href + " .customer");$(".adduser").click()</script>';
+					echo '<script>$(".customer").load(location.href + " .customer");$(".addcustomerm").click()</script>';
+					echo '<script>$(".customerlist").load(location.href + " .customerlist");$(".addcustomerm").click()</script>';
 				  }
 				  else
 				  {

@@ -40,25 +40,38 @@ if(isset($_SESSION['login']))
 		//For active or deactive customer
 		else if($active)
 		{
-		  if($status == 0)
-		  {
-		    $updatecust = $db->query("UPDATE customer SET cust_status =1  WHERE cust_id = $active ");
-		    echo "Müşteri aktif edildi";
-		  }
-		  else if($status == 1)
-		  {
-		    $updatecust = $db->query("UPDATE customer SET cust_status =0  WHERE cust_id = $active ");
-		    echo "Müşteri pasif edildi";
-		  }
+		      if($status == 0)
+		      {
+			$updatecust = $db->query("UPDATE customer SET cust_status =0  WHERE cust_id = $active ");
+		      }
+		      else if($status == 1)
+		      {
+			$updatecust = $db->query("UPDATE customer SET cust_status =1  WHERE cust_id = $active ");
+		      }
+		      $infworksuccess = $smarty->getVariable('_inf_work_success');
+		      echo $infworksuccess;
+		      echo '<script>$(".customerlist").load(location.href + " .customerlist");</script>';
 		}
 		
 		//For delete user
 		else if($delid)
 		{
-		      $delete = $db->prepare("DELETE FROM customer WHERE cust_id = :delid" );
-		      $delete->execute(array(
-					      'delid'=>$delid,
-				      ));
+		      $checkHaveInv = $db->query("SELECT * FROM invoice WHERE invoice_customer_id = '".$delid."' ");
+		      if($checkHaveInv->rowCount())
+		      {
+			    $deactive = $db->prepare("UPDATE customer SET cust_status = '0' WHERE cust_id = :delid" );
+			    $deactive->execute(array(
+				  'delid'=>$delid,
+			    ));			      
+		      }
+		      else
+		      {
+			    $delete = $db->prepare("DELETE FROM customer WHERE cust_id = :delid" );
+			    $delete->execute(array(
+				  'delid'=>$delid,
+			    ));
+		      }
+		      
 		      $infworksuccess = $smarty->getVariable('_inf_work_success');
 		      echo $infworksuccess;
 		      echo '<script>$(".customerlist").load(location.href + " .customerlist");</script>';
