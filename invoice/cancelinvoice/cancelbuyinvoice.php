@@ -17,7 +17,7 @@
 	      'pbi'=>$bankid,
 	      'pai'=>$admin_id,
 	      'pty'=>$paytype,
-	      'pio'=>'in',
+	      'pio'=>'cin',
 	      'pa'=>$refund,
 	      'pdesc'=>$paycancdesc,
 	      'pdate'=>$date,

@@ -56,6 +56,10 @@
 							    <span>
 								  {if $p.payment_in_out == "out"}
 									<i class="fa fa-sign-out" style="color:#bf4346"></i>
+								  {else if $p.payment_in_out == "cou"}
+									<i class="fa fa-retweet" style="color:red"></i>
+								  {else if $p.payment_in_out == "cin"}
+									<i class="fa fa-retweet" style="color:#688A08"></i>
 								  {else}
 									<i class="fa fa-sign-in" style="color:darkgreen"></i>
 								  {/if}
@@ -72,20 +76,6 @@
 					</tbody>
 				</table>
 				</div>
-				<div class="col-sm-offset-10" style="margin-bottom:20px">
-				    <div class="col-sm-12">
-					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_payin}</div>
-					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span class="payin"></span></span></div>
-				    </div>
-				    <div class="col-sm-12">
-					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_payout}</div>
-					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span class="payout"></span></span></div>
-				    </div>
-				    <div class="col-sm-12">
-					  <div style="width:50%;float:left;border-bottom: 1px solid #aaa;">{$_paybalance}</div>
-					  <div style="width:50%;float: left;border-bottom: 1px solid #aaa;text-align: right;"><span>{$_currency}</span><span id="balance"></span></div>
-				    </div>
-			      </div>
 		      </div>
 		</div>
 		<div style="padding-left:15px">
@@ -112,30 +102,6 @@
 
 <script>
 $(function(){
-
-calculateSum();
-function calculateSum() {
- 
-        var out = 0;
-        var inn = 0;
-        $(".pays").each(function() {
-                var c = $(this).closest("tr").find("i").attr("class");
-                if(c == "fa fa-sign-out")
-                {
-			out += parseInt($(this).text());
-                }
-                if(c == "fa fa-sign-in")
-                {
-			inn += parseInt($(this).text());
-                }
- 
-        });
-        $(".payout").html(out.toFixed(2));
-        var payout = parseInt($(".payout").text());
-        $(".payin").html(inn.toFixed(2));
-        var payin = parseInt($(".payin").text());
-        $("#balance").html((payin-payout).toFixed(2));
-    }
     
     $("select[name=invoiceid1]").on("change", function(){
 	  var remain = $(this).val();

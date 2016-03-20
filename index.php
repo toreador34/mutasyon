@@ -30,9 +30,9 @@ else
 		      ORDER BY invoice_id DESC LIMIT 10');
 		      
 		      $providerslist = $db->query("
-		      SELECT *, TRUNCATE(SUM(pp_price), 2) AS paytotal, (SELECT TRUNCATE(SUM(invoice_providers_price), 2) AS total FROM invoice WHERE invoice_providers = providers.providers_id) AS total FROM providers
+		      SELECT *, TRUNCATE(SUM(pp_price), 2) AS paytotal, (SELECT TRUNCATE(SUM(invoice_providers_price), 2) AS total FROM invoice WHERE invoice_providers = providers.providers_id AND invoice_cancelled <> 1) AS total FROM providers
 		      LEFT JOIN providerspyments ON pp_providers_id = providers_id
-		      GROUP BY providers_id");
+		      WHERE pp_cancelled <> 1 GROUP BY providers_id");
 		      
 		      //Connect stock db for get total stocks
 		      $stock = $db->query('SELECT COUNT(stock_id) as product, SUM(stock_amount) as in_stock FROM stock');

@@ -75,6 +75,8 @@ $smarty->assign(array(
   '_inf_blank_desc' 					=> " tarihli alım faturası",
   '_invpaydesc' 					=> " numaralı fatura ödemesi",
   '_paycancdesc' 					=> " numaralı iptal faturasının geri ödemesi",
+  '_collectprovidersdesc' 				=> " numaralı iptal faturasından yapılan tahsilat",
+  '_confirm_collect_from_providers' 			=> "TL tutarında tahsilatınızı hizmet verenden tahsil etmeden fatura iptal edilecek!",
   '_search' 						=> "Arama",
   '_inf_desc_limit' 					=> "Açıklama 10 karakterden az olamaz!",
   '_inf_maximum_str' 					=> "En fazla karakter sayısı :",

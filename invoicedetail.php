@@ -90,6 +90,7 @@ if(isset($_SESSION['login'])){
 		      LEFT JOIN customer ON invoice_customer_id = cust_id
 		      LEFT JOIN admin ON invoice_admin = admin_id
 		      LEFT JOIN providers ON invoice_providers = providers_id
+		      LEFT JOIN providerspyments ON pp_service_id = payment_service_id
 		      WHERE invoice_id = '".$seid."' GROUP BY invoice_id");
 		      
 

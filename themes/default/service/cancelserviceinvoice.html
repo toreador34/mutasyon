@@ -1,9 +1,9 @@
 <div class="collapse topwind" id="cancelinvoice">
-      <div class="panel panel-pink" style="background:#fff;overflow:hidden">
+      <div class="panel panel-pink" style="background:#fff">
 	      <button type="button" class="close" data-toggle="collapse" href="#cancelinvoice" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
 	      <div class="panel-heading">{$_cancel_invoice}</div>
 	      <div class="panel-body pan">
-		   <form id="paymentform" action="cancelinvoice.php" method="POST" class="reload">
+		   <form action="cancelinvoice.php" method="POST" class="reload">
 			    <div class="form-body pal">
 					      <div class="col-md-12">
 						    <div class="form-group">
@@ -11,10 +11,30 @@
 							<div class="input-icon right">
 							    <i class="fa fa-credit-card"></i>
 							    <input type="number" name="refund" class="form-control refund" step="0.01" autocomplete="off" />
-							    <input type="hidden" name="invoiceid" value="{Check::getValue("iid")}" class="form-control" />
+							    <input type="hidden" name="serviceid" value="{Check::getValue("seid")}" class="form-control" />
 							    <input type="hidden" name="paycancdesc" class="form-control" />
 						      </div>
 						    </div>
+						</div>
+						<div class="col-sm-12">
+						      <label class="margin-top">Hizmet Ücretini de Tahsil Et</label>
+						      <div class="material-switch pull-right">
+							  <input id="someSwitchOptionSuccess" name="collectproviders" type="checkbox"/>
+							  <label for="someSwitchOptionSuccess" class="label-success"></label>
+						      </div>
+						      <input type="hidden" name="collectprovidersdesc" class="form-control" />
+						</div>
+						<div class="col-sm-12">
+						      <label class="margin-top">{$_payment_type}</label>
+						      <div class="input-group input-group-sm servicetype">
+							    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addpaytype" aria-expanded="false" title="{$_add_paytype}"><i class="fa fa-plus"></i></a></span>
+							    <select class="form-control" name="paytype">
+								  <option value="empty"></option>
+								  {foreach $paytype as $typ}
+									  <option value="{$typ.paytype_id}">{$typ.paytype_name}</option>
+								  {/foreach}
+							    </select>
+						      </div>
 						</div>
 						<div class="col-md-12">
 						      <div class="form-group">
@@ -44,7 +64,7 @@
 						    </div>
 						</div>
 						<div class="form-actions text-right pal">
-						      <button type="submit" class="btn btn-info btn-xs margin-top">{$_payment}</button>
+						      <button type="submit" class="btn btn-info btn-xs margin-top cancelservicesubmit">{$_payment}</button>
 						</div>
 			    </div>
 		    </form>   

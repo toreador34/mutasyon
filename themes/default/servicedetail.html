@@ -48,6 +48,7 @@
 			  <br />
 			  <h5><b>{$_invoice_no}:</b></h5>
 			  <span id="invoiceno">{$i.invoice_no}</span>
+			  <input type="hidden" id="collectfromproviders" value="{$i.pp_price}" />
 		    </div><!--/invoice date-->
 		    {foreach $company as $c}
 		    <div class="col-sm-6"><!--firm address-->
@@ -97,7 +98,7 @@
 					      <td>{$in.insertedservice_servicetype}</td>
 					      <td><span>{$_currency}</span><span class="taxs">{Check::totalTax(($in.insertedservice_price), $in.insertedservice_tax)}</span></td>
 					      <td><span>{$_currency}</span><span class="prices">{$in.insertedservice_price|number_format:2:".":""}</span></td>
-					      {if $i.payouttotal > 0 || $i.paytotal > 0}
+					      {if $i.payouttotal > 0 || $i.paytotal > 0 || $i.invoice_cancelled == 1}
 						    <td><i class="fa fa-trash-o"></i></td>
 					      {else}
 						    <td class="delis" title="{$in.insertedservice_id}"><i class="fa fa-trash-o" style="color: red;cursor: pointer;"></i></td>
@@ -172,6 +173,8 @@ $("input[name='payment']").val((totalprice - (discount + paytotal)).toFixed(2));
 $("input[name='ppremain']").val((totalprice - discount).toFixed(2));
 $("input[name='invoiceno']").val(invoiceno + " {$_invpaydesc}");
 $("input[name='paycancdesc']").val(invoiceno + " {$_paycancdesc}");
+$("input[name='collectprovidersdesc']").val(invoiceno + " {$_collectprovidersdesc}");
+$("input[name='collfromproviders']").val(invoiceno);
 
 // For show payment ok or not
 if($("#remain").text() == 0)
@@ -205,7 +208,26 @@ $(".delis").on("click", function(){
     
 });
 
-
+//This for confirm collect from providers
+$(".cancelservicesubmit").click(function(){
+    if($("select[name='paytype']").val() != "empty" && $("input[name='cancdue']").val() != "" && $("input[name='password']").val() != "" && parseInt($("#collectfromproviders").val()) > 0)
+    {
+	if($("input[name='collectproviders']").is(':checked'))
+	{
+	  $(".cancelservicesubmit").attr("type", "submit");
+	}
+	else
+	{
+	  var tinv = $("#collectfromproviders").val();
+	  if(confirm(tinv + " {$_confirm_collect_from_providers}")){
+	      $(".cancelservicesubmit").attr("type", "submit");
+	  }
+	  else{
+	      return false;
+	  }
+	}  
+    }
+});
 
 
 // End of function

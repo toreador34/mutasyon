@@ -11,6 +11,7 @@ if(isset($_SESSION['login']))
       $paycancdesc = Check::getValue("paycancdesc");
       $password = Check::getValue("password");
       $id = Check::getValue("invoiceid");
+      $seid = Check::getValue("serviceid");
       $buyid = Check::getValue("buyid");
       $paytype = Check::getValue("paytype");
       
@@ -28,6 +29,22 @@ if(isset($_SESSION['login']))
 		  $bdesc = $inv["payment_desc"];
 	    }
       }
+      else if($seid)
+      {
+	    $invoiceamount = $db->query("SELECT *, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_service_id = invoice_id AND payment_service_id <> 0 AND payment_in_out = 'in' ) AS paytotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_service_id = invoice_id AND payment_service_id <> 0 AND payment_in_out = 'out' ) AS paytoproviders FROM invoice LEFT JOIN providerspyments ON pp_providers_id = invoice_providers LEFT JOIN payments ON payment_service_id = invoice_id WHERE invoice_id = '".$seid."' GROUP BY invoice_id");
+	    foreach($invoiceamount as $inv)
+	    {
+		  $paytotal = $inv["paytotal"];
+		  $bankid = $inv["payment_bank_id"];
+		  $custid = $inv["invoice_customer_id"];
+		  $iscanc = $inv["invoice_cancelled"];
+		  $bdesc = $inv["invoice_description"];
+		  $paymentsdesc = $inv["payment_desc"];
+		  $paytoproviders = $inv["paytoproviders"];
+		  $pp_ok = $inv["pp_ok"];
+		  $bproviders = $inv["invoice_providers"];
+	    }
+      }
       else if($buyid)
       {
 	    $invoiceamount = $db->query("SELECT *, TRUNCATE(SUM(payment_amount), 2) AS paytotal FROM payments INNER JOIN buyinvoice ON bi_id = payment_bi_id WHERE payment_bi_id = '".$buyid."' ");
@@ -40,8 +57,8 @@ if(isset($_SESSION['login']))
 		  $bdesc = $inv["bi_desc"];
 	    }
       }
-      
-      if($refund <= $paytotal)
+
+      if($refund <= $paytotal OR $paytotal == NULL)
       {
 	    echo "<script>$('.refund').removeClass('alert-danger')</script>";
 	    $vrefund = 1;
@@ -72,6 +89,38 @@ if(isset($_SESSION['login']))
       }
       if($vrefund == 1 AND $vdate ==1)
       { 
+	    if($paytype == "empty" OR $paytype == "")
+	    {
+		  $infnotblank = $smarty->getVariable('_inf_not_valid');
+		  echo $infnotblank."<script>$('select[name=paytype]').addClass('alert-danger')</script>";
+		  echo "<script>return false</script>";
+		  $vype = 0;
+		  exit();
+	    }
+	    else
+	    {
+		  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');</script>";
+		  $vype = 1;
+	    }
+      }
+      if($vrefund == 1 AND $vdate ==1 AND $vype == 1)
+      {
+	   if($due == "")
+	   {
+		$infadddesc = $smarty->getVariable('_inf_add_desc');
+		echo $infadddesc."<script>$('.cidue').addClass('alert-danger')</script>";
+		echo "<script>return false</script>";
+		$vdue = 0;
+		exit();
+	   }
+	   else
+	   {
+		echo "<script>$('.cidue').removeClass('alert-danger')</script>";
+		$vdue = 1;
+	   }
+      }
+      if($vrefund == 1 AND $vdate ==1 AND $vype == 1 AND $vdue == 1)
+      {
 	    if($password == "")
 	    {
 		  $infpassword = $smarty->getVariable('_inf_password');
@@ -104,39 +153,7 @@ if(isset($_SESSION['login']))
 		  }
 	    }
       }
-      if($vrefund == 1 AND $vdate ==1 AND $vpass == 1)
-      {
-	   if($due == "")
-	   {
-		$infadddesc = $smarty->getVariable('_inf_add_desc');
-		echo $infadddesc."<script>$('.cidue').addClass('alert-danger')</script>";
-		echo "<script>return false</script>";
-		$vdue = 0;
-		exit();
-	   }
-	   else
-	   {
-		echo "<script>$('.cidue').removeClass('alert-danger')</script>";
-		$vdue = 1;
-	   }
-      }
-      if($vrefund == 1 AND $vdate ==1 AND $vpass == 1)
-      {
-	    if($paytype == "empty" OR $paytype == "")
-	    {
-		  $infnotblank = $smarty->getVariable('_inf_not_valid');
-		  echo $infnotblank."<script>$('select[name=paytype]').addClass('alert-danger')</script>";
-		  echo "<script>return false</script>";
-		  $vype = 0;
-		  exit();
-	    }
-	    else
-	    {
-		  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');</script>";
-		  $vype = 1;
-	    }
-      }
-      if($vrefund == 1 AND $vdate ==1 AND $vpass == 1 AND $vype == 1)
+      if($vrefund == 1 AND $vdate ==1 AND $vype == 1 AND $vdue == 1 AND $vpass == 1)
       {
 	   if($iscanc == 0)
 	   {
@@ -148,6 +165,10 @@ if(isset($_SESSION['login']))
 		  else if($buyid)
 		  {
 			require_once('invoice/cancelinvoice/cancelbuyinvoice.php');
+		  }
+		  else if($seid)
+		  {
+			require_once('invoice/cancelinvoice/cancelservice.php');
 		  }
 		  $infworksuccess = $smarty->getVariable('_inf_work_success');
 		  echo $infworksuccess;
