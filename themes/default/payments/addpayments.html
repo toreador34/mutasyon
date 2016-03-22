@@ -14,7 +14,7 @@
 								<select class="form-control" name="invoiceid1">
 								  <option value="empty"></option>
 								  {foreach $invoice as $in}
-									  <option value="{$in.invoice_id}">{$in.invoice_no} - {$in.invoice_customer} - {$in.invtotal - $in.paytotal - $in.invoice_discount}</option>
+									  <option value="{$in.invoice_id}">{$in.invoice_no} - {$in.invoice_customer_id} - {$in.invtotal - $in.paytotal - $in.invoice_discount}</option>
 								  {/foreach}
 								</select>
 							    </div>

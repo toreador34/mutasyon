@@ -18,8 +18,7 @@ if(isset($_SESSION['login']))
       //Get paytotal
       if($id)
       {
-	    $invoiceamount = $db->query("SELECT *, TRUNCATE(SUM(payment_amount), 2) AS paytotal FROM payments 
-	    INNER JOIN invoice ON payments.payment_invoice_id = invoice_id WHERE invoice_id = '".$id."' GROUP BY invoice_id");
+	    $invoiceamount = $db->query("SELECT *, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_invoice_id = invoice_id AND payment_invoice_id <> 0 AND payment_in_out = 'in' ) AS paytotal FROM invoice LEFT JOIN payments ON payment_invoice_id = invoice_id WHERE invoice_id = '".$id."' GROUP BY invoice_id");
 	    foreach($invoiceamount as $inv)
 	    {
 		  $paytotal = $inv["paytotal"];
@@ -160,7 +159,6 @@ if(isset($_SESSION['login']))
 		  if($id)
 		  {
 			require_once('invoice/cancelinvoice/cancelinvoice.php');
-			echo $paycancdesc;
 		  }
 		  else if($buyid)
 		  {

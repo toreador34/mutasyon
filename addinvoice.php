@@ -199,12 +199,7 @@ if(isset($_SESSION['login']))
 			  }
 			  if($expr == 1 AND $number == 1 AND $vprice == 1)
 			  {
-			      require_once('invoice/addinvoice.php');
-			      require_once('invoice/invoicedproducts.php');
-			      require_once('invoice/reducestock.php');
-			      
-			      $infaddentry = $smarty->getVariable('_inf_add_success');
-			      echo $infaddentry;
+			      require_once('invoice/addinvoice.php');			      
 			  }
 		    }
 	}//if$_POST

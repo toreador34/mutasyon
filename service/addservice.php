@@ -35,3 +35,4 @@
       
 	  $infaddentry = $smarty->getVariable('_inf_add_success');
 	  echo $infaddentry;
+	  echo '<script type="text/javascript">setTimeout(function(){ window.location.href="invoicedetail.php?seid='.$invoiceid.'";}, 2000);</script>';

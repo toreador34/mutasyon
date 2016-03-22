@@ -111,7 +111,7 @@ if(isset($_SESSION['login']))
 		      $bank = $db->query("SELECT * FROM bank WHERE bank_active <> 0");
 		      $type = $db->query("SELECT * FROM paytype");
 		      $invoice = $db->query("
-					      SELECT *, (SELECT TRUNCATE(SUM(ip_total), 2) FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) AS invtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payments.payment_invoice_id = invoice.invoice_id) AS paytotal FROM invoice
+					      SELECT *, (SELECT TRUNCATE(SUM(ip_total), 2) FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) AS invtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payments.payment_invoice_id = invoice.invoice_id) AS paytotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payments.payment_service_id = invoice.invoice_id) AS servicetotal FROM invoice
 					      LEFT JOIN payments ON payments.payment_invoice_id = invoice.invoice_id
 					      LEFT JOIN bank ON bank.bank_id = payments.payment_bank_id
 					      WHERE invoice.invoice_cancelled <> 1 GROUP BY invoice_id

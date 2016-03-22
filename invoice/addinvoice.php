@@ -1,11 +1,4 @@
 <?php 
-require_once('configs/config.php');
-$page_name = "addinvoce";
-$smarty->assign("page_name", $page_name);
-
-if(isset($_SESSION['login']))
-{
-      
 	  //Get customer informations
 	  $getcust = $db->query("SELECT * FROM customer WHERE cust_id = '".$customerid."'");
 	  foreach($getcust as $g)
@@ -40,10 +33,54 @@ if(isset($_SESSION['login']))
 				    'id'=>$invoiceid,
 			    ));
 	  }
-
-
-}//login
-else
-{
-	$smarty->display(theme_base.'login.html');
-} //else login
+	  
+	  //Invoiced Product
+	  $m = 0;
+	  foreach($productname as $pr)
+	  {
+		$gettax = $db->query("SELECT * FROM stock 
+		INNER JOIN tax ON stock_tax_id = tax_id 
+		WHERE stock_name = '".$productname[$m]."' ");
+		foreach($gettax as $gt)
+		{
+			  $tax = $gt["tax_tax"];
+			  $productid = $gt["stock_id"];
+		}
+		$addpr = $db->prepare("INSERT INTO invoicedproducts (ip_admin_id, ip_stock_id, ip_name, ip_amount, ip_price, ip_tax, ip_total, ip_invoice_id) VALUES (:admin, :stock, :name, :amount, :price, :tax, :total, :invoice)");
+			
+		$addpr->execute(array(
+				      'admin'=>$admin_id,
+				      'stock'=>$productid,
+				      'name'=>$productname[$m],
+				      'amount'=>$amount[$m],
+				      'price'=>$price[$m],
+				      'tax'=>$tax,
+				      'total'=>$price[$m]*$amount[$m],
+				      'invoice'=>$invoiceid,
+				    ));
+		$m++;
+	  }
+	  
+	  //Reduce Stock
+	  $l = 0;
+	  foreach($productname as $pr)
+	  {
+		$gettax = $db->query("SELECT * FROM stock 
+		WHERE stock_name = '".$productname[$l]."' ");
+		foreach($gettax as $gt)
+		{
+		      $productidl = $gt["stock_id"];
+		      $oldamount = $gt["stock_amount"];
+		}
+		
+		$reducestock = $db->prepare("UPDATE stock SET stock_amount = :amount WHERE stock.stock_id = :id");
+		$reducestock->execute(array(
+				      'amount'=>$oldamount - $amount[$l],
+				      'id'=>$productidl,
+				    ));
+		$l++;
+	  }
+	  
+	  $infaddentry = $smarty->getVariable('_inf_add_success');
+	  echo $infaddentry;
+	  echo '<script type="text/javascript">setTimeout(function(){ window.location.href="invoicedetail.php?iid='.$invoiceid.'";}, 2000);</script>';
