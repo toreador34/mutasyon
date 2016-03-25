@@ -7,92 +7,103 @@
     <li class="active">{$_add_invoice}</li>
   </ol>
 <!--/Breadcrumb-->
-    <div class=	"navbar container-fluid">
-	<div class="row">
-	    <div class="col-sm-3">
+	<div class="navbar container-fluid">
 		<div class="row">
-		    <div class="col-sm-12">
-		      <label class="margin-top">{$_customer}</label>
-		      <div class="input-group input-group-sm customer">
-			    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="{$_addcustomer}"><i class="fa fa-plus"></i></a></span>
-			    <select class="form-control custid" id="custlist" name="customer">
-				  <option value="empty"></option>
-				  {foreach $customers as $cst}
-					<option value="{$cst.cust_id}" {if Check::getValue("cid")=={$cst.cust_id}}selected{/if}>{$cst.cust_name}</option>
-				  {/foreach}
-			    </select>
-		      </div>
-		      
-		    </div>
-		</div><!--/row-->
-		<div class="navbar">
-		    <label class="margin-top">{$_desc}</label>
-		    <textarea rows="4" class="form-control invdesc" type="textarea" name="invoicedesc"></textarea>
-		</div><!--/row-->
-	    </div><!--/col-sm-3-->
-	    <div class="col-sm-3 col-sm-offset-5">
-		<label class="margin-top">{$_invoice_prefix}</label><br />
-		<div class="form-group">
-		    <select class="form-control invoiceadj" style="width:100%" name="invoiceadjp">
-			<option value="empty"></option>
-		      {foreach $invoiceadj as $adj}
-			<option value="{$adj.invoiceadj_name}">{$adj.invoiceadj_name}</option>
-		      {/foreach}
-		    </select>
-		</div>
-		<label class="margin-top">{$_date}</label>
-		<input type="date" class="form-control" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}">
-		<label>{$_discount}</label>
-		<input id="discountamount" type="number" class="form-control" name="discount" step="0.01" autocomplete="off" /><br />
-	    </div>
-	</div><!--/row-->
-	<div class="navbar basket">
-<!-- Search product	     -->
-	    <div class="row">
-		<div class="col-sm-12 ustkisimlar">
-		      <div class="col-md-7 col-md-offset-2 col-sm-12 bosluksuz">
-			<div class="col-sm-12">
-			  <input type="text" class="basketinp spr" name="term" placeholder="{$_productname_or_serial_number}" />
-			  <input type="hidden" class="basketinp sprh" />
-			  <button type="button" class="btn btn-default btn-sm" style="position:absolute" data-toggle="collapse" href="#stocklist" aria-expanded="false" title="{$_addcustomer}"><i class="glyphicon glyphicon-th-list"></i></button>
+			<div class="col-sm-3">
+			    <div class="row">
+				<div class="col-sm-12">
+				  <label class="margin-top">{$_customer}</label>
+				  <div class="input-group input-group-sm customer">
+					<span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="{$_addcustomer}"><i class="fa fa-plus"></i></a></span>
+					<select class="form-control custid" id="custlist" name="customer">
+					      <option value="empty"></option>
+					      {foreach $customers as $cst}
+						    <option value="{$cst.cust_id}" {if Check::getValue("cid")=={$cst.cust_id}}selected{/if}>{$cst.cust_name}</option>
+					      {/foreach}
+					</select>
+				  </div>
+				  
+				</div>
+			    </div><!--/row-->
+			    <div class="navbar">
+				<label class="margin-top">{$_desc}</label>
+				<textarea rows="4" class="form-control invdesc" type="textarea" name="invoicedesc"></textarea>
+			    </div><!--/row-->
+			</div><!--/col-sm-3-->
+			<div class="col-sm-3 col-sm-offset-5">
+			      <label class="margin-top">{$_invoice_prefix}</label><br />
+			      <div class="form-group">
+				  <select class="form-control invoiceadj" style="width:100%" name="invoiceadjp">
+				      <option value="empty"></option>
+				    {foreach $invoiceadj as $adj}
+				      <option value="{$adj.invoiceadj_name}">{$adj.invoiceadj_name}</option>
+				    {/foreach}
+				  </select>
+			      </div>
+			      <label class="margin-top">{$_date}</label>
+			      <input type="date" class="form-control" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}">
+			      <label>{$_discount}</label>
+			      <input id="discountamount" type="number" class="form-control" name="discount" step="0.01" autocomplete="off" /><br />
 			</div>
-		      </div>
+		</div><!--/row-->
+		<div class="navbar basket">
+		<!-- Search product -->
+		<div class="row">
+		    <div class="col-sm-12 ustkisimlar">
+			  <div class="col-md-7 col-md-offset-2 col-sm-12 bosluksuz">
+			    <div class="col-sm-12">
+			      <input type="text" class="basketinp spr" name="term" placeholder="{$_productname_or_serial_number}" />
+			      <input type="hidden" class="basketinp sprh" />
+			      <button type="button" class="btn btn-default btn-sm" style="position:absolute" data-toggle="collapse" href="#stocklist" aria-expanded="false" title="{$_addcustomer}"><i class="glyphicon glyphicon-th-list"></i></button>
+			    </div>
+			  </div>
 
-			  <input type="hidden" class="basketinp basketprice" />
-			  <input type="hidden" class="basketinp basketamount" value="1"/>
+			      <input type="hidden" class="basketinp basketprice" />
+			      <input type="hidden" class="basketinp basketamount" value="1"/>
+		    </div>
 		</div>
-	    </div>
-<!-- /serach product	     -->
-	
-<!-- Basket -->
-	    <h4>{$_cart}</h4>
-	    <div style="border:1px solid #aaa;background-color:#ddd;clear:both;margin-top: -10px;padding-top: 15px;height:250px;overflow-y:auto;overflow-x:hidden">
-		<div id="urunler"  class="urunler row">
-			<ul class="baslik">
-				<li class="col-sm-1">{$_no}</li><li class="col-sm-6">{$_stock_name}</li><li class="col-sm-1">{$_amount}</li><li class="col-sm-2">{$_price}</li><li class="col-sm-1">{$_delete}</li>
-			</ul>
-			  <form id="odemeyapin" method="POST" name="odemealin">
-				  <input type="hidden" name="custid1" />
-				  <input type="hidden" name="adjp1" />
-				  <input type="hidden" name="date1" />
-				  <input type="hidden" name="discount1" />
-				  <input type="hidden" name="desc1" />
-				  <input type="hidden" name="totalinv" />
-				  <ul id="sepet" class="icerik">
-					 
-				  </ul>
-			  </form>
+		<!-- /serach product	     -->
+		
+		<!-- Basket -->
+		<h4>{$_cart}</h4>
+		<div style="border:1px solid #aaa;background-color:#ddd;clear:both;margin-top: -10px;padding-top: 15px;height:250px;overflow-y:auto;overflow-x:hidden">
+			<div id="urunler"  class="urunler row">
+				<ul class="baslik">
+					<li class="col-sm-1">{$_no}</li><li class="col-sm-6">{$_stock_name}</li><li class="col-sm-1">{$_amount}</li><li class="col-sm-2">{$_price}</li><li class="col-sm-1">{$_delete}</li>
+				</ul>
+				  <form id="odemeyapin" method="POST" name="odemealin">
+					  <input type="hidden" name="custid1" />
+					  <input type="hidden" name="adjp1" />
+					  <input type="hidden" name="date1" />
+					  <input type="hidden" name="discount1" />
+					  <input type="hidden" name="desc1" />
+					  <input type="hidden" name="totalinv" />
+					  <ul id="sepet" class="icerik">
+						  
+					  </ul>
+				  </form>
+			</div>
+			<div class="clearBosluk"></div>
+		</div>
+		<!-- /Basket -->
+		<div class="urunler noBorder dar">
+			    <button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; {$_buy_all} [F2] &nbsp;&nbsp;&nbsp;&nbsp; </button>
+			    <div id="toplam" class="pull-right margin-top"><span>{$_currency}</span><span id="tplm" class="fiyat">0.00</span></div>
 		</div>
 		<div class="clearBosluk"></div>
-	    </div>
-<!-- /Basket -->
-	    <div class="urunler noBorder dar">
-			<button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; {$_buy_all} [F2] &nbsp;&nbsp;&nbsp;&nbsp; </button>
-			<div id="toplam" class="pull-right margin-top"><span>{$_currency}</span><span id="tplm" class="fiyat">0.00</span></div>
-	    </div>
-	<div class="clearBosluk"></div>
-	</div><!---/row-->
-</div><!--navbar-->
+	</div><!--navbar-->
+	<!--Infos -->
+	<div class="col-xs-12 alert alert-info" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+	      <div class="col-sm-1">
+		    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left: -36px;margin-top: -13px;"></i>
+	      </div>
+	      <div class="col-sm-11 note-info">
+		    <h4 class="box-heading">{$_inf_header_addinvoice}</h4>
+		    <strong class="box-heading">{$_invoice_prefix}</strong>
+		    <p>{$_inf_invoice_prefix}</p>
+	      </div>
+	</div>
 </div><!--container body-bg-->
 {include file='themes/default/customer/addcustomer.html'}
 {include file='themes/default/invoice/stocklist.html'}

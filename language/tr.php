@@ -322,6 +322,24 @@ $smarty->assign(array(
   '_service_pay' 					=> "Hizmet Bedeli",
   
   
+  
+//   Infos
+  '_inf_header_addproduct' 		=> "Nasıl Ürün Ekleyeceksiniz?",
+  '_inf_stock_name' 			=> "Ürün için açıklayıcı bir isim giriniz! (Zorunlu alan)",
+  '_inf_stock_no' 			=> "Boş bırakılırsa otomatik olarak ürün adı eklenecektir.",
+  '_inf_short_desc' 			=> "Ürün numarası seri numarasıdır. Benzersiz olmalıdır. Sayı veya harf olabilir (Zorunlu alan)",
+  
+  '_inf_category' 			=> "Listeden kategori seçiniz. Kategori ekle ile yenisini ekleyebilirsiniz. Önce Ana kategori sonra bu kategori için alt kategori eklemelisiniz. <strong>Önemli: Ana kategoriye ürün ekleyemezsiniz ve Ana kategori eklemeden alt kategori de ekleyemezsiniz!</strong> (Zorunlu alan)",
+  
+  '_inf_upload_images' 			=> "'Browse' ile resim yada resimleri seçiniz. Resim ekleme de sınır yok ama sayfanın hızlı yüklenmesi için çok fazla sayıda resim yüklememeye dikkat ediniz.",
+  
+//   Invoices Infs
+  '_inf_header_invoices' 		=> "Hangi Faturayı Eklemek İstersiniz?",
+  '_inf_add_service' 			=> "Servis Faturası stok ürünleri dışında eklemek istediğiniz hizmet faturalarıdır. Örn: Tamir, Bakım ..vs",
+  '_inf_add_invoice' 			=> "Stokt ürünlerinin satışı için bunu kullanınız.",
+  '_inf_header_addinvoice' 		=> "Önek nedir?",
+  '_inf_invoice_prefix' 		=> "Fatura numarasının önüne eklenecek 3 karakterli bir ön isimdir. Böylece farklı serilere ait fatura ekleyebilirsiniz",
+  
   ));
 
 ?> 

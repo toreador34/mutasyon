@@ -1,43 +1,64 @@
 {include file='themes/default/header.html'}
 <div class="container body-bg">
     <div class="navbar">  
-	<form action="addproduct.php" method="post" enctype="multipart/form-data" class="addProduct">
-	      <div class="well one"><!--add product-->
-		    <span class="number">1- {$_add_stock}</span><br />
-		    <label class="margin-top">{$_stock_name}</label>
-		    <input type="text" class="form-control name" placeholder="{$_add_stock}" name="product_name">
-		    <label class="margin-top">{$_short_desc}</label>
-		    <input type="text" class="form-control shortdesc" placeholder="{$_short_desc}" name="short_desc">
-		    <label class="margin-top">{$_desc}</label>
-		    <textarea type="text" class="form-control" placeholder="{$_desc}" id="editor" name="product_detail"></textarea>
-		    <label class="margin-top">{$_stock_no}</label>
-		    <input type="text" class="form-control no" placeholder="{$_stock_no}" name="product_no">
-		    <div class="row" style="padding:15px;">
-			    <label>{$_category}</label>
-			    <div class="input-group input-group-sm categorylist">
-				  <span class="input-group-addon btn btn-yellow" id="sizing-addon3" data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="color: #fff;"><i class="fa fa-plus"></i> {$_add_category}</span>
-				  <select class="form-control" name="product_category">
-					<option value="empty"></option>
-					{foreach $category as $ct}
-						<option value="{$ct.category_id}">{$ct.category_name}</option>
-					{/foreach}
-				  </select>
-			    </div>
+	    <form action="addproduct.php" method="post" enctype="multipart/form-data" class="addProduct">
+		  <div class="well one"><!--add product-->
+			<span class="number">1- {$_add_stock}</span><br />
+			<label class="margin-top">{$_stock_name}</label>
+			<input type="text" class="form-control name" placeholder="{$_add_stock}" name="product_name">
+			<label class="margin-top">{$_short_desc}</label>
+			<input type="text" class="form-control shortdesc" placeholder="{$_short_desc}" name="short_desc">
+			<label class="margin-top">{$_desc}</label>
+			<textarea type="text" class="form-control" placeholder="{$_desc}" id="editor" name="product_detail"></textarea>
+			<label class="margin-top">{$_stock_no}</label>
+			<input type="text" class="form-control no" placeholder="{$_stock_no}" name="product_no">
+			<div class="row" style="padding:15px;">
+				<label>{$_category}</label>
+				<div class="input-group input-group-sm categorylist">
+				      <span class="input-group-addon btn btn-yellow" id="sizing-addon3" data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="color: #fff;"><i class="fa fa-plus"></i> {$_add_category}</span>
+				      <select class="form-control" name="product_category">
+					    <option value="empty"></option>
+					    {foreach $category as $ct}
+						    <option value="{$ct.category_id}">{$ct.category_name}</option>
+					    {/foreach}
+				      </select>
+				</div>
+			</div>
+			<button class="btn btn-success margin-top send" type="submit">{$_save}</button>
+		  </div><!--/add product-->
+	    </form>
+	    <div class="well two display-none"><!--add picture-->
+		    <span class="number">2- {$_upload_images}</span>
+		    <div class="form-group margin-top">
+		    <div class="form-group">
+			  <form action="images.php" method="post" id="addimagesform" enctype="multipart/form-data">
+				  <input name="productimage[]" class="file" type="file" multiple />
+				  <input name="newproductname[]" class="stname" type="hidden" />
+			  </form>
 		    </div>
-		    <button class="btn btn-success margin-top send" type="submit">{$_save}</button>
-	      </div><!--/add product-->
-	</form>
-	<div class="well two display-none"><!--add picture-->
-		<span class="number">2- {$_upload_images}</span>
-                <div class="form-group margin-top">
-		<div class="form-group">
-		      <form action="images.php" method="post" id="addimagesform" enctype="multipart/form-data">
-			      <input name="productimage[]" class="file" type="file" multiple />
-			      <input name="newproductname[]" class="stname" type="hidden" />
-		      </form>
-                </div>
-                </div>
-	</div><!--/add picture-->
+		    </div>
+	    </div><!--/add picture-->
+	    
+		  <div class="col-xs-12 alert alert-info" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<div class="col-sm-1">
+			      <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left: -36px;margin-top: -13px;"></i>
+			</div>
+			<div class="col-sm-11 note-info">
+			      <h4 class="box-heading">{$_inf_header_addproduct}</h4>
+			      <strong class="box-heading">{$_stock_name}</strong>
+			      <p>{$_inf_stock_name}</p>
+			      <strong class="box-heading">{$_short_desc}</strong>
+			      <p>{$_inf_short_desc}</p>
+			      <strong class="box-heading">{$_stock_no}</strong>
+			      <p>{$_inf_stock_no}</p>
+			      <strong class="box-heading">{$_category}</strong>
+			      <p>{$_inf_category}</p>
+			      <strong class="box-heading">{$_upload_images}</strong>
+			      <p>{$_inf_upload_images}</p>
+			</div>
+		  </div>
+
     </div>
 </div><!--/container-->
 {include file='themes/default/category/addcategory.html'}

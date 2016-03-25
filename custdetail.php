@@ -30,13 +30,14 @@ Edit customer informations
 			  }
 			  else
 			  {
-			      $updatecust = $db->prepare("UPDATE  customer SET  cust_name =  :cun, cust_tel =  :cut, cust_mail =  :cum, cust_web =  :cuw, cust_address =  :cua  WHERE  customer.cust_id =1;");
+			      $updatecust = $db->prepare("UPDATE  customer SET  cust_name =  :cun, cust_tel =  :cut, cust_mail =  :cum, cust_web =  :cuw, cust_address =  :cua  WHERE  customer.cust_id =:id;");
 			      $updatecust->execute(array(
 				      'cun'=>$editcustname,
 				      'cut'=>$editcusttel,
 				      'cum'=>$editcustmail,
 				      'cuw'=>$editcustweb,
 				      'cua'=>$editcustaddress,
+				      'id'=>$editcustid,
 			      ));
 			      
 			      echo "Bilgiler güncellendi!<script>$('input[name=editcustmail]').removeClass('alert-danger');</script>";
@@ -55,13 +56,14 @@ Edit customer informations
 		      }
 		      else
 		      {
-			$updatecust = $db->prepare("UPDATE  customer SET  cust_name =  :cun, cust_tel =  :cut, cust_mail =  :cum, cust_web =  :cuw, cust_address =  :cua  WHERE  customer.cust_id =1;");
+			$updatecust = $db->prepare("UPDATE  customer SET  cust_name =  :cun, cust_tel =  :cut, cust_mail =  :cum, cust_web =  :cuw, cust_address =  :cua  WHERE  customer.cust_id =:id;");
 			    $updatecust->execute(array(
 				    'cun'=>$editcustname,
 				    'cut'=>$editcusttel,
 				    'cum'=>$editcustmail,
 				    'cuw'=>$editcustweb,
 				    'cua'=>$editcustaddress,
+				    'id'=>$editcustid,
 			    ));
 			    echo "Bilgiler güncellendi!";
 		      }
