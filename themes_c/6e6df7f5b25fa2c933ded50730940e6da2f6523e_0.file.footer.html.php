@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-14 22:07:36
+<?php /* Smarty version 3.1.27, created on 2016-03-25 14:47:14
          compiled from "/var/www/html/mutasyon/themes/default/footer.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:13651082456e71a08aa6d82_13954308%%*/
+/*%%SmartyHeaderCode:210366334256f533527cf418_87189314%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,31 +9,31 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6e6df7f5b25fa2c933ded50730940e6da2f6523e' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/footer.html',
-      1 => 1456420598,
+      1 => 1458501063,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13651082456e71a08aa6d82_13954308',
+  'nocache_hash' => '210366334256f533527cf418_87189314',
   'variables' => 
   array (
     'js' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e71a08ab3c62_27067466',
+  'unifunc' => 'content_56f53352819d73_13203576',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e71a08ab3c62_27067466')) {
-function content_56e71a08ab3c62_27067466 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56f53352819d73_13203576')) {
+function content_56f53352819d73_13203576 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '13651082456e71a08aa6d82_13954308';
+$_smarty_tpl->properties['nocache_hash'] = '210366334256f533527cf418_87189314';
 ?>
 <div class="work-inf alert alert-success display-none" style="position:fixed;bottom:0;z-index:9999"></div>
 </body>
 </html>
 <div class="container footer hidden-print">
     <div class="nav">
-		  <a href="http://www.gozdesm.com" target="_blank"><i class="fa fa-copyright"></i> Mutasyon Alpha 3</a>
+		  <a href="http://www.gozdesm.com" target="_blank"><i class="fa fa-copyright"></i> Mutasyon Beta 1</a>
       </div>
 </div>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

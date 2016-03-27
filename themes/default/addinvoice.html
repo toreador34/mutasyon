@@ -32,13 +32,23 @@
 			</div><!--/col-sm-3-->
 			<div class="col-sm-3 col-sm-offset-5">
 			      <label class="margin-top">{$_invoice_prefix}</label><br />
-			      <div class="form-group">
+			      <div class="form-group" style="position:relative">
 				  <select class="form-control invoiceadj" style="width:100%" name="invoiceadjp">
 				      <option value="empty"></option>
 				    {foreach $invoiceadj as $adj}
 				      <option value="{$adj.invoiceadj_name}">{$adj.invoiceadj_name}</option>
 				    {/foreach}
 				  </select>
+				  <div class="questions" style="margin-left:252px;margin-top:-47px"><i class="fa fa-question-circle"></i></div>
+				  <div class="col-xs-12 alert alert-info answer" style="display:none;margin-top:-32px;margin-left:5px">
+					<div class="col-sm-1">
+					      <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+					</div>
+					<div class="col-sm-11 note-info">
+					      <strong class="box-heading">{$_invoice_prefix}</strong>
+					      <p>{$_inf_invoice_prefix}</p>
+					</div>
+				  </div>
 			      </div>
 			      <label class="margin-top">{$_date}</label>
 			      <input type="date" class="form-control" name="date" value="{$smarty.now|date_format:'%Y-%m-%d'}">
@@ -87,23 +97,11 @@
 		</div>
 		<!-- /Basket -->
 		<div class="urunler noBorder dar">
-			    <button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; {$_buy_all} [F2] &nbsp;&nbsp;&nbsp;&nbsp; </button>
+			    <button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; {$_buy_all}&nbsp;&nbsp;&nbsp;&nbsp; </button>
 			    <div id="toplam" class="pull-right margin-top"><span>{$_currency}</span><span id="tplm" class="fiyat">0.00</span></div>
 		</div>
 		<div class="clearBosluk"></div>
 	</div><!--navbar-->
-	<!--Infos -->
-	<div class="col-xs-12 alert alert-info" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-	      <div class="col-sm-1">
-		    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left: -36px;margin-top: -13px;"></i>
-	      </div>
-	      <div class="col-sm-11 note-info">
-		    <h4 class="box-heading">{$_inf_header_addinvoice}</h4>
-		    <strong class="box-heading">{$_invoice_prefix}</strong>
-		    <p>{$_inf_invoice_prefix}</p>
-	      </div>
-	</div>
 </div><!--container body-bg-->
 {include file='themes/default/customer/addcustomer.html'}
 {include file='themes/default/invoice/stocklist.html'}
@@ -217,6 +215,10 @@ $(document).on('click', '.invamount', calculateSum);
         });
         $("#tplm").html(sum.toFixed(2));
     }
+   
+$(document).on("click", ".questions", function(){
+    $(".answer").toggle();  
+});
 
 //end
 });

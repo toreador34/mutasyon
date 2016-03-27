@@ -981,3 +981,21 @@ img.admin{
     background: inherit;
     left: 20px;
 }
+
+/* Questions */
+.qrelative{
+  position:relative;
+}
+.questions {
+    position:absolute;
+}
+.questions i {
+    font-size: 23px;
+    color: black;
+    cursor: pointer;
+}
+.answer {
+    position: absolute;
+    z-index: 3;
+    width:250px;
+}

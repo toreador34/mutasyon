@@ -66,11 +66,33 @@
 	  </div><!--/invoice info-->
 	  <div class="container-fluid"><!--invoice detail-->
 	      <a data-toggle="collapse" href="#insertservice" class="btn  btn-yellow {if $screen == 'phone'}btn-xs{/if} hidden-print pull-right"><i class="fa fa-cart-plus"></i>&nbsp;{$_add_service_type}</a>
+	      <!-- Infos -->
+	      <div class="questions qaddser" style="margin-left:820px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
+		    <div class="col-xs-12 alert alert-info answer aaddser" style="display:none;margin-top:1px;margin-left:571px">
+		    <div class="col-sm-1">
+			  <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+		    </div>
+		    <div class="col-sm-11 note-info">
+			  <strong class="box-heading">{$_service_pay}</strong>
+			  <p>{$_inf_add_service}</p>
+		    </div>
+	      </div>
 	     
 	     {if $i.invoice_providers != -1}
 		  {if $i.invoice_providers != 0 AND $i.invoice_providers_price == 0}
 		  	<!--  pay to providers -->
 			<a data-toggle="collapse" href="#setpayproviders" class="btn  btn-orange {if $screen == 'phone'}btn-xs{/if} hidden-print pull-right" style="margin-right: 10px;"><i class="fa fa-circle-o-notch"></i>&nbsp;{$_service_pay}</a>
+			<!-- Infos -->
+			<div class="questions qpaypro" style="margin-left:654px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
+			      <div class="col-xs-12 alert alert-info answer apaypro" style="display:none;margin-top:1px;margin-left:403px">
+			      <div class="col-sm-1">
+				    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+			      </div>
+			      <div class="col-sm-11 note-info">
+				    <strong class="box-heading">{$_service_pay}</strong>
+				    <p>{$_inf_service_pay}</p>
+			      </div>
+			</div>
 		  {else if $i.invoice_providers != 0 AND $i.invoice_providers_price == $i.payouttotal}
 			<a class="btn  btn-success {if $screen == 'phone'}btn-xs{/if} hidden-print pull-right" style="margin-right: 10px;"><i class="fa fa-ban"></i>&nbsp;{$_add_providers_complete}</a>
 		  {else}
@@ -229,6 +251,12 @@ $(".cancelservicesubmit").click(function(){
     }
 });
 
+$(document).on("click", ".qpaypro", function(){
+    $(".apaypro").toggle();  
+});
+$(document).on("click", ".qaddser", function(){
+    $(".aaddser").toggle();  
+});
 
 // End of function
 });

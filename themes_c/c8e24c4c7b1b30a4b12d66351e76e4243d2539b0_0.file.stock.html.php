@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-16 19:56:24
+<?php /* Smarty version 3.1.27, created on 2016-03-25 16:17:08
          compiled from "/var/www/html/mutasyon/themes/default/stock.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:25245636456e99e48b69eb7_36032931%%*/
+/*%%SmartyHeaderCode:79498031556f54864713799_57942295%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c8e24c4c7b1b30a4b12d66351e76e4243d2539b0' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/stock.html',
-      1 => 1457695228,
+      1 => 1458915424,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '25245636456e99e48b69eb7_36032931',
+  'nocache_hash' => '79498031556f54864713799_57942295',
   'variables' => 
   array (
     '_stock_list' => 0,
@@ -37,14 +37,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e99e48e404a1_28235260',
+  'unifunc' => 'content_56f54864802995_85815611',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e99e48e404a1_28235260')) {
-function content_56e99e48e404a1_28235260 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56f54864802995_85815611')) {
+function content_56f54864802995_85815611 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.truncate.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '25245636456e99e48b69eb7_36032931';
+$_smarty_tpl->properties['nocache_hash'] = '79498031556f54864713799_57942295';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
  
@@ -226,6 +226,18 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration == 1
 ?>
 
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/stock/sellstock.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/seller/addseller.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/taxprofit/addtax.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/invoiceadj/addadj.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/bank/addbank.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/footer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);

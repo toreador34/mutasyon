@@ -36,6 +36,17 @@
 								      {/foreach}
 							    </select>
 						      </div>
+						      <!-- Infos -->
+						      <div class="questions qpro" style="margin-left:252px;margin-top:-47px"><i class="fa fa-question-circle"></i></div>
+							    <div class="col-xs-12 alert alert-info answer apro" style="display:none;margin-top:-32px;margin-left:5px">
+							    <div class="col-sm-1">
+								  <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+							    </div>
+							    <div class="col-sm-11 note-info">
+								  <strong class="box-heading">{$_providers}</strong>
+								  <p>{$_inf_providers}</p>
+							    </div>
+						      </div>
 						</div>
 					</div><!--/row-->	  
 				</div><!--/col-sm-3-->
@@ -52,6 +63,16 @@
 							      <option value="{$a.invoiceadj_name}">{$a.invoiceadj_name}</option>
 							{/foreach}
 					      </select>
+					</div>
+					<div class="questions questanj" style="margin-left:252px;margin-top:-47px"><i class="fa fa-question-circle"></i></div>
+					<div class="col-xs-12 alert alert-info answer ansanj" style="display:none;margin-top:-32px;margin-left:5px">
+					      <div class="col-sm-1">
+						    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+					      </div>
+					      <div class="col-sm-11 note-info">
+						    <strong class="box-heading">{$_invoice_prefix}</strong>
+						    <p>{$_inf_invoice_prefix}</p>
+					      </div>
 					</div>
 				</div>
 			</div><!--/row-->
@@ -73,5 +94,12 @@ $(function(){
 $(".chosen-select").chosen();
 
 //end
+});
+
+$(document).on("click", ".questanj", function(){
+    $(".ansanj").toggle();  
+});
+$(document).on("click", ".qpro", function(){
+    $(".apro").toggle();  
 });
 </script>

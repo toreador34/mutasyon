@@ -338,7 +338,10 @@ $smarty->assign(array(
   '_inf_add_service' 			=> "Servis Faturası stok ürünleri dışında eklemek istediğiniz hizmet faturalarıdır. Örn: Tamir, Bakım ..vs",
   '_inf_add_invoice' 			=> "Stokt ürünlerinin satışı için bunu kullanınız.",
   '_inf_header_addinvoice' 		=> "Önek nedir?",
-  '_inf_invoice_prefix' 		=> "Fatura numarasının önüne eklenecek 3 karakterli bir ön isimdir. Böylece farklı serilere ait fatura ekleyebilirsiniz",
+  '_inf_invoice_prefix' 		=> "Fatura numarasının önüne eklenecek 3 karakterli bir ön isimdir. (Zorunlu)",
+  '_inf_providers' 			=> "Sizinle beraber çalışan şirket yada şirketleri gösterir. Kendi şirketiniz dışında bir hizmet vereni seçerseniz sonraki adımda bu firma hizmeti için ücret belirleyebilirsiniz. (Zorunlu)",
+  '_inf_service_pay' 			=> "Hizmet veren firma ücretini buradan belirleyiniz. Belirledikten sonra bu firmaya ödemeyi aktarabilirsiniz.",
+  '_inf_add_service' 			=> "Buradan uyguladığınız servisleri ekleyebilirsiniz.",
   
   ));
 

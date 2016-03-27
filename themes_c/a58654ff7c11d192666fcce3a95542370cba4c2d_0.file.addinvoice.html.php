@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-14 22:14:25
+<?php /* Smarty version 3.1.27, created on 2016-03-27 16:33:16
          compiled from "/var/www/html/mutasyon/themes/default/addinvoice.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:29965090356e71ba119bd13_63043788%%*/
+/*%%SmartyHeaderCode:57013925056f7e11cddf935_67559971%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a58654ff7c11d192666fcce3a95542370cba4c2d' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/addinvoice.html',
-      1 => 1457985586,
+      1 => 1459085591,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '29965090356e71ba119bd13_63043788',
+  'nocache_hash' => '57013925056f7e11cddf935_67559971',
   'variables' => 
   array (
     '_invoice' => 0,
@@ -26,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_invoice_prefix' => 0,
     'invoiceadj' => 0,
     'adj' => 0,
+    '_inf_invoice_prefix' => 0,
     '_date' => 0,
     '_discount' => 0,
     '_productname_or_serial_number' => 0,
@@ -40,14 +41,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e71ba11dcef4_70135954',
+  'unifunc' => 'content_56f7e11ce33284_44817939',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e71ba11dcef4_70135954')) {
-function content_56e71ba11dcef4_70135954 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56f7e11ce33284_44817939')) {
+function content_56f7e11ce33284_44817939 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '29965090356e71ba119bd13_63043788';
+$_smarty_tpl->properties['nocache_hash'] = '57013925056f7e11cddf935_67559971';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -61,19 +62,19 @@ echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->c
 </li>
   </ol>
 <!--/Breadcrumb-->
-    <div class=	"navbar container-fluid">
-	<div class="row">
-	    <div class="col-sm-3">
+	<div class="navbar container-fluid">
 		<div class="row">
-		    <div class="col-sm-12">
-		      <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_customer']->value;?>
+			<div class="col-sm-3">
+			    <div class="row">
+				<div class="col-sm-12">
+				  <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_customer']->value;?>
 </label>
-		      <div class="input-group input-group-sm customer">
-			    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
+				  <div class="input-group input-group-sm customer">
+					<span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
 "><i class="fa fa-plus"></i></a></span>
-			    <select class="form-control custid" id="custlist" name="customer">
-				  <option value="empty"></option>
-				  <?php
+					<select class="form-control custid" id="custlist" name="customer">
+					      <option value="empty"></option>
+					      <?php
 $_from = $_smarty_tpl->tpl_vars['customers']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -84,34 +85,34 @@ foreach ($_from as $_smarty_tpl->tpl_vars['cst']->value) {
 $_smarty_tpl->tpl_vars['cst']->_loop = true;
 $foreach_cst_Sav = $_smarty_tpl->tpl_vars['cst'];
 ?>
-					<option value="<?php echo $_smarty_tpl->tpl_vars['cst']->value['cust_id'];?>
+						    <option value="<?php echo $_smarty_tpl->tpl_vars['cst']->value['cust_id'];?>
 " <?php ob_start();
 echo $_smarty_tpl->tpl_vars['cst']->value['cust_id'];
 $_tmp1=ob_get_clean();
 if (Check::getValue("cid") == $_tmp1) {?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['cst']->value['cust_name'];?>
 </option>
-				  <?php
+					      <?php
 $_smarty_tpl->tpl_vars['cst'] = $foreach_cst_Sav;
 }
 ?>
-			    </select>
-		      </div>
-		      
-		    </div>
-		</div><!--/row-->
-		<div class="navbar">
-		    <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_desc']->value;?>
+					</select>
+				  </div>
+				  
+				</div>
+			    </div><!--/row-->
+			    <div class="navbar">
+				<label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_desc']->value;?>
 </label>
-		    <textarea rows="4" class="form-control invdesc" type="textarea" name="invoicedesc"></textarea>
-		</div><!--/row-->
-	    </div><!--/col-sm-3-->
-	    <div class="col-sm-3 col-sm-offset-5">
-		<label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_invoice_prefix']->value;?>
+				<textarea rows="4" class="form-control invdesc" type="textarea" name="invoicedesc"></textarea>
+			    </div><!--/row-->
+			</div><!--/col-sm-3-->
+			<div class="col-sm-3 col-sm-offset-5">
+			      <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_invoice_prefix']->value;?>
 </label><br />
-		<div class="form-group">
-		    <select class="form-control invoiceadj" style="width:100%" name="invoiceadjp">
-			<option value="empty"></option>
-		      <?php
+			      <div class="form-group" style="position:relative">
+				  <select class="form-control invoiceadj" style="width:100%" name="invoiceadjp">
+				      <option value="empty"></option>
+				    <?php
 $_from = $_smarty_tpl->tpl_vars['invoiceadj']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -122,81 +123,92 @@ foreach ($_from as $_smarty_tpl->tpl_vars['adj']->value) {
 $_smarty_tpl->tpl_vars['adj']->_loop = true;
 $foreach_adj_Sav = $_smarty_tpl->tpl_vars['adj'];
 ?>
-			<option value="<?php echo $_smarty_tpl->tpl_vars['adj']->value['invoiceadj_name'];?>
+				      <option value="<?php echo $_smarty_tpl->tpl_vars['adj']->value['invoiceadj_name'];?>
 "><?php echo $_smarty_tpl->tpl_vars['adj']->value['invoiceadj_name'];?>
 </option>
-		      <?php
+				    <?php
 $_smarty_tpl->tpl_vars['adj'] = $foreach_adj_Sav;
 }
 ?>
-		    </select>
-		</div>
-		<label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_date']->value;?>
+				  </select>
+				  <div class="questions" style="margin-left:252px;margin-top:-47px"><i class="fa fa-question-circle"></i></div>
+				  <div class="col-xs-12 alert alert-info answer" style="display:none;margin-top:-32px;margin-left:5px">
+					<div class="col-sm-1">
+					      <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
+					</div>
+					<div class="col-sm-11 note-info">
+					      <strong class="box-heading"><?php echo $_smarty_tpl->tpl_vars['_invoice_prefix']->value;?>
+</strong>
+					      <p><?php echo $_smarty_tpl->tpl_vars['_inf_invoice_prefix']->value;?>
+</p>
+					</div>
+				  </div>
+			      </div>
+			      <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_date']->value;?>
 </label>
-		<input type="date" class="form-control" name="date" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d');?>
+			      <input type="date" class="form-control" name="date" value="<?php echo smarty_modifier_date_format(time(),'%Y-%m-%d');?>
 ">
-		<label><?php echo $_smarty_tpl->tpl_vars['_discount']->value;?>
+			      <label><?php echo $_smarty_tpl->tpl_vars['_discount']->value;?>
 </label>
-		<input id="discountamount" type="number" class="form-control" name="discount" step="0.01" autocomplete="off" /><br />
-	    </div>
-	</div><!--/row-->
-	<div class="navbar basket">
-<!-- Search product	     -->
-	    <div class="row">
-		<div class="col-sm-12 ustkisimlar">
-		      <div class="col-md-7 col-md-offset-2 col-sm-12 bosluksuz">
-			<div class="col-sm-12">
-			  <input type="text" class="basketinp spr" name="term" placeholder="<?php echo $_smarty_tpl->tpl_vars['_productname_or_serial_number']->value;?>
-" />
-			  <input type="hidden" class="basketinp sprh" />
-			  <button type="button" class="btn btn-default btn-sm" style="position:absolute" data-toggle="collapse" href="#stocklist" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
-"><i class="glyphicon glyphicon-th-list"></i></button>
+			      <input id="discountamount" type="number" class="form-control" name="discount" step="0.01" autocomplete="off" /><br />
 			</div>
-		      </div>
+		</div><!--/row-->
+		<div class="navbar basket">
+		<!-- Search product -->
+		<div class="row">
+		    <div class="col-sm-12 ustkisimlar">
+			  <div class="col-md-7 col-md-offset-2 col-sm-12 bosluksuz">
+			    <div class="col-sm-12">
+			      <input type="text" class="basketinp spr" name="term" placeholder="<?php echo $_smarty_tpl->tpl_vars['_productname_or_serial_number']->value;?>
+" />
+			      <input type="hidden" class="basketinp sprh" />
+			      <button type="button" class="btn btn-default btn-sm" style="position:absolute" data-toggle="collapse" href="#stocklist" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
+"><i class="glyphicon glyphicon-th-list"></i></button>
+			    </div>
+			  </div>
 
-			  <input type="hidden" class="basketinp basketprice" />
-			  <input type="hidden" class="basketinp basketamount" value="1"/>
+			      <input type="hidden" class="basketinp basketprice" />
+			      <input type="hidden" class="basketinp basketamount" value="1"/>
+		    </div>
 		</div>
-	    </div>
-<!-- /serach product	     -->
-	
-<!-- Basket -->
-	    <h4><?php echo $_smarty_tpl->tpl_vars['_cart']->value;?>
+		<!-- /serach product	     -->
+		
+		<!-- Basket -->
+		<h4><?php echo $_smarty_tpl->tpl_vars['_cart']->value;?>
 </h4>
-	    <div style="border:1px solid #aaa;background-color:#ddd;clear:both;margin-top: -10px;padding-top: 15px;height:250px;overflow-y:auto;overflow-x:hidden">
-		<div id="urunler"  class="urunler row">
-			<ul class="baslik">
-				<li class="col-sm-1"><?php echo $_smarty_tpl->tpl_vars['_no']->value;?>
+		<div style="border:1px solid #aaa;background-color:#ddd;clear:both;margin-top: -10px;padding-top: 15px;height:250px;overflow-y:auto;overflow-x:hidden">
+			<div id="urunler"  class="urunler row">
+				<ul class="baslik">
+					<li class="col-sm-1"><?php echo $_smarty_tpl->tpl_vars['_no']->value;?>
 </li><li class="col-sm-6"><?php echo $_smarty_tpl->tpl_vars['_stock_name']->value;?>
 </li><li class="col-sm-1"><?php echo $_smarty_tpl->tpl_vars['_amount']->value;?>
 </li><li class="col-sm-2"><?php echo $_smarty_tpl->tpl_vars['_price']->value;?>
 </li><li class="col-sm-1"><?php echo $_smarty_tpl->tpl_vars['_delete']->value;?>
 </li>
-			</ul>
-			  <form id="odemeyapin" method="POST" name="odemealin">
-				  <input type="hidden" name="custid1" />
-				  <input type="hidden" name="adjp1" />
-				  <input type="hidden" name="date1" />
-				  <input type="hidden" name="discount1" />
-				  <input type="hidden" name="desc1" />
-				  <input type="hidden" name="totalinv" />
-				  <ul id="sepet" class="icerik">
-					 
-				  </ul>
-			  </form>
+				</ul>
+				  <form id="odemeyapin" method="POST" name="odemealin">
+					  <input type="hidden" name="custid1" />
+					  <input type="hidden" name="adjp1" />
+					  <input type="hidden" name="date1" />
+					  <input type="hidden" name="discount1" />
+					  <input type="hidden" name="desc1" />
+					  <input type="hidden" name="totalinv" />
+					  <ul id="sepet" class="icerik">
+						  
+					  </ul>
+				  </form>
+			</div>
+			<div class="clearBosluk"></div>
+		</div>
+		<!-- /Basket -->
+		<div class="urunler noBorder dar">
+			    <button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $_smarty_tpl->tpl_vars['_buy_all']->value;?>
+&nbsp;&nbsp;&nbsp;&nbsp; </button>
+			    <div id="toplam" class="pull-right margin-top"><span><?php echo $_smarty_tpl->tpl_vars['_currency']->value;?>
+</span><span id="tplm" class="fiyat">0.00</span></div>
 		</div>
 		<div class="clearBosluk"></div>
-	    </div>
-<!-- /Basket -->
-	    <div class="urunler noBorder dar">
-			<button id="sendinv" class="btn btn-warning pull-left margin-top"> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo $_smarty_tpl->tpl_vars['_buy_all']->value;?>
- [F2] &nbsp;&nbsp;&nbsp;&nbsp; </button>
-			<div id="toplam" class="pull-right margin-top"><span><?php echo $_smarty_tpl->tpl_vars['_currency']->value;?>
-</span><span id="tplm" class="fiyat">0.00</span></div>
-	    </div>
-	<div class="clearBosluk"></div>
-	</div><!---/row-->
-</div><!--navbar-->
+	</div><!--navbar-->
 </div><!--container body-bg-->
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/customer/addcustomer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
@@ -296,7 +308,6 @@ $(document).on("click", "#sendinv", function(){
 		success:function(t){
 		  $("div.work-inf").addClass("display-block");
 		  $("div.work-inf").html(t);
-		  setTimeout(function(){ location.reload(); }, 2000);
 		}
 	  });
 });
@@ -318,6 +329,10 @@ $(document).on('click', '.invamount', calculateSum);
         });
         $("#tplm").html(sum.toFixed(2));
     }
+   
+$(document).on("click", ".questions", function(){
+    $(".answer").toggle();  
+});
 
 //end
 });

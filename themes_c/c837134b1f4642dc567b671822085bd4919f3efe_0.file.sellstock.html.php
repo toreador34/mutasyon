@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-16 19:56:25
+<?php /* Smarty version 3.1.27, created on 2016-03-26 13:50:34
          compiled from "/var/www/html/mutasyon/themes/default/stock/sellstock.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:111884559956e99e490d8fa4_93760654%%*/
+/*%%SmartyHeaderCode:109765136956f6778a2edaa1_72364748%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c837134b1f4642dc567b671822085bd4919f3efe' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/stock/sellstock.html',
-      1 => 1457985692,
+      1 => 1458992929,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '111884559956e99e490d8fa4_93760654',
+  'nocache_hash' => '109765136956f6778a2edaa1_72364748',
   'variables' => 
   array (
     '_sale' => 0,
@@ -29,21 +29,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'customers' => 0,
     'c' => 0,
     '_invoiceadj' => 0,
-    '_add_tax' => 0,
+    '_add_invoiceadj' => 0,
     'invoiceadj' => 0,
     'adj' => 0,
     '_date' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e99e491421e1_65707930',
+  'unifunc' => 'content_56f6778a319791_13392334',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e99e491421e1_65707930')) {
-function content_56e99e491421e1_65707930 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56f6778a319791_13392334')) {
+function content_56f6778a319791_13392334 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '111884559956e99e490d8fa4_93760654';
+$_smarty_tpl->properties['nocache_hash'] = '109765136956f6778a2edaa1_72364748';
 ?>
 <!-- Modallar  -->
 <div class="collapse topwind" id="sellstock">
@@ -135,8 +135,8 @@ $_smarty_tpl->tpl_vars['c'] = $foreach_c_Sav;
 					      <div class="form-group">
 						  <label for="inputWebsite" class="control-label"><?php echo $_smarty_tpl->tpl_vars['_invoiceadj']->value;?>
 </label>
-						  <div class="input-group input-group-sm tax">
-							<span class="input-group-addon"><a data-toggle="collapse" href="#addtax" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_add_tax']->value;?>
+						  <div class="input-group input-group-sm invadj">
+							<span class="input-group-addon"><a data-toggle="collapse" href="#addadj" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_add_invoiceadj']->value;?>
 "><i class="fa fa-plus"></i></a></span>
 							<select class="form-control invoiceadj" style="width:100%" name="adjp1">
 							      <option value="empty"></option>
