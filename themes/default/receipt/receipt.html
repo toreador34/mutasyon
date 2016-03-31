@@ -72,24 +72,31 @@
 						<strong>{$_only}</strong>
 						{sayiyiYaziyaCevir($i.payment_amount,2,"TL","Kr","#",null,null,null)} alınmıştır.
 					  </td>
-					  <td style="width:25%;text-align:center">
-						<strong>{$_paying}</strong><br />
-						{if $i.cust_name != ""}
+					  {if $i.payment_in_out == "in" || $i.payment_in_out == "cin"}
+						<td style="width:25%;text-align:center">
+						      <strong>{$_paying}</strong><br />
 						      {$i.cust_name}
-						{else}
+						</td>
+						<td style="width:25%;text-align:center">
+						      <strong>{$_who_charged}</strong><br />
 						      {$admin_name}
-						{/if}
-					  </td>
-					  <td style="width:25%;text-align:center">
-						<strong>{$_who_charged}</strong><br />
-						{if $i.cust_name != ""}
+						</td>
+					  {else}
+						<td style="width:25%;text-align:center">
+						      <strong>{$_paying}</strong><br />
 						      {$admin_name}
-						{else if $i.payment_seller_id != NULL}
-						      {$i.seller_name}
-						{else}
-						      {$i.providers_name}
-						{/if}
-					  </td>
+						</td>
+						<td style="width:25%;text-align:center">
+						      <strong>{$_who_charged}</strong><br />
+						      {if $i.seller_name != NULL}
+							    {$i.seller_name}
+						      {else if $i.providers_name != NULL}
+							    {$i.providers_name}
+						      {else}
+							    {$i.cust_name}
+						      {/if}
+						</td>
+					  {/if}
 				    </tr>
 			      </table>
 			</div>

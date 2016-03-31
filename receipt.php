@@ -12,7 +12,7 @@ if(isset($_SESSION['login']))
       
       if($pid)
       {
-		$invoiceid = $db->query("SELECT * FROM payments LEFT JOIN customer ON cust_id = payment_customer_id INNER JOIN paytype ON paytype_id = payment_type LEFT JOIN providerspyments ON pp_id = payments_pp_id LEFT JOIN providers ON providers_id = pp_providers_id LEFT JOIN seller ON seller_id = payment_seller_id WHERE payment_id = '".$pid."' ");
+		$invoiceid = $db->query("SELECT * FROM payments LEFT JOIN customer ON cust_id = payment_customer_id LEFT JOIN paytype ON paytype_id = payment_type LEFT JOIN providerspyments ON pp_id = payments_pp_id LEFT JOIN providers ON providers_id = pp_providers_id LEFT JOIN seller ON seller_id = payment_seller_id WHERE payment_id = '".$pid."' ");
 				    
 		$company = $db->query("SELECT * FROM company", PDO::FETCH_ASSOC);
 		foreach($company as $c)

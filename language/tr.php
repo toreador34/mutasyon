@@ -296,7 +296,7 @@ $smarty->assign(array(
   '_payout' 						=> "Çıkış",
   '_paybalance' 					=> "Denge",
   '_transfer' 						=> "Transfer",
-  '_pay_it' 						=> "Ödeme Yap",
+  '_pay_out' 						=> "Para Çıkışı",
   
   //Paytype
   '_payment_type' 					=> "Ödeme Yöntemi",

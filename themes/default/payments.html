@@ -8,9 +8,9 @@
   </ol>
 <!--/Breadcrumb-->
       <div class="navbar" style="padding-top:10px">
-	      <button data-toggle="collapse" href="#payment" class="btn btn-green btn-xs">{$_receipt}</button>
-	      <button class="btn btn-yellow btn-xs">{$_transfer}</button>
-	      <button class="btn btn-red btn-xs">{$_pay_it}</button>
+	      <button data-toggle="collapse" href="#payment" class="btn btn-green btn-xs"><i class="fa fa-sign-in"></i> {$_receipt}</button>
+	      <button data-toggle="collapse" href="#transfer" class="btn btn-yellow btn-xs"><i class="fa fa-refresh"></i> {$_transfer}</button>
+	      <button class="btn btn-red btn-xs"><i class="fa fa-sign-out"></i> {$_pay_out}</button>
 	      <div class="panel panel-blue filterable" style="background:#fff">
 		      <div class="panel-heading">
 			    <h3 class="panel-title">{$_payment_history}</h3>
@@ -99,6 +99,7 @@
 </div><!--/container-->
 {include file='themes/default/footer.html'}
 {include file='themes/default/payments/addpayments.html'}
+{include file='themes/default/payments/transfer.html'}
 
 <script>
 $(function(){
