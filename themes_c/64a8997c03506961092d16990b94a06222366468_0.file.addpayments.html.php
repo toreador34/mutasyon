@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 14:08:35
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:37:29
          compiled from "/var/www/html/mutasyon/themes/default/payments/addpayments.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:38919902356f67bc3e63f42_66493393%%*/
+/*%%SmartyHeaderCode:156973804156fe79997c31e4_11631575%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '64a8997c03506961092d16990b94a06222366468' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/payments/addpayments.html',
-      1 => 1458548440,
+      1 => 1459517771,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '38919902356f67bc3e63f42_66493393',
+  'nocache_hash' => '156973804156fe79997c31e4_11631575',
   'variables' => 
   array (
     '_payment' => 0,
@@ -24,25 +24,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_pay_amount' => 0,
     'i' => 0,
     '_payment_type' => 0,
-    '_add_paytype' => 0,
-    'paytype' => 0,
-    'typ' => 0,
+    '_advance' => 0,
+    '_credit' => 0,
+    '_eft' => 0,
     '_date' => 0,
     '_bank_name' => 0,
+    '_add_paytype' => 0,
     'bank' => 0,
     'bnk' => 0,
     '_desc' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f67bc3eab342_27997218',
+  'unifunc' => 'content_56fe79997faee5_63312537',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f67bc3eab342_27997218')) {
-function content_56f67bc3eab342_27997218 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe79997faee5_63312537')) {
+function content_56fe79997faee5_63312537 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '38919902356f67bc3e63f42_66493393';
+$_smarty_tpl->properties['nocache_hash'] = '156973804156fe79997c31e4_11631575';
 ?>
 <div class="collapse topwind" id="payment">
       <div class="panel panel-green" style="background:#fff;">
@@ -106,30 +107,16 @@ $_smarty_tpl->tpl_vars['in'] = $foreach_in_Sav;
 					<div class="col-sm-12">
 					      <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_payment_type']->value;?>
 </label>
-					      <div class="input-group input-group-sm servicetype">
-						    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addpaytype" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_add_paytype']->value;?>
-"><i class="fa fa-plus"></i></a></span>
-						    <select class="form-control" name="paytype">
-							  <option value="empty"></option>
-							  <?php
-$_from = $_smarty_tpl->tpl_vars['paytype']->value;
-if (!is_array($_from) && !is_object($_from)) {
-settype($_from, 'array');
-}
-$_smarty_tpl->tpl_vars['typ'] = new Smarty_Variable;
-$_smarty_tpl->tpl_vars['typ']->_loop = false;
-foreach ($_from as $_smarty_tpl->tpl_vars['typ']->value) {
-$_smarty_tpl->tpl_vars['typ']->_loop = true;
-$foreach_typ_Sav = $_smarty_tpl->tpl_vars['typ'];
-?>
-								<option value="<?php echo $_smarty_tpl->tpl_vars['typ']->value['paytype_id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['typ']->value['paytype_name'];?>
-</option>
-							  <?php
-$_smarty_tpl->tpl_vars['typ'] = $foreach_typ_Sav;
-}
-?>
-						    </select>
+					      <div class="input-group input-group-sm">
+						    <div class="btn-group radioBtn">
+							    <a class="btn btn-green btn-xs" data-toggle="fun" data-title="1"><?php echo $_smarty_tpl->tpl_vars['_advance']->value;?>
+</a>
+							    <a class="btn btn-orange btn-xs" data-toggle="fun" data-title="2"><?php echo $_smarty_tpl->tpl_vars['_credit']->value;?>
+</a>
+							    <a class="btn btn-success btn-xs" data-toggle="fun" data-title="3"><?php echo $_smarty_tpl->tpl_vars['_eft']->value;?>
+</a>
+						    </div>
+						    <input type="hidden" name="paytype" class="fun" />
 					      </div>
 					</div>
 					<div class="col-md-12">

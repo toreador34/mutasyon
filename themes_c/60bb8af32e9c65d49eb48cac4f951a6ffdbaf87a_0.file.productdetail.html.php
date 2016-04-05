@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 13:56:19
+<?php /* Smarty version 3.1.27, created on 2016-04-03 16:29:51
          compiled from "/var/www/html/mutasyon/themes/default/productdetail.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:28470470056f678e3b84738_71340873%%*/
+/*%%SmartyHeaderCode:168659679257011acf508b06_05002296%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '60bb8af32e9c65d49eb48cac4f951a6ffdbaf87a' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/productdetail.html',
-      1 => 1458993344,
+      1 => 1459517581,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '28470470056f678e3b84738_71340873',
+  'nocache_hash' => '168659679257011acf508b06_05002296',
   'variables' => 
   array (
     'stock' => 0,
@@ -63,13 +63,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f678e3c500c8_13850774',
+  'unifunc' => 'content_57011acf5a8a69_26140609',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f678e3c500c8_13850774')) {
-function content_56f678e3c500c8_13850774 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57011acf5a8a69_26140609')) {
+function content_57011acf5a8a69_26140609 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '28470470056f678e3b84738_71340873';
+$_smarty_tpl->properties['nocache_hash'] = '168659679257011acf508b06_05002296';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -496,6 +496,7 @@ $("#binvsubmit").click(function(){
       }
     }
 });
+
 
 // End of function
 });

@@ -19,7 +19,7 @@
       }
       if($collectproviders and $pp_ok == 1)
       {
-	    $addpayments = $db->prepare("INSERT INTO payments (payments_pp_id, payment_service_id, payment_bank_id, payment_admin_id, payment_type, payment_in_out, payment_amount, payment_desc, payment_date) VALUES (:ppid, :psid, :pbi, :pai, :pty, :pio,  :pa, :pdesc, :pdate)");
+	    $addpayments = $db->prepare("INSERT INTO payments (payment_pp_id, payment_service_id, payment_bank_id, payment_admin_id, payment_type, payment_in_out, payment_amount, payment_desc, payment_date) VALUES (:ppid, :psid, :pbi, :pai, :pty, :pio,  :pa, :pdesc, :pdate)");
 	    $addpayments->execute(array(
 		'ppid'=>$bproviders,
 		'psid'=>$seid,

@@ -25,7 +25,7 @@ if(isset($_SESSION['login']))
 		$buyremain = Check::getValue("buyremain");
 		
 		//For transfer
-		$transfer = Check::getValue("transfer");
+		$transfer = Check::getValue("tpayment");
 		
 		//For add service payments
 		$serviceid = Check::getValue("serviceid");
@@ -62,8 +62,7 @@ if(isset($_SESSION['login']))
 		      }
 		      if($transfer)
 		      {
-			  
-			    require_once('payments/transfer.php');
+			  require_once('payments/transfer.php');
 		      }
 		      if($serviceid and $servicedate)
 		      {
@@ -98,17 +97,21 @@ if(isset($_SESSION['login']))
 		      }
 		      
 		      $paymentlist = $db->query('
-		      SELECT * FROM payments 
+		      SELECT *, (SELECT bank_name FROM bank WHERE bank.bank_id = payments.payment_bankto_id) AS bankto FROM payments 
 		      LEFT JOIN customer ON payment_customer_id = cust_id
 		      LEFT JOIN invoice ON payment_invoice_id = invoice_id
-		      LEFT JOIN providerspyments ON pp_id = payments_pp_id
+		      LEFT JOIN providerspyments ON pp_id = payment_pp_id
 		      LEFT JOIN providers ON providers_id = pp_providers_id
 		      LEFT JOIN seller ON seller_id = payment_seller_id
 		      INNER JOIN bank ON payment_bank_id = bank_id
 		      INNER JOIN admin ON payment_admin_id = admin_id
-		      LEFT JOIN paytype ON payment_type = paytype_id
 		      ORDER BY payment_id DESC LIMIT '.$start.', '.$pp.'');
 		      $bank = $db->query("SELECT * FROM bank WHERE bank_active <> 0");
+		      $banks = array();
+		      foreach($bank as $c)
+		      {
+			$banks[] = $c;
+		      }
 		      $type = $db->query("SELECT * FROM paytype");
 		      $invoice = $db->query("
 					      SELECT *, (SELECT TRUNCATE(SUM(ip_total), 2) FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) AS invtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payments.payment_invoice_id = invoice.invoice_id) AS paytotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payments.payment_service_id = invoice.invoice_id) AS servicetotal FROM invoice
@@ -119,7 +122,7 @@ if(isset($_SESSION['login']))
 		    
 		      $smarty->assign(array(
 			"paymentlist" 	=> $paymentlist,
-			"bank" 		=> $bank,
+			"bank" 		=> $banks,
 			"paytype" 	=> $type,
 			"invoice" 	=> $invoice,
 			"pagetotal" 	=> $pagetotal,

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 14:08:35
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:02:04
          compiled from "/var/www/html/mutasyon/themes/default/payments.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:173302396356f67bc3d5c9f8_64231809%%*/
+/*%%SmartyHeaderCode:163802182356fe714c4cdd48_86223615%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,18 +9,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2532fb4dfb3125d38b2fa4f1e932c1c544f9beb8' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/payments.html',
-      1 => 1458502886,
+      1 => 1459515697,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '173302396356f67bc3d5c9f8_64231809',
+  'nocache_hash' => '163802182356fe714c4cdd48_86223615',
   'variables' => 
   array (
     '_invoice' => 0,
     '_payment_history' => 0,
     '_receipt' => 0,
     '_transfer' => 0,
-    '_pay_it' => 0,
+    '_pay_out' => 0,
     '_filter' => 0,
     'screen' => 0,
     '_desc' => 0,
@@ -31,19 +31,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_date' => 0,
     'paymentlist' => 0,
     'p' => 0,
+    '_advance' => 0,
+    '_credit' => 0,
+    '_eft' => 0,
     '_currency' => 0,
     'pagetotal' => 0,
     'i' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f67bc3e536b9_99578519',
+  'unifunc' => 'content_56fe714c563510_71267460',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f67bc3e536b9_99578519')) {
-function content_56f67bc3e536b9_99578519 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe714c563510_71267460')) {
+function content_56fe714c563510_71267460 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '173302396356f67bc3d5c9f8_64231809';
+$_smarty_tpl->properties['nocache_hash'] = '163802182356fe714c4cdd48_86223615';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -58,11 +61,11 @@ echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->c
   </ol>
 <!--/Breadcrumb-->
       <div class="navbar" style="padding-top:10px">
-	      <button data-toggle="collapse" href="#payment" class="btn btn-green btn-xs"><?php echo $_smarty_tpl->tpl_vars['_receipt']->value;?>
+	      <button data-toggle="collapse" href="#payment" class="btn btn-green btn-xs"><i class="fa fa-sign-in"></i> <?php echo $_smarty_tpl->tpl_vars['_receipt']->value;?>
 </button>
-	      <button class="btn btn-yellow btn-xs"><?php echo $_smarty_tpl->tpl_vars['_transfer']->value;?>
+	      <button data-toggle="collapse" href="#transfer" class="btn btn-yellow btn-xs"><i class="fa fa-refresh"></i> <?php echo $_smarty_tpl->tpl_vars['_transfer']->value;?>
 </button>
-	      <button class="btn btn-red btn-xs"><?php echo $_smarty_tpl->tpl_vars['_pay_it']->value;?>
+	      <button class="btn btn-red btn-xs"><i class="fa fa-sign-out"></i> <?php echo $_smarty_tpl->tpl_vars['_pay_out']->value;?>
 </button>
 	      <div class="panel panel-blue filterable" style="background:#fff">
 		      <div class="panel-heading">
@@ -113,15 +116,18 @@ $foreach_p_Sav = $_smarty_tpl->tpl_vars['p'];
 						<td><?php echo $_smarty_tpl->tpl_vars['p']->value['payment_desc'];?>
 </td>
 						<td>
-						      <?php if ($_smarty_tpl->tpl_vars['p']->value['cust_id'] != '') {?>
+						      <?php if ($_smarty_tpl->tpl_vars['p']->value['cust_id']) {?>
 							    <a href="custdetail.php?cid=<?php echo $_smarty_tpl->tpl_vars['p']->value['cust_id'];?>
 "><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['p']->value['cust_name'], ENT_QUOTES, 'UTF-8', true);?>
 </a>
 						      <?php } elseif ($_smarty_tpl->tpl_vars['p']->value['payment_seller_id']) {?>
 							    <a href="#"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['p']->value['seller_name'], ENT_QUOTES, 'UTF-8', true);?>
 </a>
-						      <?php } else { ?>
+						      <?php } elseif ($_smarty_tpl->tpl_vars['p']->value['providers_id']) {?>
 							    <a href="#"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['p']->value['providers_name'], ENT_QUOTES, 'UTF-8', true);?>
+</a>
+						      <?php } else { ?>
+							    <a href="#"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['p']->value['bankto'], ENT_QUOTES, 'UTF-8', true);?>
 </a>
 						      <?php }?>
 						</td>
@@ -140,12 +146,22 @@ $foreach_p_Sav = $_smarty_tpl->tpl_vars['p'];
 									<i class="fa fa-retweet" style="color:red"></i>
 								  <?php } elseif ($_smarty_tpl->tpl_vars['p']->value['payment_in_out'] == "cin") {?>
 									<i class="fa fa-retweet" style="color:#688A08"></i>
+								  <?php } elseif ($_smarty_tpl->tpl_vars['p']->value['payment_in_out'] == "trs") {?>
+									<i class="fa fa-retweet" style="color:#f2994b"></i>
 								  <?php } else { ?>
 									<i class="fa fa-sign-in" style="color:darkgreen"></i>
 								  <?php }?>
 							    </span> 
-							    <?php echo $_smarty_tpl->tpl_vars['p']->value['paytype_name'];?>
+							    <?php if (($_smarty_tpl->tpl_vars['p']->value['payment_type'] == 1)) {?>
+								  <?php echo $_smarty_tpl->tpl_vars['_advance']->value;?>
 
+							    <?php } elseif (($_smarty_tpl->tpl_vars['p']->value['payment_type'] == 2)) {?>
+								  <?php echo $_smarty_tpl->tpl_vars['_credit']->value;?>
+
+							    <?php } elseif (($_smarty_tpl->tpl_vars['p']->value['payment_type'] == 3)) {?>
+								  <?php echo $_smarty_tpl->tpl_vars['_eft']->value;?>
+
+							    <?php }?>
 						      </a>
 						</td>
 						<td><a href="#"><?php echo $_smarty_tpl->tpl_vars['p']->value['bank_name'];?>
@@ -199,6 +215,9 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration == 1
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/payments/addpayments.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/payments/transfer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+?>
+
 
 <?php echo '<script'; ?>
 >
@@ -209,7 +228,15 @@ $(function(){
 	  $(".getremain").val(remain);
     });
     
-
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 // End of function
 });
 <?php echo '</script'; ?>

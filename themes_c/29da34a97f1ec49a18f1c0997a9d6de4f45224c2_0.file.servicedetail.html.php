@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-27 22:00:34
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:19:52
          compiled from "/var/www/html/mutasyon/themes/default/servicedetail.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:149663663756f82dd25309c2_74343484%%*/
+/*%%SmartyHeaderCode:138470893656fe7578566cb0_07857700%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '29da34a97f1ec49a18f1c0997a9d6de4f45224c2' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/servicedetail.html',
-      1 => 1459105039,
+      1 => 1459516384,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '149663663756f82dd25309c2_74343484',
+  'nocache_hash' => '138470893656fe7578566cb0_07857700',
   'variables' => 
   array (
     'invoiceid' => 0,
@@ -55,13 +55,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f82dd2622ef4_85942835',
+  'unifunc' => 'content_56fe757861b198_95758721',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f82dd2622ef4_85942835')) {
-function content_56f82dd2622ef4_85942835 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe757861b198_95758721')) {
+function content_56fe757861b198_95758721 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '149663663756f82dd25309c2_74343484';
+$_smarty_tpl->properties['nocache_hash'] = '138470893656fe7578566cb0_07857700';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -86,7 +86,7 @@ $foreach_i_Sav = $_smarty_tpl->tpl_vars['i'];
 </li>
   </ol>
 <!--/Breadcrumb-->
-	<div class="col-sm-2 margin-top hidden-print"><!--left side-->
+	<div class="col-xs-12 col-sm-2 margin-top hidden-print"><!--left side-->
 		<div class="text-center mbl">
 		      <a data-toggle="collapse" href="#payment" class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-green" style="min-width: 60%;"><i class="fa fa-money"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_payment']->value;?>
 </a>
@@ -110,7 +110,7 @@ $foreach_i_Sav = $_smarty_tpl->tpl_vars['i'];
 	</div><!--/left side-->
   
 <!--invoice details-->
-  <div class="col-sm-offset-3" style="padding-bottom: 100px;"><!--invoice info-->
+  <div class="col-xs-12 col-sm-10" style="padding-bottom: 100px;"><!--invoice info-->
 	    <h1><?php echo $_smarty_tpl->tpl_vars['_invoice']->value;?>
 </h1><!--invoice header-->
 	    <div class="container-fluid">
@@ -184,8 +184,8 @@ $_smarty_tpl->tpl_vars['c'] = $foreach_c_Sav;
 	      <a data-toggle="collapse" href="#insertservice" class="btn  btn-yellow <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> hidden-print pull-right"><i class="fa fa-cart-plus"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_add_service_type']->value;?>
 </a>
 	      <!-- Infos -->
-	      <div class="questions qaddser" style="margin-left:820px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
-		    <div class="col-xs-12 alert alert-info answer aaddser" style="display:none;margin-top:1px;margin-left:571px">
+	      <div class="questions qaddser" style="right:12px;margin-top:-15px"><i class="fa fa-question-circle"></i></div>
+		    <div class="col-xs-12 alert alert-info answer aaddser" style="display:none;margin-top:1px;right: 30px;">
 		    <div class="col-sm-1">
 			  <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
 		    </div>
@@ -203,7 +203,7 @@ $_smarty_tpl->tpl_vars['c'] = $foreach_c_Sav;
 			<a data-toggle="collapse" href="#setpayproviders" class="btn  btn-orange <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> hidden-print pull-right" style="margin-right: 10px;"><i class="fa fa-circle-o-notch"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_service_pay']->value;?>
 </a>
 			<!-- Infos -->
-			<div class="questions qpaypro" style="margin-left:654px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
+			<div class="questions qpaypro" style="right:174px;margin-top:-15px"><i class="fa fa-question-circle"></i></div>
 			      <div class="col-xs-12 alert alert-info answer apaypro" style="display:none;margin-top:1px;margin-left:403px">
 			      <div class="col-sm-1">
 				    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
@@ -331,11 +331,7 @@ $_smarty_tpl->tpl_vars['i'] = $foreach_i_Sav;
 }
 ?>
 </div><!--/container-->
-
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/footer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
-?>
-
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/paytype/addpaytype.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/bank/addbank.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/service/cancelserviceinvoice.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
@@ -353,7 +349,7 @@ $_smarty_tpl->tpl_vars['i'] = $foreach_i_Sav;
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/providers/setpayments.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/bank/addbank.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/footer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php echo '<script'; ?>
@@ -448,6 +444,16 @@ $(document).on("click", ".qpaypro", function(){
 $(document).on("click", ".qaddser", function(){
     $(".aaddser").toggle();  
 });
+
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 
 // End of function
 });

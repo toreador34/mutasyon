@@ -32,7 +32,15 @@
 			      </div>
 			      <table class="table table-hover table-bordered">
 				    <tr>
-					  <td class="active" style="width:40%">{$i.paytype_name}</td>
+					  <td class="active" style="width:40%">
+						{if $i.payment_type == 1}
+						      {$_advance} 
+						{else if $i.payment_type == 2}
+						      {$_credit}
+						{else if $i.payment_type == 3}
+						      {$_eft}
+						{/if}
+					  </td>
 					  <td style="width:60%"><span>{$_currency}</span>{$i.payment_amount}</td>
 				    </tr>
 			      </table>

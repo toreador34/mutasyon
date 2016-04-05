@@ -27,14 +27,14 @@
 					      {/if}
 					  </a>
 				      </td>
-				      <td><a href="payments.php"><span>{$_currency}</span>{$bnk.in_total|number_format:2:".":""}</a></td>
+				      <td><a href="payments.php"><span>{$_currency}</span>{($bnk.in_total + $bnk.transferin)|number_format:2:".":""}</a></td>
 				      <td>
 					  <span>{$_currency}</span>
 					  <a href="payments.php">
 						{if $bnk.in_total == NULL}
 						      <span>0</span>
 						{else}
-						      <span>{($bnk.in_total -($bnk.out_total))|number_format:2:".":""}</span>
+						      <span>{(($bnk.in_total + $bnk.transferin) - $bnk.out_total - $bnk.transferout)|number_format:2:".":""}</span>
 						{/if}
 					  </a>
 				      </td>

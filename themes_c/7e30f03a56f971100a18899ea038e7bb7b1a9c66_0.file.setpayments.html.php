@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 14:08:40
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:02:34
          compiled from "/var/www/html/mutasyon/themes/default/providers/setpayments.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:31073018256f67bc871ceb0_43754902%%*/
+/*%%SmartyHeaderCode:120954084956fe716aacdd49_55158739%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7e30f03a56f971100a18899ea038e7bb7b1a9c66' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/providers/setpayments.html',
-      1 => 1456854521,
+      1 => 1459457317,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31073018256f67bc871ceb0_43754902',
+  'nocache_hash' => '120954084956fe716aacdd49_55158739',
   'variables' => 
   array (
     '_set_providers_pay' => 0,
@@ -22,13 +22,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f67bc8727c14_20841006',
+  'unifunc' => 'content_56fe716aae7548_91112356',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f67bc8727c14_20841006')) {
-function content_56f67bc8727c14_20841006 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe716aae7548_91112356')) {
+function content_56fe716aae7548_91112356 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '31073018256f67bc871ceb0_43754902';
+$_smarty_tpl->properties['nocache_hash'] = '120954084956fe716aacdd49_55158739';
 ?>
 <!-- Modallar  -->
 <div class="collapse topwind" id="setpayproviders">
@@ -54,6 +54,7 @@ $_smarty_tpl->properties['nocache_hash'] = '31073018256f67bc871ceb0_43754902';
 						      <?php }?>
 						</div>
 					     </div>
+					</div>
 					<div class="pull-right">
 					    <button type="submit" class="btn btn-primary btn-xs"><?php echo $_smarty_tpl->tpl_vars['_ok']->value;?>
 </button>

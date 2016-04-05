@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 13:50:34
+<?php /* Smarty version 3.1.27, created on 2016-04-03 16:29:10
          compiled from "/var/www/html/mutasyon/themes/default/stock/sellstock.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:109765136956f6778a2edaa1_72364748%%*/
+/*%%SmartyHeaderCode:10199891957011aa6059899_33152319%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '109765136956f6778a2edaa1_72364748',
+  'nocache_hash' => '10199891957011aa6059899_33152319',
   'variables' => 
   array (
     '_sale' => 0,
@@ -36,14 +36,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f6778a319791_13392334',
+  'unifunc' => 'content_57011aa608a8b5_07660233',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f6778a319791_13392334')) {
-function content_56f6778a319791_13392334 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_57011aa608a8b5_07660233')) {
+function content_57011aa608a8b5_07660233 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '109765136956f6778a2edaa1_72364748';
+$_smarty_tpl->properties['nocache_hash'] = '10199891957011aa6059899_33152319';
 ?>
 <!-- Modallar  -->
 <div class="collapse topwind" id="sellstock">

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-25 14:47:14
+<?php /* Smarty version 3.1.27, created on 2016-04-01 18:21:04
          compiled from "/var/www/html/mutasyon/themes/default/widget/banklists.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:212113594056f533525dcec1_69122034%%*/
+/*%%SmartyHeaderCode:197508875056fe91e0213ac6_15300518%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c5cbefc5ce1dac6ed873e0f68ab414aaf983ebfd' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/widget/banklists.html',
-      1 => 1456841461,
+      1 => 1459524052,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '212113594056f533525dcec1_69122034',
+  'nocache_hash' => '197508875056fe91e0213ac6_15300518',
   'variables' => 
   array (
     '_bank_name' => 0,
@@ -27,13 +27,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f533526184e2_96165635',
+  'unifunc' => 'content_56fe91e0250f03_98796486',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f533526184e2_96165635')) {
-function content_56f533526184e2_96165635 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe91e0250f03_98796486')) {
+function content_56fe91e0250f03_98796486 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '212113594056f533525dcec1_69122034';
+$_smarty_tpl->properties['nocache_hash'] = '197508875056fe91e0213ac6_15300518';
 ?>
 <!-- Bank Lists -->
 <div class="margin-top panel">
@@ -83,7 +83,7 @@ $foreach_bnk_Sav = $_smarty_tpl->tpl_vars['bnk'];
 					  </a>
 				      </td>
 				      <td><a href="payments.php"><span><?php echo $_smarty_tpl->tpl_vars['_currency']->value;?>
-</span><?php echo number_format($_smarty_tpl->tpl_vars['bnk']->value['in_total'],2,".",'');?>
+</span><?php echo number_format(($_smarty_tpl->tpl_vars['bnk']->value['in_total']+$_smarty_tpl->tpl_vars['bnk']->value['transferin']),2,".",'');?>
 </a></td>
 				      <td>
 					  <span><?php echo $_smarty_tpl->tpl_vars['_currency']->value;?>
@@ -92,7 +92,7 @@ $foreach_bnk_Sav = $_smarty_tpl->tpl_vars['bnk'];
 						<?php if ($_smarty_tpl->tpl_vars['bnk']->value['in_total'] == NULL) {?>
 						      <span>0</span>
 						<?php } else { ?>
-						      <span><?php echo number_format(($_smarty_tpl->tpl_vars['bnk']->value['in_total']-($_smarty_tpl->tpl_vars['bnk']->value['out_total'])),2,".",'');?>
+						      <span><?php echo number_format((($_smarty_tpl->tpl_vars['bnk']->value['in_total']+$_smarty_tpl->tpl_vars['bnk']->value['transferin'])-$_smarty_tpl->tpl_vars['bnk']->value['out_total']-$_smarty_tpl->tpl_vars['bnk']->value['transferout']),2,".",'');?>
 </span>
 						<?php }?>
 					  </a>

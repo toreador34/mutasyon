@@ -39,15 +39,15 @@ else
 
 		      //Connect bank db for get bank name and total
 		      $bank = $db->query("
-		      SELECT *, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bank_id = bank_id AND payment_in_out = 'in' ) AS in_total, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bank_id = bank_id AND payment_in_out = 'out' ) AS out_total FROM bank 
+		      SELECT *, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bank_id = bank_id AND payment_in_out = 'in' ) AS in_total, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bank_id = bank_id AND payment_in_out = 'out' ) AS out_total, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bankto_id = bank_id AND payment_in_out = 'trs' ) AS transferin, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_bank_id = bank_id AND payment_in_out = 'trs' ) AS transferout FROM bank 
 		      GROUP BY bank_name LIMIT 10
 		      ");
 		      $yil = date('Y');
 		      
 		      //Connect bank db for get bank name and total
-		      $inmonth = $db->query('SELECT *, EXTRACT(MONTH FROM payment_date) AS pm, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_in_out = "in" ) AS intotal,(SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_in_out = "out" ) AS outtotal FROM payments WHERE EXTRACT(YEAR FROM payment_date) = '.$yil.' GROUP BY pm');
+		      $inmonth = $db->query('SELECT MONTH(payment_date) AS pm, SUM(payment_amount) AS intotal FROM payments WHERE YEAR(payment_date) = "'.$yil.'" AND payment_in_out = "in" OR payment_in_out = "cin" GROUP BY YEAR(payment_date), MONTH(payment_date)');
 		      //Connect bank db for get bank name and total
-		      $outmonth = $db->query('SELECT *, EXTRACT(MONTH FROM payment_date) AS pm, SUM(payment_amount) AS total FROM payments WHERE EXTRACT(YEAR FROM payment_date) = '.$yil.' GROUP BY pm');
+		      $outmonth = $db->query('SELECT MONTH(payment_date) AS pm, SUM(payment_amount) AS total FROM payments WHERE YEAR(payment_date) = "'.$yil.'" AND payment_in_out = "out" OR payment_in_out = "cou" GROUP BY YEAR(payment_date), MONTH(payment_date)');
 		      
 		      //Connect company, tax, bank
 

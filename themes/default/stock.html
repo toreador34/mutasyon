@@ -52,7 +52,7 @@
 			    <div class="prbox {if $s.stock_amount == 0}alert-danger{else}alert-success{/if}">
 				  <div class="productlist">
 					<a href="productdetail.php?sid={$s.stock_id}">
-					      <img src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}-large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
+					      <img src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}_large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
 					</a>
 				  </div>
 				  <div class="prname">

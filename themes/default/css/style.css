@@ -999,3 +999,10 @@ img.admin{
     z-index: 3;
     width:250px;
 }
+.radioBtn a{
+    margin-left:3px;
+    border:2px solid #aaa;
+}
+.radioBtn a.active{
+    border:2px solid #000;
+}

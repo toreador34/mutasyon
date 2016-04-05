@@ -27,7 +27,7 @@
     </div><!--/left side-->
   
 <!--invoice details-->
-  <div class="col-sm-offset-3" style="padding-bottom: 100px;"><!--invoice info-->
+  <div class="col-xs-12 col-sm-10" style="padding-bottom: 100px;"><!--invoice info-->
 	    <h1>{$_invoice}</h1><!--invoice header-->
 	    <div class="container-fluid">
 		    <div class="col-sm-3"><!--invoiced-->
@@ -120,11 +120,9 @@
 <!--/invoice details-->
 {/foreach}
 </div><!--/container-->
-
 {include file='themes/default/footer.html'}
-{include file='themes/default/invoice/cancelinvoice.html'}
 {include file='themes/default/payments/addpayments.html'}
-{include file='themes/default/paytype/addpaytype.html'}
+{include file='themes/default/invoice/cancelinvoice.html'}
 {include file='themes/default/bank/addbank.html'}
 <script>
 $(function(){
@@ -157,14 +155,16 @@ if($("#remain").text() == 0)
 }
 $(".refund").val(paytotal);
 
-var doc = new jsPDF();
-var specialElementHandlers = {
-    '#editor': function (element, renderer) {
-        return true;
-    }
-};
 
-
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 // End of function
 });
 </script>

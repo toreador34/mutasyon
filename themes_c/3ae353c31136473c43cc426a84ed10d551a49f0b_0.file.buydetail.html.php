@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-27 22:02:00
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:43:58
          compiled from "/var/www/html/mutasyon/themes/default/buydetail.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:15411201656f82e28193c81_27849334%%*/
+/*%%SmartyHeaderCode:67157630856fe7b1e941842_93094578%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3ae353c31136473c43cc426a84ed10d551a49f0b' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/buydetail.html',
-      1 => 1456863889,
+      1 => 1459518234,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '15411201656f82e28193c81_27849334',
+  'nocache_hash' => '67157630856fe7b1e941842_93094578',
   'variables' => 
   array (
     'buyinvoice' => 0,
@@ -45,13 +45,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f82e28300cc0_14403163',
+  'unifunc' => 'content_56fe7b1e9b7d40_43933958',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f82e28300cc0_14403163')) {
-function content_56f82e28300cc0_14403163 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe7b1e9b7d40_43933958')) {
+function content_56fe7b1e9b7d40_43933958 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '15411201656f82e28193c81_27849334';
+$_smarty_tpl->properties['nocache_hash'] = '67157630856fe7b1e941842_93094578';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -256,9 +256,6 @@ echo $_smarty_tpl->tpl_vars['i']->value['paytotal'];
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/invoice/cancelbuyinvoice.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/paytype/addpaytype.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
-?>
-
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/footer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -302,6 +299,17 @@ $("input.buypayment").attr({
        "max" : (totalprice - paytotal),        // substitute your own
        "min" : 0.01          // values (or variables) here
 });
+
+
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 
 // End of function
 });

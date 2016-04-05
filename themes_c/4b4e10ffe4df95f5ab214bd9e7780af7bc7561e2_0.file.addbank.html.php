@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-25 14:47:14
+<?php /* Smarty version 3.1.27, created on 2016-03-31 17:47:32
          compiled from "/var/www/html/mutasyon/themes/default/bank/addbank.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:180570475756f5335261f4d9_43388499%%*/
+/*%%SmartyHeaderCode:87361730456fd38846d4736_15913805%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4b4e10ffe4df95f5ab214bd9e7780af7bc7561e2' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/bank/addbank.html',
-      1 => 1456420601,
+      1 => 1459347781,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '180570475756f5335261f4d9_43388499',
+  'nocache_hash' => '87361730456fd38846d4736_15913805',
   'variables' => 
   array (
     '_addbank' => 0,
@@ -26,15 +26,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f5335262e834_21757175',
+  'unifunc' => 'content_56fd38846e3188_87935192',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f5335262e834_21757175')) {
-function content_56f5335262e834_21757175 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fd38846e3188_87935192')) {
+function content_56fd38846e3188_87935192 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '180570475756f5335261f4d9_43388499';
+$_smarty_tpl->properties['nocache_hash'] = '87361730456fd38846d4736_15913805';
 ?>
-<div class="collapse topwind" id="addbank">
+<div class="collapse topwind" id="addbank" style="z-index:4">
       <div class="panel panel-blue" style="background:#fff;">
 	      <button type="button" class="close addbankm" data-toggle="collapse" href="#addbank" style="margin-right: 10px;margin-top: 8px;"><span aria-hidden="true">×</span></button>
 	      <div class="panel-heading"><?php echo $_smarty_tpl->tpl_vars['_addbank']->value;?>

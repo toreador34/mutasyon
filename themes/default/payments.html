@@ -39,12 +39,14 @@
 						<td><a href="receipt.php?pid={$p.payment_id}">{$p.payment_id}</a></td>
 						<td>{$p.payment_desc}</td>
 						<td>
-						      {if $p.cust_id != ""}
+						      {if $p.cust_id}
 							    <a href="custdetail.php?cid={$p.cust_id}">{$p.cust_name|escape:'html':'UTF-8'}</a>
 						      {else if $p.payment_seller_id}
 							    <a href="#">{$p.seller_name|escape:'html':'UTF-8'}</a>
-						      {else}
+						      {else if $p.providers_id}
 							    <a href="#">{$p.providers_name|escape:'html':'UTF-8'}</a>
+						      {else}
+							    <a href="#">{$p.bankto|escape:'html':'UTF-8'}</a>
 						      {/if}
 						</td>
 						<td>
@@ -60,11 +62,19 @@
 									<i class="fa fa-retweet" style="color:red"></i>
 								  {else if $p.payment_in_out == "cin"}
 									<i class="fa fa-retweet" style="color:#688A08"></i>
+								  {else if $p.payment_in_out == "trs"}
+									<i class="fa fa-retweet" style="color:#f2994b"></i>
 								  {else}
 									<i class="fa fa-sign-in" style="color:darkgreen"></i>
 								  {/if}
 							    </span> 
-							    {$p.paytype_name}
+							    {if ($p.payment_type == 1)}
+								  {$_advance}
+							    {else if ($p.payment_type == 2)}
+								  {$_credit}
+							    {else if ($p.payment_type == 3)}
+								  {$_eft}
+							    {/if}
 						      </a>
 						</td>
 						<td><a href="#">{$p.bank_name}</a></td>
@@ -109,7 +119,15 @@ $(function(){
 	  $(".getremain").val(remain);
     });
     
-
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 // End of function
 });
 </script>

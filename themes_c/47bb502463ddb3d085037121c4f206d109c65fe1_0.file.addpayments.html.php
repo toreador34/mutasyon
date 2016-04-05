@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-26 14:08:40
+<?php /* Smarty version 3.1.27, created on 2016-03-31 23:44:46
          compiled from "/var/www/html/mutasyon/themes/default/providers/addpayments.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:98100072156f67bc86e8ee4_77611335%%*/
+/*%%SmartyHeaderCode:120593022556fd8c3e80d8e5_87767882%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '47bb502463ddb3d085037121c4f206d109c65fe1' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/providers/addpayments.html',
-      1 => 1456852964,
+      1 => 1459457057,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '98100072156f67bc86e8ee4_77611335',
+  'nocache_hash' => '120593022556fd8c3e80d8e5_87767882',
   'variables' => 
   array (
     '_payment' => 0,
@@ -23,7 +23,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_pay_amount' => 0,
     'page_name' => 0,
     '_bank_name' => 0,
-    '_add_paytype' => 0,
     'bank' => 0,
     'bnk' => 0,
     '_date' => 0,
@@ -31,14 +30,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f67bc8715785_54854027',
+  'unifunc' => 'content_56fd8c3e84a5d3_23790685',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f67bc8715785_54854027')) {
-function content_56f67bc8715785_54854027 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fd8c3e84a5d3_23790685')) {
+function content_56fd8c3e84a5d3_23790685 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '98100072156f67bc86e8ee4_77611335';
+$_smarty_tpl->properties['nocache_hash'] = '120593022556fd8c3e80d8e5_87767882';
 ?>
 <!-- Modallar  -->
 <div class="collapse topwind" id="paytoproviders">
@@ -94,7 +93,7 @@ echo $_smarty_tpl->tpl_vars['i']->value['invoice_providers_price']-$_smarty_tpl-
 					      <label class="margin-top"><?php echo $_smarty_tpl->tpl_vars['_bank_name']->value;?>
 </label>
 					      <div class="input-group input-group-sm" id="bankn">
-						    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addbank" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_add_paytype']->value;?>
+						    <span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addbank" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_bank_name']->value;?>
 "><i class="fa fa-plus"></i></a></span>
 						    <select class="form-control" name="ppbanklist">
 							    <option value="empty"></option>

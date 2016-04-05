@@ -97,12 +97,13 @@
 			    $desc = $invoiceno.$infpayforinv;
 			    
 			    //Add buy invoice
-			    $buypay = $db->prepare("INSERT INTO payments (payment_bank_id, payment_bi_id, payment_seller_id, payment_admin_id, payment_amount, payment_date, payment_desc, payment_in_out) VALUES (:bank, :bid, :bisel, :biadmin, :biprice, :bidate, :bidesc, :inout)");
+			    $buypay = $db->prepare("INSERT INTO payments (payment_bank_id, payment_bi_id, payment_seller_id, payment_admin_id, payment_type, payment_amount, payment_date, payment_desc, payment_in_out) VALUES (:bank, :bid, :bisel, :biadmin, :bitype, :biprice, :bidate, :bidesc, :inout)");
 			    $buypay->execute(array(
 				'bank'=>$buybank,
 				'bid'=>$buyinvoiceid,
 				'bisel'=>$buyseller,
 				'biadmin'=>$admin_id,
+				'bitype'=>$ptype,
 				'biprice'=>$buypayment,
 				'bidesc'=>$desc,
 				'bidate'=>$buydate,

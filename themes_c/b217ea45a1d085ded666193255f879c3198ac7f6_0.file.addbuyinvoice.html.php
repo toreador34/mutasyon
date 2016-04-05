@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-27 22:01:19
+<?php /* Smarty version 3.1.27, created on 2016-04-01 16:44:12
          compiled from "/var/www/html/mutasyon/themes/default/addbuyinvoice.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:171426125756f82dff38c5a9_19756046%%*/
+/*%%SmartyHeaderCode:189657654856fe7b2c8bb643_59889173%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '171426125756f82dff38c5a9_19756046',
+  'nocache_hash' => '189657654856fe7b2c8bb643_59889173',
   'variables' => 
   array (
     '_buyinvoice' => 0,
@@ -51,14 +51,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f82dff49d991_82702830',
+  'unifunc' => 'content_56fe7b2c92fda3_14425733',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f82dff49d991_82702830')) {
-function content_56f82dff49d991_82702830 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe7b2c92fda3_14425733')) {
+function content_56fe7b2c92fda3_14425733 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '171426125756f82dff38c5a9_19756046';
+$_smarty_tpl->properties['nocache_hash'] = '189657654856fe7b2c8bb643_59889173';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 

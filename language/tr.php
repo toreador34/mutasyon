@@ -73,6 +73,7 @@ $smarty->assign(array(
   '_inf_stock_del' 					=> "isimli ürünü silmek istediğinize emin misiniz!",
   '_inf_file_not_found' 				=> "Dosya bulunamadı!",
   '_inf_blank_desc' 					=> " tarihli alım faturası",
+  '_inf_bank_same' 					=> "Aynı bankaya para göndermeye çalışıyorsunuz!",
   '_invpaydesc' 					=> " numaralı fatura ödemesi",
   '_paycancdesc' 					=> " numaralı iptal faturasının geri ödemesi",
   '_collectprovidersdesc' 				=> " numaralı iptal faturasından yapılan tahsilat",
@@ -297,11 +298,9 @@ $smarty->assign(array(
   '_paybalance' 					=> "Denge",
   '_transfer' 						=> "Transfer",
   '_pay_out' 						=> "Para Çıkışı",
-  
-  //Paytype
+  '_from' 						=> "Nerden",
+  '_to' 						=> "Nereye",
   '_payment_type' 					=> "Ödeme Yöntemi",
-  '_payment_type_name' 					=> "Ödeme Yöntemi Adı",
-  '_add_paytype' 					=> "Ödeme Yöntemi Ekle",
   
   //Service
   '_serviceinvoice' 					=> "Hizmet Faturaları",
@@ -320,6 +319,11 @@ $smarty->assign(array(
   '_inf_service_del' 					=> "Bu ürünü silmek istediğinize emin misiniz?",
   '_add_providers_complete' 				=> "Akt. Tamamlandı!",
   '_service_pay' 					=> "Hizmet Bedeli",
+  
+  //Pay Type
+  '_advance' 						=> "Peşin",
+  '_credit' 						=> "Kredi Kartı",
+  '_eft' 						=> "Havale/EFT",
   
   
   

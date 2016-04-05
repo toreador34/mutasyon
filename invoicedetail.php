@@ -9,14 +9,6 @@ if(isset($_SESSION['login'])){
 		$seid = Check::getValue("seid");
 		$print = Check::getValue("print");
 		
-		//Get paytypes
-		$typ = $db->query("SELECT * FROM paytype");
-		$type = array();
-		foreach($typ as $t)
-		{
-		    $type[] = $t;
-		}
-		
 		//Connect bank for get bank name 
 		$bnk = $db->query("SELECT * FROM bank WHERE bank_active <> 0");
 		$bank = array();
@@ -46,7 +38,6 @@ if(isset($_SESSION['login'])){
 			  "invoicedpr" 		=> $invoicedpr,
 			  "company" 		=> $company,
 			  "bank" 		=> $bank,
-			  "paytype" 		=> $type,
 
 		  ));
 		  $smarty->display(theme_base.'invoicedetail.html');
@@ -76,7 +67,6 @@ if(isset($_SESSION['login'])){
 			      "buyproducts" 	=> $buyproducts,
 			      "company" 	=> $company,
 			      "bank" 		=> $bank,
-			      "paytype" 	=> $type,
 		      ));
 		      
 		      $smarty->display(theme_base.'buydetail.html');
@@ -111,7 +101,6 @@ if(isset($_SESSION['login'])){
 			      "invoicedpr" 	=> $invoicedpr,
 			      "company" 	=> $company,
 			      "bank" 		=> $bank,
-			      "paytype" 	=> $type,
 			      "tax" 		=> $tax,
 			      "servicetype" 	=> $servicetype,
 			      "insertedtype" 	=> $insertedtype,

@@ -27,7 +27,7 @@
 	</div><!--/left side-->
   
 <!--invoice details-->
-  <div class="col-xs-12 col-sm-9 col-sm-offset-3" style="padding-bottom: 100px;"><!--invoice info-->
+  <div class="col-xs-12 col-sm-10" style="padding-bottom: 100px;"><!--invoice info-->
 	    <h1>{$_invoice}</h1><!--invoice header-->
 	    <div class="container-fluid">
 		    <div class="col-sm-3"><!--invoiced-->
@@ -67,8 +67,8 @@
 	  <div class="container-fluid"><!--invoice detail-->
 	      <a data-toggle="collapse" href="#insertservice" class="btn  btn-yellow {if $screen == 'phone'}btn-xs{/if} hidden-print pull-right"><i class="fa fa-cart-plus"></i>&nbsp;{$_add_service_type}</a>
 	      <!-- Infos -->
-	      <div class="questions qaddser" style="margin-left:820px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
-		    <div class="col-xs-12 alert alert-info answer aaddser" style="display:none;margin-top:1px;margin-left:571px">
+	      <div class="questions qaddser" style="right:12px;margin-top:-15px"><i class="fa fa-question-circle"></i></div>
+		    <div class="col-xs-12 alert alert-info answer aaddser" style="display:none;margin-top:1px;right: 30px;">
 		    <div class="col-sm-1">
 			  <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
 		    </div>
@@ -83,7 +83,7 @@
 		  	<!--  pay to providers -->
 			<a data-toggle="collapse" href="#setpayproviders" class="btn  btn-orange {if $screen == 'phone'}btn-xs{/if} hidden-print pull-right" style="margin-right: 10px;"><i class="fa fa-circle-o-notch"></i>&nbsp;{$_service_pay}</a>
 			<!-- Infos -->
-			<div class="questions qpaypro" style="margin-left:654px;margin-top:-11px"><i class="fa fa-question-circle"></i></div>
+			<div class="questions qpaypro" style="right:174px;margin-top:-15px"><i class="fa fa-question-circle"></i></div>
 			      <div class="col-xs-12 alert alert-info answer apaypro" style="display:none;margin-top:1px;margin-left:403px">
 			      <div class="col-sm-1">
 				    <i class="glyphicon glyphicon-info-sign" style="font-size:40px;margin-left:-49px;margin-top:-13px;"></i>
@@ -163,7 +163,6 @@
 {/foreach}
 </div><!--/container-->
 {include file='themes/default/bank/addbank.html'}
-{include file='themes/default/paytype/addpaytype.html'}
 {include file='themes/default/service/cancelserviceinvoice.html'}
 {include file='themes/default/service/addservicepayments.html'}
 {include file='themes/default/service/insertservice.html'}
@@ -256,6 +255,16 @@ $(document).on("click", ".qpaypro", function(){
 $(document).on("click", ".qaddser", function(){
     $(".aaddser").toggle();  
 });
+
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 
 // End of function
 });

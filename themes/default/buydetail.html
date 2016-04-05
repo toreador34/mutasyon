@@ -112,7 +112,6 @@
 </div><!--/container-->
 {include file='themes/default/payments/addbuypayments.html'}
 {include file='themes/default/invoice/cancelbuyinvoice.html'}
-{include file='themes/default/paytype/addpaytype.html'}
 {include file='themes/default/footer.html'}
 {/foreach}
 <script>
@@ -148,6 +147,17 @@ $("input.buypayment").attr({
        "max" : (totalprice - paytotal),        // substitute your own
        "min" : 0.01          // values (or variables) here
 });
+
+
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 
 // End of function
 });

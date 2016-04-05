@@ -6,31 +6,30 @@
 		      <form id="paymentform" action="payments.php" method="POST" class="reload">
 		      <div class="form-body pal">
 				<div class="row">
-					<div class="col-md-12">
-					    <div class="form-group">
-						<label for="inputName" class="control-label">{$_pay_amount}</label>
-						<div class="input-icon right">
-						      <i class="fa fa-credit-card"></i>
-						      <input type="number" name="payment" class="form-control" step="0.01" autocomplete="off" />
-						      {if $page_name == 'invoicedetail'}
-							    <input type="hidden" name="serviceid" value="{Check::getValue("seid")}"/>
-							    <input type="hidden" name="custid" value="{$i.invoice_customer_id}"/>
-							    <input type="hidden" class="getremain" name="getremain" value=""/>
-							    <input type="hidden" class="invoiceno" name="invoiceno" value=""/>
-						      {/if}
-						</div>
+				    <div class="col-md-12">
+					<div class="form-group">
+					    <label for="inputName" class="control-label">{$_pay_amount}</label>
+					    <div class="input-icon right">
+						  <i class="fa fa-credit-card"></i>
+						  <input type="number" name="payment" class="form-control" step="0.01" autocomplete="off" />
+						  {if $page_name == 'invoicedetail'}
+							<input type="hidden" name="serviceid" value="{Check::getValue("seid")}"/>
+							<input type="hidden" name="custid" value="{$i.invoice_customer_id}"/>
+							<input type="hidden" class="getremain" name="getremain" value=""/>
+							<input type="hidden" class="invoiceno" name="invoiceno" value=""/>
+						  {/if}
 					    </div>
 					</div>
+				    </div>
 				    <div class="col-sm-12">
 					  <label class="margin-top">{$_payment_type}</label>
 					  <div class="input-group input-group-sm servicetype">
-						<span class="input-group-addon" id="sizing-addon3"><a data-toggle="collapse" href="#addpaytype" aria-expanded="false" title="{$_add_paytype}"><i class="fa fa-plus"></i></a></span>
-						<select class="form-control" name="paytype">
-						  <option value="empty"></option>
-						  {foreach $paytype as $typ}
-							  <option value="{$typ.paytype_id}">{$typ.paytype_name}</option>
-						  {/foreach}
-					    </select>
+						<div class="btn-group radioBtn">
+							<a class="btn btn-green btn-xs" data-toggle="fun" data-title="1">{$_advance}</a>
+							<a class="btn btn-orange btn-xs" data-toggle="fun" data-title="2">{$_credit}</a>
+							<a class="btn btn-success btn-xs" data-toggle="fun" data-title="3">{$_eft}</a>
+						</div>
+						<input type="hidden" name="paytype" class="fun" />
 					  </div>
 				    </div>
 				    

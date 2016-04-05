@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-27 19:08:54
+<?php /* Smarty version 3.1.27, created on 2016-04-01 17:44:06
          compiled from "/var/www/html/mutasyon/themes/default/invoicedetail.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:39355991756f80596679f19_11039923%%*/
+/*%%SmartyHeaderCode:75508427556fe8936e4ebd2_30880205%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,16 +9,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '74ab20906d76cc9b57b1cbdd579ee5ae7b25a867' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/invoicedetail.html',
-      1 => 1458409809,
+      1 => 1459518119,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '39355991756f80596679f19_11039923',
+  'nocache_hash' => '75508427556fe8936e4ebd2_30880205',
   'variables' => 
   array (
     'invoiceid' => 0,
     '_invoice' => 0,
     'i' => 0,
+    'screen' => 0,
     '_payment' => 0,
     '_edit' => 0,
     '_email' => 0,
@@ -46,13 +47,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f805967fc130_27582961',
+  'unifunc' => 'content_56fe8936eceeb7_72615768',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f805967fc130_27582961')) {
-function content_56f805967fc130_27582961 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_56fe8936eceeb7_72615768')) {
+function content_56fe8936eceeb7_72615768 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '39355991756f80596679f19_11039923';
+$_smarty_tpl->properties['nocache_hash'] = '75508427556fe8936e4ebd2_30880205';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -77,31 +78,31 @@ $foreach_i_Sav = $_smarty_tpl->tpl_vars['i'];
 </li>
   </ol>
 <!--/Breadcrumb-->
-  <div class="col-sm-2 margin-top"><!--left side-->
-	  <div class="text-center mbl">
-		<a data-toggle="collapse" href="#payment" class="btn btn-green" style="min-width: 60%;"><i class="fa fa-money"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_payment']->value;?>
+  <div class="col-xs-12 col-sm-2 margin-top hidden-print"><!--left side-->
+	    <div class="text-center mbl">
+		  <a data-toggle="collapse" href="#payment" class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-green" style="min-width: 60%;"><i class="fa fa-money"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_payment']->value;?>
 </a>
-	  </div>
-	  <div class="text-center mbl">
-		<a data-toggle="collapse" href="#payment" class="btn btn-blue" style="min-width: 60%;"><i class="fa fa-pencil-square-o"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_edit']->value;?>
+	    </div>
+	    <div class="text-center mbl">
+		  <a class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-blue" style="min-width: 60%;"><i class="fa fa-pencil-square-o"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_edit']->value;?>
 </a>
-	  </div>
-	  <div class="text-center mbl">
-		<a data-toggle="collapse" href="#payment" class="btn btn-yellow" style="min-width: 60%;"><i class="fa fa-envelope"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_email']->value;?>
+	    </div>
+	    <div class="text-center mbl">
+		  <a class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-yellow" style="min-width: 60%;"><i class="fa fa-envelope"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_email']->value;?>
 </a>
-	  </div>
-	  <div class="text-center mbl">
-		<a href="?print=1" id="download" class="btn btn-orange" style="min-width: 60%;"><i class="fa fa-download"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_download']->value;?>
+	    </div>
+	    <div class="text-center mbl">
+		  <a class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-orange" style="min-width: 60%;"><i class="fa fa-download"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_download']->value;?>
 </a>
-	  </div>
-	  <div class="text-center mbl">
-		<a data-toggle="collapse" href="#cancelinvoice" class="btn btn-red" style="min-width: 60%;"><i class="fa fa-retweet"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_invoice_cancel']->value;?>
+	    </div>
+	    <div class="text-center mbl">
+		  <a data-toggle="collapse" href="#cancelinvoice" class="btn <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'phone') {?>btn-xs<?php }?> btn-red" style="min-width: 60%;"><i class="fa fa-retweet"></i>&nbsp;<?php echo $_smarty_tpl->tpl_vars['_invoice_cancel']->value;?>
 </a>
-	  </div>
-  </div><!--/left side-->
+	    </div>
+    </div><!--/left side-->
   
 <!--invoice details-->
-  <div class="col-sm-offset-3" style="padding-bottom: 100px;"><!--invoice info-->
+  <div class="col-xs-12 col-sm-10" style="padding-bottom: 100px;"><!--invoice info-->
 	    <h1><?php echo $_smarty_tpl->tpl_vars['_invoice']->value;?>
 </h1><!--invoice header-->
 	    <div class="container-fluid">
@@ -272,17 +273,13 @@ $_smarty_tpl->tpl_vars['i'] = $foreach_i_Sav;
 }
 ?>
 </div><!--/container-->
-
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/footer.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
-?>
-
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/invoice/cancelinvoice.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/payments/addpayments.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
-<?php echo $_smarty_tpl->getSubTemplate ('themes/default/paytype/addpaytype.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
+<?php echo $_smarty_tpl->getSubTemplate ('themes/default/invoice/cancelinvoice.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <?php echo $_smarty_tpl->getSubTemplate ('themes/default/bank/addbank.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
@@ -322,14 +319,16 @@ if($("#remain").text() == 0)
 }
 $(".refund").val(paytotal);
 
-var doc = new jsPDF();
-var specialElementHandlers = {
-    '#editor': function (element, renderer) {
-        return true;
-    }
-};
 
-
+// Paaytype
+$('.radioBtn a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('.'+tog).prop('value', sel);
+    
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+})
 // End of function
 });
 <?php echo '</script'; ?>

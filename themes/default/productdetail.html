@@ -16,7 +16,7 @@
 							    <img src="{$main_img}/noimage-large.jpg" alt="" class="img-thumbnail" />
 						      {else}
 							<div id="thumb-large">
-								<img src="{$main_img}/products/{$s.stock_id}/large/{$start}-large.jpg" alt="" class="img-thumbnail" />
+								<img src="{$main_img}/products/{$s.stock_id}/large/{$start}_large.jpg" alt="" class="img-thumbnail" />
 							</div>
 						      {/if}
 						      <div class="col-lg-12 hidden-xs hidden-sm">
@@ -26,7 +26,7 @@
 							      {else}
 								    {foreach $images as $image}
 									  <div class="col-lg-2" id="thumb-small">
-									    <img src="{$main_img}/products/{$image.images_stock_id}/small/{$image.images_id}-small.jpg" alt="" class="img-thumbnail" value="{$image.images_id}" />
+									    <img src="{$main_img}/products/{$image.images_stock_id}/small/{$image.images_id}_small.jpg" alt="" class="img-thumbnail" value="{$image.images_id}" />
 									  </div>
 								    {/foreach}
 							      {/if}
@@ -256,7 +256,7 @@ $(function(){
     
 $("div#thumb-small img").on("click", function(){
   var d = $(this).attr("value");
-  $("div#thumb-large").html('<img src="{$main_img}/products/{$s.stock_id}/large/'+d+'-large.jpg" alt="" class="img-thumbnail" />');
+  $("div#thumb-large").html('<img src="{$main_img}/products/{$s.stock_id}/large/'+d+'_large.jpg" alt="" class="img-thumbnail" />');
 });
 
 //Print stock no
@@ -281,6 +281,7 @@ $("#binvsubmit").click(function(){
       }
     }
 });
+
 
 // End of function
 });
