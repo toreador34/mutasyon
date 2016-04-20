@@ -14,17 +14,18 @@
                       <th>{$_status}</th>                                          
                   </tr>
               </thead>   
-              <tbody>
+              <tbody class="devam">
                 {foreach $customerlist as $cust}
-                <tr>
+                <tr class="clist" cid="{$cust.cust_id}">
                     <td><a href="custdetail.php?cid={$cust.cust_id}">{$cust.cust_name}</a></td>
                     <td>{$cust.cust_tel}</td>
-                    <td><span class="label {if $cust.cust_status==1}label-success{else}label-danger{/if}">{if $cust.cust_status==1}{$_active}{else}Pasif{/if}</span>
+                    <td><span class="label {if $cust.cust_status==1}label-success{else}label-danger{/if}">{if $cust.cust_status==1}{$_active}{else}{$_passive}{/if}</span>
                     </td> 
                 </tr>  
                 {/foreach}
               </tbody>
-            </table>  
+            </table> 
+	    <div class="loader" style="display:none"><img src="img/load.gif" /></div>
 	</div>
  </div>
 <!-- /Last customers -->

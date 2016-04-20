@@ -11,83 +11,111 @@
 	      <li class="active"><span id="ctname"></span></li>
 	{/if}
       </ol>
-    <!--/Breadcrumb-->
-      <div class="col-sm-3 margin-top relative">
-	      <h4 class="headers">
-		    {$_category}<a data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="float:right;color:#5cb85c"><i class="fa fa-pencil-square-o"></i></a>
-	      </h4>
-	      <div class="categorylist">
-		    <ul id="accordion" class="accordion">
-			  <li class="link"><i class="fa fa-home"></i> <a href="stock.php">{$_all}</a></li>
-			  {foreach $categories as $ct}
-				<li>
-				      <div class="link"><i class="fa fa-home"></i> {$ct.category_name}<br /> <span class="catdetail">{$ct.category_detail}</span></div>
-				      <ul class="submenu">
-					    {foreach $acategories as $kat}
-					    {if $ct.category_id == $kat.category_sub}
-						  <li class="relative"><i class="fa fa-caret-right"></i> <a href="?cid={$kat.category_id}">{$kat.category_name}</a><span class="catdetail">{$kat.category_detail}</span></li>
-					    {/if}
-					    {/foreach}
-				      </ul>
-				</li>
-			  {/foreach}
-		    </ul>
-	      </div>
-	</div><!--/col-sm-3 margin-top relative-->
-	<div class="col-sm-9">
-	      <div class="row">
-		    <div class="col-xs-12">
-			  <div class="col-sm-6 col-xs-12">
-				<div class="container-fluid padding"><a href="addproduct.php" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>{$_add_stock}</a></div>
-			  </div>
-			  <div class="col-sm-6 col-xs-12">
-				
-			  </div>
+      <div class="col-xs-12">
+	  <!--/Breadcrumb-->
+	    <div class="col-sm-3 margin-top relative">
+		    <h4 class="headers">
+			  {$_category}<a data-toggle="collapse" href="#addcategory" aria-expanded="false" title="{$_add_category}" style="float:right;color:#5cb85c"><i class="fa fa-pencil-square-o"></i></a>
+		    </h4>
+		    <div class="categorylist">
+			  <ul id="accordion" class="accordion">
+				<li class="link"><i class="fa fa-home"></i> <a href="stock.php">{$_all}</a></li>
+				{foreach $categories as $ct}
+				      <li>
+					    <div class="link"><i class="fa fa-home"></i> {$ct.category_name}<br /> <span class="catdetail">{$ct.category_detail}</span></div>
+					    <ul class="submenu">
+						  {foreach $acategories as $kat}
+						  {if $ct.category_id == $kat.category_sub}
+							<li class="relative"><i class="fa fa-caret-right"></i> <a href="?cid={$kat.category_id}">{$kat.category_name}</a><span class="catdetail">{$kat.category_detail}</span></li>
+						  {/if}
+						  {/foreach}
+					    </ul>
+				      </li>
+				{/foreach}
+			  </ul>
 		    </div>
-	      </div>
-	      <div id="prlists" class="row">
-		    <!--Product List-->
+	      </div><!--/col-sm-3 margin-top relative-->
+	      <div class="col-sm-9 col-xs-12 urunlistesi">
+		    <div class="prfilter">
+			  <div class="col-sm-8 col-xs-12">
+				<ul>
+				      <li class="{if Check::getValue("stock")=="instock"}activeli{/if} firstli"><i class="fa fa-check-square-o"></i> <a href="javascript:removeOther('stock=outstock', 'stock=instock');">Stokta Olanlar</a></li>
+				      <li class="{if Check::getValue("s")=="bestseller"}activeli{/if}"><i class="fa fa-line-chart"></i> <a href="javascript:removeOther('s=all', 's=bestseller');">Çok Satılanlar</a></li>
+				      <li class="{if Check::getValue("stock")=="outstock"}activeli{/if}"><i class="fa fa-battery-empty"></i> <a href="javascript:removeOther('stock=instock', 'stock=outstock');">Tükenenler</a></li>
+				</ul>
+			  </div>
+			  <div class="col-sm-4 col-xs-12 prview">
+				<ul>
+				      <li class="{if $smarty.cookies['view'] == 'list'}activeli{/if}"> 
+				      <a class="list"><i class="fa fa-bars"></i> Liste</a></li>
+				      <li class="{if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}activeli{/if}"> <a class="grid"><i class="fa fa-th-large"></i> Tablo</a></li>
+				</ul>
+			  </div>
+		    </div><!--/prfilter-->
+		    <!--prlist-->
 		    {foreach $stocklist as $s}
-		      <div class="col-sm-3">
-			    <div class="prbox {if $s.stock_amount == 0}alert-danger{else}alert-success{/if}">
-				  <div class="productlist">
-					<a href="productdetail.php?sid={$s.stock_id}">
-					      <img src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}_large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
-					</a>
-				  </div>
-				  <div class="prname">
-					<span><a href="productdetail.php?sid={$s.stock_id}"><span class="names">{$s.stock_name|truncate:30}</span></a></span>
-					<input type="hidden" class="ctname" value="{$s.category_name}" />
-				  </div>
-				  <div class="prdetail">
-					{if $s.stock_detail == ""}Açıklama Bulunamadı!{else}{$s.stock_short_detail|truncate:40}{/if}
-				  </div>
-				  <div class="pramount">
-					{if $s.stock_amount == 0} <span>Stokta Kalmadı!</span> {else}<span>Stok Miktarı :</span>{$s.stock_amount}{/if}
-				  </div>
-				  <div class="prtotal">
-					<span>Satış Fiyatı :</span><span>{$_currency}</span>{$s.stock_price_out}
-				  </div>
-				  <div>
-					<a data-toggle="collapse" href="#buystock" class="btn btn-yellow btn-xs buystock1" stock="{$s.stock_name}" sid="{$s.stock_id}"><i class="fa fa-cart-plus"></i> {$_buy}</a>
-					<a data-toggle="collapse" href="#sellstock" class="btn btn-green btn-xs sellstock1" price="{$s.stock_price_out}" stockname="{$s.stock_name}"><i class="fa fa-shopping-cart"></i> {$_sale}</a>
-				  </div>
-			    </div>
-		      </div>
+		    <div class="{if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-3 vgrid{else $smarty.cookies['view'] == 'list'}col-sm-12 vlist{/if}">
+			  <div class="{if $screen == 'phone'}prboxmobile{/if} prbox">
+				<div class="first {if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-12{else $smarty.cookies['view'] == 'list'}col-sm-3 col-xs-4{/if}">
+				      <a href="productdetail.php?sid={$s.stock_id}">
+					    <img class="vprimage" src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}_large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
+					    {if $s.total > 5}
+						  <img class="vbestseller" src="img/crown.png" />
+					    {/if}
+				      </a>
+				</div>
+				<div class="second {if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-12{else $smarty.cookies['view'] == 'list'}col-sm-9 col-xs-8{/if}">
+				      <div class="vname">
+					    <a href="productdetail.php?sid={$s.stock_id}">
+						  <span class="vprname">
+						  {if $screen == 'phone'}
+							{$s.stock_name|truncate:30}
+						  {else}
+							{$s.stock_name|truncate:50}
+						  {/if}
+						  </span>
+					    </a>
+					    {if $s.stock_amount > 0}
+						  <span class="badge badge-success vlabels">{$s.stock_amount}</span>
+					    {else}
+						  <span class="badge badge-danger vlabels">{$s.stock_amount}</span>
+					    {/if}
+				      </div>
+				      <div class="vdetail">
+					    {if $screen == 'phone'}
+						  {$s.stock_detail|strip_tags|truncate:60}
+					    {else}
+						  {$s.stock_detail|strip_tags|truncate:120}
+					    {/if}
+				      </div>
+				      <div class="vpricemobile">
+						  <div class="vprice">
+							<span>{$_currency}</span> {$s.stock_price_out}
+						  </div>
+				      </div>
+				      <div class="row">
+					    <a data-toggle="collapse" href="#buystock" class="btn btn-yellow btn-xs buystock1" stock="{$s.stock_name}" sid="{$s.stock_id}"><i class="fa fa-cart-plus"></i> {$_buy}</a>
+					    <a data-toggle="collapse" href="#sellstock" class="btn btn-green btn-xs sellstock1" price="{$s.stock_price_out}" stockname="{$s.stock_name}"><i class="fa fa-shopping-cart"></i> {$_sale}</a>
+				      </div>
+				      <input type="hidden" class="ctname" value="{$s.category_name}" />
+				</div>
+			</div>
+		    </div>
 		    {/foreach}
-		  <!--/Product List-->
-	      </div>
-	</div><!--/col-sm-9-->
+		    <!--prlist-->		    
+	      </div><!--/col-sm-9-->
+      </div>
 	{if $pagetotal > 1}
-	<div class="pull-right">
-		<ul class="pagination mtm mbm">
-		      <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="?page={Check::getValue("page")-1}" {/if}><<</a>
-		      {for $i = 1 to $pagetotal}
-			    <li {if Check::getValue("page")==$i} class="active" {/if}><a href="?page={$i}">{$i}</a></li>
-		      {/for}
-		      <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="?page={Check::getValue("page")+1}"{/if}>>></a>
-		</ul>
-	</div>
+	      <div class="pull-right">
+		      <ul class="pagination mtm mbm">
+			    <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")-1}');" {/if}><<</a>
+			    {for $i = 1 to $pagetotal}
+				  <li {if Check::getValue("page")==$i} class="active" {/if}><a href="javascript:removeOther('page={Check::getValue("page")}', 'page={$i}');">{$i}</a></li>
+			    {/for}
+			    <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")+1}');" {/if}>>></a>
+		      </ul>
+		</div>
+	
 	{/if}
 </div><!--/container body-bg-->
 
@@ -165,7 +193,27 @@ $("#binvsubmit").click(function(){
       }
     }
 });
+$(".grid").on("click", function(){
+    $.ajax({
+	    type:'POST',
+	    url: 'load.php',
+		data : { 'view':'grid'},
+		success:function(t){
+		  setTimeout(function(){ location.reload(); }, 100);
+		}
+	  });
+});
 
+$(".list").on("click", function(){
+    $.ajax({
+	    type:'POST',
+	    url: 'load.php',
+		data : { 'view':'list'},
+		success:function(t){
+		  setTimeout(function(){ location.reload(); }, 100);
+		}
+	  });
+});
 
 });
 

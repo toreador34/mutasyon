@@ -64,15 +64,15 @@ if(isset($_SESSION['login']))
 		// Check customer name valid or not
 		    if($customerid == 0 OR $customerid == "" OR !is_numeric($customerid))
 		    {
-			  $infnotblank = $smarty->getVariable('_inf_not_valid');
-			  echo $infnotblank."<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.custid').addClass('alert-danger');</script>";
+			  $infcustnotblank = $smarty->getVariable('_is_customer_null');
+			  echo $infcustnotblank."<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.customer').css('border', '2px solid red');</script>";
 			  echo "<script>return false</script>";
 			  $vcust = 0;
 			  exit();
 		    }
 		    else
 		    {
-			  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');</script>";
+			  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.customer').css('border', '')</script>";
 			  $vcust = 1;
 		    }
 		    if($vcust == 1)

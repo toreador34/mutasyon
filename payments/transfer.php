@@ -7,7 +7,7 @@
 	
 	if(!$ptype)
 	{
-	      echo "<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.radioBtn').css('border', '1px solid red');</script>";
+	      echo "<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.radioBtn').css('border', '2px solid red');</script>";
 	      echo "<script>return false</script>";
 	      $vtype = 0;
 	      exit();

@@ -30,6 +30,24 @@
 </div>
 {include file='themes/default/footer.html'}
 <script>
+//Scroll
+$(".customer").scroll(function(){
+      var scroll=$(this).scrollTop();
+      var uzunluk=$(".customer table").height()-$(this).height()+20;
+
+      if(scroll == uzunluk)
+      {
+	  $(".loader").show();
+	  var lastid = $(".devam").find("tr:last").attr("cid");
+	  $.post("load.php", {
+	      lastcustid: lastid
+	  }, function (t) {
+	      $(".loader").hide();
+	      $(".devam").append(t);
+	  });
+      }
+});
+
 //For complete event
 $('.eventcomp').on('click', function(){
   if($(this).is(':checked'))

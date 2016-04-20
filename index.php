@@ -17,7 +17,7 @@ else
 		      
 		      
 		      //Connect customer db for get total customers
-		      $customerlist = $db->query('SELECT * FROM customer LIMIT 10');
+		      $customerlist = $db->query('SELECT * FROM customer LIMIT 5');
 			      
 		      
 		      //Connect invoice db for get total invoices
@@ -26,8 +26,8 @@ else
 		      
 		      
 		      $invoicelist = $db->query('
-		      SELECT *, (SELECT TRUNCATE(SUM(ip_total), 2) AS invtotal FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) AS invtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) AS paytotal FROM payments WHERE payment_invoice_id = invoice.invoice_id AND payment_in_out = "in") AS paytotal,  (SELECT TRUNCATE(SUM(insertedservice_price), 2) AS servtotal FROM insertedservice WHERE insertedservice_service_id = invoice.invoice_id) AS servtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) AS payservtotal FROM payments WHERE payment_service_id = invoice.invoice_id AND payment_in_out = "in") AS payservtotal FROM invoice WHERE invoice_cancelled <> 1
-		      ORDER BY invoice_id DESC LIMIT 10');
+		      SELECT *, (SELECT TRUNCATE(SUM(ip_total), 2) FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) AS invtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_invoice_id = invoice.invoice_id AND payment_in_out = "in") AS paytotal,  (SELECT TRUNCATE(SUM(insertedservice_price), 2) FROM insertedservice WHERE insertedservice_service_id = invoice.invoice_id) AS servtotal, (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_service_id = invoice.invoice_id AND payment_in_out = "in") AS payservtotal FROM invoice WHERE invoice_cancelled <> 1 AND (SELECT TRUNCATE(SUM(ip_total), 2) FROM invoicedproducts WHERE ip_invoice_id = invoice.invoice_id) - (invoice_discount) <> (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_invoice_id = invoice.invoice_id AND payment_in_out = "in") OR (SELECT TRUNCATE(SUM(insertedservice_price), 2) FROM insertedservice WHERE insertedservice_service_id = invoice.invoice_id) - (invoice_discount) <> (SELECT TRUNCATE(SUM(payment_amount), 2) FROM payments WHERE payment_service_id = invoice.invoice_id AND payment_in_out = "in")
+		      ORDER BY invoice_id DESC LIMIT 15');
 		      
 		      $providerslist = $db->query("
 		      SELECT *, TRUNCATE(SUM(pp_price), 2) AS paytotal, (SELECT TRUNCATE(SUM(invoice_providers_price), 2) AS total FROM invoice WHERE invoice_providers = providers.providers_id AND invoice_cancelled <> 1) AS total FROM providers

@@ -810,40 +810,7 @@ img.admin{
 .mailsright{
     
 }
-/* Product List */
-.productlist img{
-  width: 93%;
-  padding: 5px 10px;
-}
-.prbox {
-    margin-right: -19px;
-    margin-top: 10px;
-    padding: 0;
-    min-height: 275px;
-    border: 1px solid #ddd;
-    text-align: center;
-    background: #fff url('../img/desen.png') no-repeat right bottom;
-}
-.prname{
-  padding: 10px;
-}
-.prname span {
-    font-size: 12px;
-    font-weight: bold;
-}
-.prdetail {
-    color: #aaa;
-    font-size: 11px;
-    height: 30px;
-}
-.prtotal {
-    font-weight: bold;
-    font-style: italic;
-    font-size: 16px;
-    color: #d2517b;
-    margin-top:5px;
-    margin-bottom:5px;
-}
+
 .kv-fileinput-error, .file-error-message{
   display:none !important;
 }
@@ -1005,4 +972,153 @@ img.admin{
 }
 .radioBtn a.active{
     border:2px solid #000;
+}
+/* Filter and view products */
+.prfilter{
+    background: #fff;
+    height: 48px;
+    border: 4px double #eee;
+    margin-left: 15px;
+}
+.firstli {
+    margin-left:-49px !important
+}
+.prfilter li {
+    float: left;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 14px;
+    border: 1px solid #eee;
+    padding-left: 7px;
+    margin-top: 6px;
+    padding-right: 11px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor:pointer;
+}
+.activeli a{
+  color:#fff;
+}
+.activeli {
+    background: #000;
+    border: 1px solid #eee;
+    color: #fff;
+}
+/* Product List */
+.urunlistesi {
+    padding-left: 0;
+    padding-right: 0;
+}
+.prbox {
+    margin-right: -19px;
+    margin-top: 10px;
+    padding: 0;
+    border: 1px solid #ddd;
+    background: #fff url('../img/desen.png') no-repeat right bottom;
+}
+
+/* List view */
+.vlist img.vprimage{
+    max-width: 100%;
+    height: auto;
+}
+.vlist .second .ablock{
+  position:absolute;
+  bottom:4px;
+}
+.vlist .vname {
+    height: 38px;
+    margin-top: 5px;
+}
+.vlist .vprname {
+    font-weight: bold;
+    font-size: 14px;
+}
+.vlist .second .vdetail {
+    font-size: 10px;
+    height: 20px;
+    font-style: italic;
+}
+.vlistbuttons a {
+    display: block;
+    margin-bottom: 2px;
+}
+.vlist .second .vlabels{
+    margin-top:-5px;
+}
+.vlist .prbox{
+  height: 119px;
+}
+.vlist .vbestseller {
+    width: 24px;
+    position: absolute;
+    top: 0px;
+    margin-left: -13px;
+    opacity: 0.9;
+}
+.vlist .vpricemobile {
+    height: 30px;
+    font-weight: bold;
+    color: darkred;
+    font-size: 20px;
+    text-align: right;
+}
+/* Grid view */
+.vgrid img.vprimage{
+    max-width: 100%;
+    height: auto;
+}
+.vgrid .second .ablock{
+  position:absolute;
+  bottom:4px;
+}
+.vgrid .vname {
+    height: 38px;
+    margin-top: 5px;
+}
+.vgrid .vprname {
+    font-weight: bold;
+    font-size: 14px;
+}
+.vgrid .second .vdetail {
+    font-size: 10px;
+    height: 59px;
+    font-style: italic;
+    margin-top: 12px;
+}
+.vgridbuttons a {
+    display: block;
+    margin-bottom: 2px;
+}
+.vgrid .second .vlabels{
+    right: 1px;
+    top: -108px;
+    position: absolute;
+}
+.vgrid .second .vlabels span{
+  font-size:12px;
+}
+.vgrid .prbox{
+  height: 285px;
+  text-align: center;
+}
+.vgrid .vbestseller {
+    width: 27px;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    opacity: 0.7;
+}
+.vgrid .third .vprice {
+    right: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 3px;
+    color: darkred;
+}
+.vgrid .vpricemobile {
+    height: 36px;
+    font-weight: bold;
+    color: darkred;
+    font-size: 20px;
 }

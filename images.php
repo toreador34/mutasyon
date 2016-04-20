@@ -144,11 +144,11 @@ if($_SESSION['login']){
 	      }//file_exists
 	      
 	      //Delete images
-	      if(file_exists($dir_l.$iid."-large.jpg") and file_exists($dir_s.$iid."-small.jpg"))
+	      if(file_exists($dir_l.$iid."_large.jpg") and file_exists($dir_s.$iid."_small.jpg"))
 	      {
-		unlink($dir_l.$iid."-large.jpg");
+		unlink($dir_l.$iid."_large.jpg");
 		unlink($dir_l."index.php");
-		unlink($dir_s.$iid."-small.jpg");
+		unlink($dir_s.$iid."_small.jpg");
 		unlink($dir_s."index.php");
 		unlink("img/products/".$id."/index.php");
 		if($total == 1)

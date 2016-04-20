@@ -10,3 +10,75 @@
 .nav{
   padding-left:5px;
 } 
+/* List view */
+.vlist img.vprimage {
+    border: 1px solid #eee;
+    height: 112px;
+    margin-left: -14px;
+    max-width: 142%;
+}
+.vlist .second{
+  text-align: center;
+}
+.vlist .second .ablock{
+  position:absolute;
+  bottom:4px;
+}
+.vlist .vname {
+    height: 25px;
+    margin-top: 5px;
+}
+.vlist .vlistprname {
+    font-weight: bold;
+    font-size: 13px;
+}
+.vlist .second .vdetail {
+    height: 29px;
+}
+.vlistbuttons a {
+    display: block;
+    margin-bottom: 2px;
+}
+.vlist .second .vlabels{
+    right: 14px;
+    top: -3px;
+}
+.vlist .second .vlabels span{
+  font-size:8px;
+}
+.vlist .prbox{
+  height: 115px;
+}
+.vlist .vbestseller {
+    width: 24px;
+    position: absolute;
+    top: 0px;
+    margin-left: -13px;
+    opacity: 0.9;
+}
+/* Grid View */
+.vgrid .prbox {
+    height: 372px;
+}
+.vgrid .second .vlabels {
+    right: 17px;
+    top: -187px;
+}
+.vgrid img.vprimage {
+    border-bottom: 1px solid #ddd;
+    margin-top: 3px;
+}
+.vgrid .vprname {
+    font-size: 19px;
+}
+.vgrid .second .vdetail {
+    font-size: 14px;
+    height: 67px;
+}
+.vgrid .vbestseller {
+    width: 48px;
+}
+.vgrid .third .vprice {
+    bottom: -39px;
+    right: 17px;
+}

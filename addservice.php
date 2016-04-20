@@ -22,7 +22,7 @@ if($_SESSION['login']){
 	      if($customer == "empty")
 	      {
 		    $infcustnotblank = $smarty->getVariable('_is_customer_null');
-		    echo $infcustnotblank."<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.customer').css('border', '1px solid red');</script>";
+		    echo $infcustnotblank."<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.customer').css('border', '2px solid red');</script>";
 		    echo "<script>return false</script>";
 		    $vcust = 0;
 		    exit();

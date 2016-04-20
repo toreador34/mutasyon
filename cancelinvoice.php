@@ -91,14 +91,14 @@ if(isset($_SESSION['login']))
 	    if($paytype == "empty" OR $paytype == "")
 	    {
 		  $infnotblank = $smarty->getVariable('_inf_not_valid');
-		  echo $infnotblank."<script>$('select[name=paytype]').addClass('alert-danger')</script>";
+		  echo $infnotblank."<script>$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.radioBtn').css('border', '2px solid red');</script>";
 		  echo "<script>return false</script>";
 		  $vype = 0;
 		  exit();
 	    }
 	    else
 	    {
-		  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');</script>";
+		  echo "<script>$('textarea').removeClass('alert-danger');$('input').removeClass('alert-danger');$('select').removeClass('alert-danger');$('.radioBtn').css('border', '')</script>";
 		  $vype = 1;
 	    }
       }
