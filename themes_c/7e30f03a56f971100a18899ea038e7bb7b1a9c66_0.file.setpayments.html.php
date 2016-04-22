@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-01 16:02:34
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:42:55
          compiled from "/var/www/html/mutasyon/themes/default/providers/setpayments.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:120954084956fe716aacdd49_55158739%%*/
+/*%%SmartyHeaderCode:1088071416571a002fa714b4_07404933%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '120954084956fe716aacdd49_55158739',
+  'nocache_hash' => '1088071416571a002fa714b4_07404933',
   'variables' => 
   array (
     '_set_providers_pay' => 0,
@@ -22,13 +22,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56fe716aae7548_91112356',
+  'unifunc' => 'content_571a002fa80289_78171403',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56fe716aae7548_91112356')) {
-function content_56fe716aae7548_91112356 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_571a002fa80289_78171403')) {
+function content_571a002fa80289_78171403 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '120954084956fe716aacdd49_55158739';
+$_smarty_tpl->properties['nocache_hash'] = '1088071416571a002fa714b4_07404933';
 ?>
 <!-- Modallar  -->
 <div class="collapse topwind" id="setpayproviders">

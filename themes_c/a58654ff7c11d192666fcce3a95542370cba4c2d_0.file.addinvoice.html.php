@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-03 16:26:39
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:37:20
          compiled from "/var/www/html/mutasyon/themes/default/addinvoice.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:64341095557011a0f479619_75449790%%*/
+/*%%SmartyHeaderCode:7076654175719fee0db81f1_66054910%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a58654ff7c11d192666fcce3a95542370cba4c2d' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/addinvoice.html',
-      1 => 1459153476,
+      1 => 1460287469,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '64341095557011a0f479619_75449790',
+  'nocache_hash' => '7076654175719fee0db81f1_66054910',
   'variables' => 
   array (
     '_invoice' => 0,
@@ -41,14 +41,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57011a0f5b72f8_41497823',
+  'unifunc' => 'content_5719fee0e46395_92707781',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57011a0f5b72f8_41497823')) {
-function content_57011a0f5b72f8_41497823 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719fee0e46395_92707781')) {
+function content_5719fee0e46395_92707781 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.date_format.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '64341095557011a0f479619_75449790';
+$_smarty_tpl->properties['nocache_hash'] = '7076654175719fee0db81f1_66054910';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -223,7 +223,7 @@ $_smarty_tpl->tpl_vars['adj'] = $foreach_adj_Sav;
 >
 $(function(){
 
-$(".chosen-select").chosen();
+$("#custlist").chosen();
 
 //Add invoice
 var options = {
@@ -272,7 +272,6 @@ $(".cfsp").click(function(){
 		data : { 'id':idm,},
 		success:function(t){
 		  $("div.work-inf").html(t);
-		  addBasket();
 		  addBasket();
 		  var maxdis = parseInt($("#tplm").text());
 		  $("#discountamount").attr({

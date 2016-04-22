@@ -37,34 +37,53 @@
 	      </div><!--/col-sm-3 margin-top relative-->
 	      <div class="col-sm-9 col-xs-12 urunlistesi">
 		    <div class="prfilter">
-			  <div class="col-sm-8 col-xs-12">
-				<ul>
-				      <li class="{if Check::getValue("stock")=="instock"}activeli{/if} firstli"><i class="fa fa-check-square-o"></i> <a href="javascript:removeOther('stock=outstock', 'stock=instock');">Stokta Olanlar</a></li>
-				      <li class="{if Check::getValue("s")=="bestseller"}activeli{/if}"><i class="fa fa-line-chart"></i> <a href="javascript:removeOther('s=all', 's=bestseller');">Çok Satılanlar</a></li>
-				      <li class="{if Check::getValue("stock")=="outstock"}activeli{/if}"><i class="fa fa-battery-empty"></i> <a href="javascript:removeOther('stock=instock', 'stock=outstock');">Tükenenler</a></li>
-				</ul>
+		    {if $screen == 'phone'}
+			  <a class="menu-bar" data-toggle="collapse" href="#menu">
+			      <span class="bars"></span>            
+			  </a>
+			  <div class="collapse menu" id="menu">
+			      <ul class="list-inline">
+				      <li class="{if Check::getValue("stock")=="instock"}activeli{/if}">
+					    <i class="fa fa-check-square-o"></i> <a href="javascript:removeOther('stock=outstock', 'stock=instock');">Stoktakiler</a>
+				      </li>
+				      <li class="{if Check::getValue("s")=="bestseller"}activeli{/if}">
+					    <i class="fa fa-line-chart"></i> <a href="javascript:removeOther('s=all', 's=bestseller');">Çok St.</a>
+				      </li>
+				      <li class="{if Check::getValue("stock")=="outstock"}activeli{/if}">
+					    <i class="fa fa-battery-empty"></i> <a href="javascript:removeOther('stock=instock', 'stock=outstock');">Tükenenler</a>
+				      </li>
+				      <li class="{if $smarty.session['view'] == 'list'}activeli{/if}">
+					    <a class="list"><i class="fa fa-bars"></i> Liste</a>
+				      </li>
+				      <li class="{if $smarty.session['view'] == 'grid' OR !$smarty.session['view']}activeli{/if}"> 
+					    <a class="grid"><i class="fa fa-th-large"></i> Tablo</a>
+				      </li>
+			      </ul>   
 			  </div>
-			  <div class="col-sm-4 col-xs-12 prview">
-				<ul>
-				      <li class="{if $smarty.cookies['view'] == 'list'}activeli{/if}"> 
-				      <a class="list"><i class="fa fa-bars"></i> Liste</a></li>
-				      <li class="{if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}activeli{/if}"> <a class="grid"><i class="fa fa-th-large"></i> Tablo</a></li>
-				</ul>
-			  </div>
+		    {else}
+			  <ul style="padding:0">
+				<li class='{if Check::getValue("stock")=="instock"}activeli{/if} pull-left'><i class="fa fa-check-square-o"></i> <a href="javascript:removeOther('stock=outstock', 'stock=instock');">Stokta Olanlar</a></li>
+				  <li class='{if Check::getValue("s")=="bestseller"}activeli{/if} pull-left'><i class="fa fa-line-chart"></i> <a href="javascript:removeOther('s=all', 's=bestseller');">Çok Satılanlar</a></li>
+				  <li class='{if Check::getValue("stock")=="outstock"}activeli{/if} pull-left'><i class="fa fa-battery-empty"></i> <a href="javascript:removeOther('stock=instock', 'stock=outstock');">Tükenenler</a></li>
+				  <li class="{if $smarty.session['view'] == 'list'}activeli{/if} pull-right"> 
+				  <a class="list"><i class="fa fa-bars"></i> Liste</a></li>
+				  <li class="{if $smarty.session['view'] == 'grid' OR !$smarty.session['view']}activeli{/if} pull-right"> <a class="grid"><i class="fa fa-th-large"></i> Tablo</a></li>
+			  </ul>
+		    {/if}
 		    </div><!--/prfilter-->
 		    <!--prlist-->
 		    {foreach $stocklist as $s}
-		    <div class="{if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-3 vgrid{else $smarty.cookies['view'] == 'list'}col-sm-12 vlist{/if}">
+		    <div class="{if $smarty.session['view'] == 'grid' OR !$smarty.session['view']}col-sm-3 col-xs-6 vgrid{else $smarty.session['view'] == 'list'}col-sm-12 vlist{/if}">
 			  <div class="{if $screen == 'phone'}prboxmobile{/if} prbox">
-				<div class="first {if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-12{else $smarty.cookies['view'] == 'list'}col-sm-3 col-xs-4{/if}">
+				<div class="first {if $smarty.session['view'] == 'grid' OR !$smarty.session['view']}col-sm-12{else $smarty.session['view'] == 'list'}col-sm-3 col-xs-4{/if}">
 				      <a href="productdetail.php?sid={$s.stock_id}">
-					    <img class="vprimage" src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}_large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
 					    {if $s.total > 5}
 						  <img class="vbestseller" src="img/crown.png" />
 					    {/if}
+					    <img class="vprimage" src="{if $s.images_id}{$main_img}/products/{$s.stock_id}/large/{$s.images_id}_large.jpg{else}{$main_img}/noimage-large.jpg{/if}" alt="{$s.images_title}" />
 				      </a>
 				</div>
-				<div class="second {if $smarty.cookies['view'] == 'grid' OR !$smarty.cookies['view']}col-sm-12{else $smarty.cookies['view'] == 'list'}col-sm-9 col-xs-8{/if}">
+				<div class="second {if $smarty.session['view'] == 'grid' OR !$smarty.session['view']}col-sm-12{else $smarty.session['view'] == 'list'}col-sm-9 col-xs-8{/if}">
 				      <div class="vname">
 					    <a href="productdetail.php?sid={$s.stock_id}">
 						  <span class="vprname">
@@ -83,7 +102,7 @@
 				      </div>
 				      <div class="vdetail">
 					    {if $screen == 'phone'}
-						  {$s.stock_detail|strip_tags|truncate:60}
+						  {$s.stock_detail|strip_tags|truncate:85}
 					    {else}
 						  {$s.stock_detail|strip_tags|truncate:120}
 					    {/if}
@@ -105,18 +124,30 @@
 		    <!--prlist-->		    
 	      </div><!--/col-sm-9-->
       </div>
-	{if $pagetotal > 1}
-	      <div class="pull-right">
-		      <ul class="pagination mtm mbm">
-			    <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")-1}');" {/if}><<</a>
-			    {for $i = 1 to $pagetotal}
-				  <li {if Check::getValue("page")==$i} class="active" {/if}><a href="javascript:removeOther('page={Check::getValue("page")}', 'page={$i}');">{$i}</a></li>
-			    {/for}
-			    <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")+1}');" {/if}>>></a>
-		      </ul>
-		</div>
-	
+	{if $screen == 'phone'}
+	      {if $pagetotal > 1}
+		    <div class="pull-right">
+			    <ul class="pagination mtm mbm">
+				  <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")-1}');" {/if}><<</a>
+					<li><a>{if !Check::getValue("page")}1{else}{Check::getValue("page")}{/if}/{$pagetotal}</a></li>
+				  <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="javascript:removeOther('page={Check::getValue('page')}', 'page={if !Check::getValue('page')}{Check::getValue('page')+2}{else}{Check::getValue('page')+1}{/if}');" {/if}>>></a></li>
+			    </ul>
+		      </div>
+	      {/if}
+	{else}
+	      {if $pagetotal > 1}
+		    <div class="pull-right">
+			    <ul class="pagination mtm mbm">
+				  <li{if Check::getValue("page") <= 1} class="disabled"{/if} ><a {if Check::getValue("page") > 1} href="javascript:removeOther('page={Check::getValue("page")}', 'page={Check::getValue("page")-1}');" {/if}><<</a>
+				  {for $i = 1 to $pagetotal}
+					<li {if Check::getValue("page")==$i} class="active" {/if}><a href="javascript:removeOther('page={Check::getValue("page")}', 'page={$i}');">{$i}</a></li>
+				  {/for}
+				  <li {if Check::getValue("page") == $pagetotal} class="disabled" {/if}><a {if Check::getValue("page") < $pagetotal} href="javascript:removeOther('page={Check::getValue('page')}', 'page={if !Check::getValue('page')}{Check::getValue('page')+2}{else}{Check::getValue('page')+1}{/if}');" {/if}>>></a></li>
+			    </ul>
+		      </div>
+	      {/if}
 	{/if}
+	
 </div><!--/container body-bg-->
 
 {include file='themes/default/category/addcategory.html'}

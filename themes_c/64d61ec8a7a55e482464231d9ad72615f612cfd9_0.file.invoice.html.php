@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-31 22:56:12
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:42:10
          compiled from "/var/www/html/mutasyon/themes/default/invoice.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:26005617256fd80dc5aea41_72748639%%*/
+/*%%SmartyHeaderCode:169310322571a0002a6c569_20006053%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '64d61ec8a7a55e482464231d9ad72615f612cfd9' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/invoice.html',
-      1 => 1459155015,
+      1 => 1461321724,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26005617256fd80dc5aea41_72748639',
+  'nocache_hash' => '169310322571a0002a6c569_20006053',
   'variables' => 
   array (
     '_invoice' => 0,
@@ -44,13 +44,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56fd80dc6b36b7_39426497',
+  'unifunc' => 'content_571a0002b4f145_52952532',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56fd80dc6b36b7_39426497')) {
-function content_56fd80dc6b36b7_39426497 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_571a0002b4f145_52952532')) {
+function content_571a0002b4f145_52952532 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '26005617256fd80dc5aea41_72748639';
+$_smarty_tpl->properties['nocache_hash'] = '169310322571a0002a6c569_20006053';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -94,7 +94,7 @@ echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->c
 		</div>
 	  </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid col-xs-12">
 	  <div class="panel panel-default filterable">
 			  <div class="panel-heading">
 			      <h3 class="panel-title">Faturalar</h3>

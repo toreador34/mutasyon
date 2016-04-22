@@ -13,6 +13,7 @@ $password = Check::getValue("passwd");
 			{
 				$_SESSION["login"] = 1;
 				$_SESSION["username"] = $email;
+				$_SESSION["view"] = "grid";
 				echo '<script type="text/javascript">window.location.href="index.php";</script>';
 				
 			}

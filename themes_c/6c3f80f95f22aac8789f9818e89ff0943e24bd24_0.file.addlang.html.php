@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-25 16:12:16
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:38:15
          compiled from "/var/www/html/mutasyon/themes/default/language/addlang.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:179200622856f54740b38d93_60145375%%*/
+/*%%SmartyHeaderCode:11112906495719ff176230a1_45592295%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '179200622856f54740b38d93_60145375',
+  'nocache_hash' => '11112906495719ff176230a1_45592295',
   'variables' => 
   array (
     '_language_name' => 0,
@@ -22,13 +22,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f54740b47f21_32148828',
+  'unifunc' => 'content_5719ff1762e5a2_92344587',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f54740b47f21_32148828')) {
-function content_56f54740b47f21_32148828 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719ff1762e5a2_92344587')) {
+function content_5719ff1762e5a2_92344587 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '179200622856f54740b38d93_60145375';
+$_smarty_tpl->properties['nocache_hash'] = '11112906495719ff176230a1_45592295';
 ?>
 <div class="collapse topwind" id="addlang">
       <div class="panel panel-pink" style="background:#fff;">

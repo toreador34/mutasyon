@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-03 16:29:51
+<?php /* Smarty version 3.1.27, created on 2016-04-20 22:18:05
          compiled from "/var/www/html/mutasyon/themes/default/productdetail.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:168659679257011acf508b06_05002296%%*/
+/*%%SmartyHeaderCode:20721808065717d5edd64a00_93685384%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '60bb8af32e9c65d49eb48cac4f951a6ffdbaf87a' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/productdetail.html',
-      1 => 1459517581,
+      1 => 1459798495,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '168659679257011acf508b06_05002296',
+  'nocache_hash' => '20721808065717d5edd64a00_93685384',
   'variables' => 
   array (
     'stock' => 0,
@@ -63,13 +63,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57011acf5a8a69_26140609',
+  'unifunc' => 'content_5717d5eddefd00_66465886',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57011acf5a8a69_26140609')) {
-function content_57011acf5a8a69_26140609 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5717d5eddefd00_66465886')) {
+function content_5717d5eddefd00_66465886 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '168659679257011acf508b06_05002296';
+$_smarty_tpl->properties['nocache_hash'] = '20721808065717d5edd64a00_93685384';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -108,7 +108,7 @@ $foreach_s_Sav = $_smarty_tpl->tpl_vars['s'];
 								<img src="<?php echo $_smarty_tpl->tpl_vars['main_img']->value;?>
 /products/<?php echo $_smarty_tpl->tpl_vars['s']->value['stock_id'];?>
 /large/<?php echo $_smarty_tpl->tpl_vars['start']->value;?>
--large.jpg" alt="" class="img-thumbnail" />
+_large.jpg" alt="" class="img-thumbnail" />
 							</div>
 						      <?php }?>
 						      <div class="col-lg-12 hidden-xs hidden-sm">
@@ -132,7 +132,7 @@ $foreach_image_Sav = $_smarty_tpl->tpl_vars['image'];
 									    <img src="<?php echo $_smarty_tpl->tpl_vars['main_img']->value;?>
 /products/<?php echo $_smarty_tpl->tpl_vars['image']->value['images_stock_id'];?>
 /small/<?php echo $_smarty_tpl->tpl_vars['image']->value['images_id'];?>
--small.jpg" alt="" class="img-thumbnail" value="<?php echo $_smarty_tpl->tpl_vars['image']->value['images_id'];?>
+_small.jpg" alt="" class="img-thumbnail" value="<?php echo $_smarty_tpl->tpl_vars['image']->value['images_id'];?>
 " />
 									  </div>
 								    <?php
@@ -470,7 +470,7 @@ $("div#thumb-small img").on("click", function(){
   var d = $(this).attr("value");
   $("div#thumb-large").html('<img src="<?php echo $_smarty_tpl->tpl_vars['main_img']->value;?>
 /products/<?php echo $_smarty_tpl->tpl_vars['s']->value['stock_id'];?>
-/large/'+d+'-large.jpg" alt="" class="img-thumbnail" />');
+/large/'+d+'_large.jpg" alt="" class="img-thumbnail" />');
 });
 
 //Print stock no

@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-31 17:47:32
+<?php /* Smarty version 3.1.27, created on 2016-04-21 15:35:03
          compiled from "/var/www/html/mutasyon/themes/default/widget/lastcustomers.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:1777597256fd388473ca09_45157927%%*/
+/*%%SmartyHeaderCode:17908640245718c8f73ce423_64843451%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7af95cb6a001a30872d44792967f0db48dcfb6ff' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/widget/lastcustomers.html',
-      1 => 1457984854,
+      1 => 1460227444,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1777597256fd388473ca09_45157927',
+  'nocache_hash' => '17908640245718c8f73ce423_64843451',
   'variables' => 
   array (
     '_customer_list' => 0,
@@ -23,16 +23,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'customerlist' => 0,
     'cust' => 0,
     '_active' => 0,
+    '_passive' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56fd388475afe2_92043034',
+  'unifunc' => 'content_5718c8f7418826_92807169',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56fd388475afe2_92043034')) {
-function content_56fd388475afe2_92043034 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5718c8f7418826_92807169')) {
+function content_5718c8f7418826_92807169 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '1777597256fd388473ca09_45157927';
+$_smarty_tpl->properties['nocache_hash'] = '17908640245718c8f73ce423_64843451';
 ?>
 <!-- Last customers -->
 <div class="panel">
@@ -54,7 +55,7 @@ $_smarty_tpl->properties['nocache_hash'] = '1777597256fd388473ca09_45157927';
 </th>                                          
                   </tr>
               </thead>   
-              <tbody>
+              <tbody class="devam">
                 <?php
 $_from = $_smarty_tpl->tpl_vars['customerlist']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -66,7 +67,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['cust']->value) {
 $_smarty_tpl->tpl_vars['cust']->_loop = true;
 $foreach_cust_Sav = $_smarty_tpl->tpl_vars['cust'];
 ?>
-                <tr>
+                <tr class="clist" cid="<?php echo $_smarty_tpl->tpl_vars['cust']->value['cust_id'];?>
+">
                     <td><a href="custdetail.php?cid=<?php echo $_smarty_tpl->tpl_vars['cust']->value['cust_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['cust']->value['cust_name'];?>
 </a></td>
@@ -74,7 +76,9 @@ $foreach_cust_Sav = $_smarty_tpl->tpl_vars['cust'];
 </td>
                     <td><span class="label <?php if ($_smarty_tpl->tpl_vars['cust']->value['cust_status'] == 1) {?>label-success<?php } else { ?>label-danger<?php }?>"><?php if ($_smarty_tpl->tpl_vars['cust']->value['cust_status'] == 1) {
 echo $_smarty_tpl->tpl_vars['_active']->value;
-} else { ?>Pasif<?php }?></span>
+} else {
+echo $_smarty_tpl->tpl_vars['_passive']->value;
+}?></span>
                     </td> 
                 </tr>  
                 <?php
@@ -82,7 +86,8 @@ $_smarty_tpl->tpl_vars['cust'] = $foreach_cust_Sav;
 }
 ?>
               </tbody>
-            </table>  
+            </table> 
+	    <div class="loader" style="display:none"><img src="img/load.gif" /></div>
 	</div>
  </div>
 <!-- /Last customers -->

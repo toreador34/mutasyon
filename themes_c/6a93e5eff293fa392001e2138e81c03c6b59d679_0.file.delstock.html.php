@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-03 16:29:51
+<?php /* Smarty version 3.1.27, created on 2016-04-20 22:18:05
          compiled from "/var/www/html/mutasyon/themes/default/stock/delstock.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:114700137757011acf5b3da7_89422263%%*/
+/*%%SmartyHeaderCode:9150050125717d5eddfa184_24088771%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '114700137757011acf5b3da7_89422263',
+  'nocache_hash' => '9150050125717d5eddfa184_24088771',
   'variables' => 
   array (
     's' => 0,
@@ -23,13 +23,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57011acf5bb283_57056036',
+  'unifunc' => 'content_5717d5ede00d38_16325855',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57011acf5bb283_57056036')) {
-function content_57011acf5bb283_57056036 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5717d5ede00d38_16325855')) {
+function content_5717d5ede00d38_16325855 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '114700137757011acf5b3da7_89422263';
+$_smarty_tpl->properties['nocache_hash'] = '9150050125717d5eddfa184_24088771';
 ?>
 <div class="collapse" id="delproduct">
 	<form action="delproduct.php" method="post" class="delproductform">

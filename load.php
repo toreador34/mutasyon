@@ -32,15 +32,11 @@ if(isset($_SESSION['login']))
 		{
 		      if($view == "grid")
 		      {
-			    setcookie("view",'grid', time() - 3600);
-			    setcookie("view",'list', time() - 3600);
-			    setcookie("view", "grid");
+			    $_SESSION["view"] = "grid";
 		      }
 		      if($view == "list")
 		      {
-			    setcookie("view",'grid', time() - 3600);
-			    setcookie("view",'list', time() - 3600);
-			    setcookie("view", "list");
+			    $_SESSION["view"] = "list";
 		      }
 		}
 		

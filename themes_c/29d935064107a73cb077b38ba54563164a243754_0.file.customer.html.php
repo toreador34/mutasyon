@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-16 20:20:23
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:37:47
          compiled from "/var/www/html/mutasyon/themes/default/customer.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:214675632656e9a3e701f795_67872275%%*/
+/*%%SmartyHeaderCode:7253295155719fefbbe8460_20084801%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '29d935064107a73cb077b38ba54563164a243754' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/customer.html',
-      1 => 1458152418,
+      1 => 1458160934,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '214675632656e9a3e701f795_67872275',
+  'nocache_hash' => '7253295155719fefbbe8460_20084801',
   'variables' => 
   array (
     '_customers' => 0,
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'customer' => 0,
     'row' => 0,
     'main_img' => 0,
+    '_active' => 0,
+    '_passive' => 0,
     '_add_invoice' => 0,
     '_delete' => 0,
     'page' => 0,
@@ -29,14 +31,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56e9a3e70727c6_21831741',
+  'unifunc' => 'content_5719fefbd042d2_41324223',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56e9a3e70727c6_21831741')) {
-function content_56e9a3e70727c6_21831741 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719fefbd042d2_41324223')) {
+function content_5719fefbd042d2_41324223 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/mutasyon/libs/plugins/modifier.truncate.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '214675632656e9a3e701f795_67872275';
+$_smarty_tpl->properties['nocache_hash'] = '7253295155719fefbbe8460_20084801';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
@@ -50,9 +52,9 @@ echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->c
 <!--/Breadcrumb-->
       <div class="col-xs-12">
 	    <div class="row panel-heading" style="background:#000">
-		  <span class="pull-left" style="font-weight:bold;color:#fff">
+		  <span class="pull-left">
 			<a data-toggle="collapse" href="#addcustomer" aria-expanded="false" title="<?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
-"><i class="glyphicon glyphicon-plus"></i> <?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
+" style="font-weight:bold;color:#fff"><i class="glyphicon glyphicon-plus"></i> <?php echo $_smarty_tpl->tpl_vars['_addcustomer']->value;?>
 </a>
 		  </span>
 	    </div>
@@ -69,9 +71,9 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 $foreach_row_Sav = $_smarty_tpl->tpl_vars['row'];
 ?>
 	    <div class="col-sm-3 col-xs-11 margin-top">
-		  <div class="panel <?php if ($_smarty_tpl->tpl_vars['row']->value['cust_status'] == 1) {?>panel-blue<?php } else { ?>panel-default<?php }?>" style="background:#fff;">
+		  <div class="panel <?php if ($_smarty_tpl->tpl_vars['row']->value['cust_status'] == 1) {?>panel-grey<?php } else { ?>panel-default<?php }?>" style="background:#fff;">
 			  <div class="panel-heading"><a href="custdetail.php?cid=<?php echo $_smarty_tpl->tpl_vars['row']->value['cust_id'];?>
-" style="color:#fff;font-weight:bold"><?php echo $_smarty_tpl->tpl_vars['row']->value['cust_name'];?>
+" style="color:<?php if ($_smarty_tpl->tpl_vars['row']->value['cust_status'] == 1) {?>#fff<?php } else { ?>#aaa<?php }?>;font-weight:bold"><?php echo $_smarty_tpl->tpl_vars['row']->value['cust_name'];?>
 </a></div>
 			  <div class="panel-body pan">
 					      <div class="custlistimage col-sm-5" style="padding:5px">
@@ -105,6 +107,19 @@ echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['row']->value['cust_web'],2
 							  </tbody>
 						      </table>
 						      <span class="btncustlist">
+							  <?php if ($_smarty_tpl->tpl_vars['row']->value['cust_status'] == 1) {?>
+								<span class="status" active="<?php echo $_smarty_tpl->tpl_vars['row']->value['cust_id'];?>
+" status="0" title="<?php echo $_smarty_tpl->tpl_vars['_active']->value;?>
+">
+									<i class="fa fa-check-circle-o" style="color:white;font-size: 20px;cursor:pointer"></i>
+								</span>
+							  <?php } else { ?>
+								<span class="status" active="<?php echo $_smarty_tpl->tpl_vars['row']->value['cust_id'];?>
+" status="1" title="<?php echo $_smarty_tpl->tpl_vars['_passive']->value;?>
+">
+									<i class="fa fa-ban" style="color:#aaa;font-size: 15px;cursor:pointer"></i>
+								</span>
+							  <?php }?>
 							  <a class="h5" href="addinvoice.php?cid=<?php echo $_smarty_tpl->tpl_vars['row']->value['cust_id'];?>
 " title="<?php echo $_smarty_tpl->tpl_vars['_add_invoice']->value;?>
 ">
@@ -172,7 +187,7 @@ $_smarty_tpl->tpl_vars['i'] = $foreach_i_Sav;
 >
 $(function(){
 
-  // Add Customer
+  // Delete Customer
   $(document).on("click", ".delcustomer", function(event){
     var delid = $(this).attr("delid");
     if(confirm("<?php echo $_smarty_tpl->tpl_vars['_delete_customer_message']->value;?>
@@ -190,6 +205,21 @@ $(function(){
       else{
 	  return false;
       }
+  });
+
+  // Delete Customer
+  $(document).on("click", ".status", function(event){
+    var status = $(this).attr("status");
+    var active = $(this).attr("active");
+    $.ajax({
+      type:'POST',
+      url: 'customer.php',
+	  data : { 'status':status, 'active':active },
+	  success:function(t){
+	      $("div.work-inf").addClass("display-block");
+	      $("div.work-inf").html(t);
+	  }
+    });
   });
 
 // End of function

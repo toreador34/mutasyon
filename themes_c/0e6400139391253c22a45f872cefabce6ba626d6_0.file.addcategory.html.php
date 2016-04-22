@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-03 16:29:09
+<?php /* Smarty version 3.1.27, created on 2016-04-20 22:08:01
          compiled from "/var/www/html/mutasyon/themes/default/category/addcategory.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:181879672157011aa6018298_40211573%%*/
+/*%%SmartyHeaderCode:17086179005717d391e679f2_43360989%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '181879672157011aa6018298_40211573',
+  'nocache_hash' => '17086179005717d391e679f2_43360989',
   'variables' => 
   array (
     '_add_category' => 0,
@@ -25,13 +25,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57011aa6023861_49013770',
+  'unifunc' => 'content_5717d391e75035_11110422',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57011aa6023861_49013770')) {
-function content_57011aa6023861_49013770 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5717d391e75035_11110422')) {
+function content_5717d391e75035_11110422 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '181879672157011aa6018298_40211573';
+$_smarty_tpl->properties['nocache_hash'] = '17086179005717d391e679f2_43360989';
 ?>
 <div class="collapse topwind" id="addcategory">
       <div class="panel panel-green" style="background:#fff;">

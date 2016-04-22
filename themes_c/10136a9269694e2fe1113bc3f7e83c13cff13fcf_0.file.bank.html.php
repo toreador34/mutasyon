@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-25 16:12:16
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:38:15
          compiled from "/var/www/html/mutasyon/themes/default/settings/bank.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:7233338356f547408a2909_00856517%%*/
+/*%%SmartyHeaderCode:8110987425719ff173d0572_04744838%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '7233338356f547408a2909_00856517',
+  'nocache_hash' => '8110987425719ff173d0572_04744838',
   'variables' => 
   array (
     '_addbank' => 0,
@@ -34,13 +34,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f547409019c6_58028456',
+  'unifunc' => 'content_5719ff174224b4_63128177',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f547409019c6_58028456')) {
-function content_56f547409019c6_58028456 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719ff174224b4_63128177')) {
+function content_5719ff174224b4_63128177 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '7233338356f547408a2909_00856517';
+$_smarty_tpl->properties['nocache_hash'] = '8110987425719ff173d0572_04744838';
 ?>
 <div class="btn btn-primary" data-toggle="collapse" href="#addbank" aria-expanded="false"><?php echo $_smarty_tpl->tpl_vars['_addbank']->value;?>
 </div>

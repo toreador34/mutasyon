@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-31 17:47:32
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:46:13
          compiled from "/var/www/html/mutasyon/themes/default/body.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:87974594656fd3884592af7_58660692%%*/
+/*%%SmartyHeaderCode:2061752059571a00f51afa39_66499680%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e5fbb860ff1a3bd3ca0cc193b7d52341c3554a2f' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/body.html',
-      1 => 1457205551,
+      1 => 1461321966,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '87974594656fd3884592af7_58660692',
+  'nocache_hash' => '2061752059571a00f51afa39_66499680',
   'variables' => 
   array (
     'screen' => 0,
@@ -38,20 +38,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56fd38845fbe10_83030019',
+  'unifunc' => 'content_571a00f5227423_73138603',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56fd38845fbe10_83030019')) {
-function content_56fd38845fbe10_83030019 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_571a00f5227423_73138603')) {
+function content_571a00f5227423_73138603 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '87974594656fd3884592af7_58660692';
+$_smarty_tpl->properties['nocache_hash'] = '2061752059571a00f51afa39_66499680';
 echo $_smarty_tpl->getSubTemplate ('themes/default/header.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
 
 <div class="container body-bg">
     <div class ="row body-row">
 	  <div class="container">
-		  <div class="col-sm-12">
+		  <div class="col-xs-12">
 			  <div class="col-md-4 col-sm-6">
 				    <?php echo $_smarty_tpl->getSubTemplate ('themes/default/admin/profile.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0);
 ?>
@@ -126,6 +126,24 @@ $_smarty_tpl->tpl_vars['o'] = $foreach_o_Sav;
 
 <?php echo '<script'; ?>
 >
+//Scroll
+$(".customer").scroll(function(){
+      var scroll=$(this).scrollTop();
+      var uzunluk=$(".customer table").height()-$(this).height()+20;
+
+      if(scroll == uzunluk)
+      {
+	  $(".loader").show();
+	  var lastid = $(".devam").find("tr:last").attr("cid");
+	  $.post("load.php", {
+	      lastcustid: lastid
+	  }, function (t) {
+	      $(".loader").hide();
+	      $(".devam").append(t);
+	  });
+      }
+});
+
 //For complete event
 $('.eventcomp').on('click', function(){
   if($(this).is(':checked'))

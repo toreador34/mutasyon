@@ -30,35 +30,25 @@ if(isset($_SESSION['login']))
 		  $cats[] = $c;
 		}
 		$acategories = $db->query("SELECT * FROM category main WHERE category_sub <> 0", PDO::FETCH_ASSOC);
-		if($cid)
-		{
-		      $prtotal = $db->query("SELECT COUNT(stock_id) AS prtotal FROM stock WHERE stock_category_id = '".$cid."' ");
-		}
-		else
-		{
-		      $prtotal = $db->query("SELECT COUNT(stock_id) AS prtotal FROM stock");
-		}
-		foreach($prtotal as $prt)
-		{
-		  $stocktotal = $prt["prtotal"];
-		}
-		//Total page 
-		$pagetotal = ceil($stocktotal/4);
-		if($page)
-		{
-		  $start = ($page-1)*4;
-		}
-		else
-		{
-		  $start = 0;
-		}
 		$getir = array();
 		foreach ($acategories as $ac)
 		{
-		  $getir[] = $ac;
+		      $getir[] = $ac;
 		}
 		
+		//Pages
+		if($page)
+		{
+		      $start = ($page-1)*12;
+		}
+		else
+		{
+		      $start = 0;
+		}
+		$pages = "LIMIT ".$start.", 12";
 		
+		
+		//Checks
 		if(!$s)
 		{
 		      $s = 0;
@@ -67,34 +57,47 @@ if(isset($_SESSION['login']))
 		{
 		      $s = 10;
 		}
+		
 		if(!$cid)
 		{
 		      $cid = "";
 		}
-		else if($cid)
+		else
 		{
 		      $cid = "AND stock_category_id = ".$cid;
 		}
+		
 		if(!$stock)
 		{
 		      $stock = "";
 		}
-		else if($stock == "outstock")
+		else
 		{
-		      $stock = "AND stock_amount = 0";
-		}
-		else if($stock == "instock")
-		{
-		      $stock = "AND stock_amount <> 0";
+		      if($stock == "outstock")
+		      {
+			    $stock = "AND stock_amount = 0";
+		      }
+		      if($stock == "instock")
+		      {
+			    $stock = "AND stock_amount <> 0";
+		      }
 		}
 
-		$stocklist = $db->query('SELECT *, (SELECT SUM(ip_id) FROM invoicedproducts WHERE ip_stock_id = stock_id) AS total FROM stock
+		$stocklist = $db->query('SELECT *, (SELECT COALESCE(SUM(ip_id), 0) FROM invoicedproducts WHERE ip_stock_id = stock_id) AS total FROM stock
 		LEFT JOIN seller ON stock_seller_id = seller_id
 		LEFT JOIN tax ON stock_tax_id = tax_id
-		INNER JOIN category ON stock_category_id = category_id
+		LEFT JOIN category ON stock_category_id = category_id
 		LEFT JOIN images ON images_stock_id = stock_id 
-		WHERE (SELECT SUM(ip_id) FROM invoicedproducts WHERE ip_stock_id = stock_id) > '.$s.' '.$stock.' '.$cid.' LIMIT '.$start.' , 12 ');
-	
+		WHERE (SELECT COALESCE(SUM(ip_id), 0) FROM invoicedproducts WHERE ip_stock_id = stock_id) >= '.$s.' '.$stock.' '.$cid.' '.$pages.' ');
+		$stocklist2 = $db->query('SELECT *, (SELECT COALESCE(SUM(ip_id), 0) FROM invoicedproducts WHERE ip_stock_id = stock_id) AS total FROM stock
+		LEFT JOIN seller ON stock_seller_id = seller_id
+		LEFT JOIN tax ON stock_tax_id = tax_id
+		LEFT JOIN category ON stock_category_id = category_id
+		LEFT JOIN images ON images_stock_id = stock_id 
+		WHERE (SELECT COALESCE(SUM(ip_id), 0) FROM invoicedproducts WHERE ip_stock_id = stock_id) >= '.$s.' '.$stock.' '.$cid.' ');
+		$spages = $stocklist2->rowCount();
+		$pagetotal = ceil($spages/12);
+
 		$smarty->assign(array(
 		  "categories"	=> $cats,
 		  "acategories"	=> $getir,

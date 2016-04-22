@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-25 16:12:16
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:38:15
          compiled from "/var/www/html/mutasyon/themes/default/settings/addtaxprofit.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:127504508756f547409940b7_11135844%%*/
+/*%%SmartyHeaderCode:10643104305719ff174ae175_15473454%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '127504508756f547409940b7_11135844',
+  'nocache_hash' => '10643104305719ff174ae175_15473454',
   'variables' => 
   array (
     '_add_tax' => 0,
@@ -28,13 +28,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56f547409c3521_98192186',
+  'unifunc' => 'content_5719ff174cf5c3_52782893',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56f547409c3521_98192186')) {
-function content_56f547409c3521_98192186 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719ff174cf5c3_52782893')) {
+function content_5719ff174cf5c3_52782893 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '127504508756f547409940b7_11135844';
+$_smarty_tpl->properties['nocache_hash'] = '10643104305719ff174ae175_15473454';
 ?>
 <div class="addtaxprofitright col-sm-12"><!--Right Side-->
     	<div class="row"><!--Tax-->

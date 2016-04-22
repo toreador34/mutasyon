@@ -10,12 +10,16 @@
 .nav{
   padding-left:5px;
 } 
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding: 0;
+}
 /* List view */
 .vlist img.vprimage {
-    border: 1px solid #eee;
+    border: none;
     height: 112px;
-    margin-left: -14px;
-    max-width: 142%;
+    margin-left: 0px;
+    width: 112px;
+    margin-top:0;
 }
 .vlist .second{
   text-align: center;
@@ -32,6 +36,12 @@
     font-weight: bold;
     font-size: 13px;
 }
+.vlist .vpricemobile{
+  text-align:center;
+}
+.vlist .vprname {
+    font-size: 12px;
+}
 .vlist .second .vdetail {
     height: 29px;
 }
@@ -47,38 +57,95 @@
   font-size:8px;
 }
 .vlist .prbox{
-  height: 115px;
+  height: 114px;
 }
 .vlist .vbestseller {
     width: 24px;
     position: absolute;
     top: 0px;
-    margin-left: -13px;
+    margin-left: -4px;
     opacity: 0.9;
 }
 /* Grid View */
 .vgrid .prbox {
-    height: 372px;
+    min-height: 266px;
+    margin-right: 5px;
+    height: auto;
 }
 .vgrid .second .vlabels {
-    right: 17px;
-    top: -187px;
+    right: 1px;
+    top: -115px;
+    position:inherit;
 }
 .vgrid img.vprimage {
-    border-bottom: 1px solid #ddd;
     margin-top: 3px;
+    max-width: 100%;
+    height: auto;
+    margin-left: 0px;
 }
 .vgrid .vprname {
-    font-size: 19px;
+    font-size: 13px;
 }
 .vgrid .second .vdetail {
-    font-size: 14px;
-    height: 67px;
+    font-size: 12px;
+    height: 61px;
+    margin-top: 7px;
 }
 .vgrid .vbestseller {
-    width: 48px;
+    top: -1px;
+    left: -3px;
 }
 .vgrid .third .vprice {
     bottom: -39px;
     right: 17px;
+}
+/* Filter for stock */
+.menu-bar {
+    position: absolute;
+    top: 20px;    
+    left: 50%;
+    height: 14px;
+    margin-left: -10px;
+}
+
+.bars {
+    display: block;
+    width: 20px;
+    height: 3px;    
+    background-color: #333;
+    box-shadow: 0 5px 0 #333, 0 10px 0 #333;
+}
+
+.menu {
+    display: none; 
+    width: 100%;
+    padding: 30px 10px 50px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+}
+.menu ul {
+    margin-bottom: 0;
+}
+.menu a {
+    color: #333; 
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+.menu a:hover {
+    text-decoration: none;
+    opacity: 1;
+}
+.prfilter {
+    height: auto;
+    min-height: 48px;
+    text-align:center;
+}
+.prfilter li {
+    float: none;
+    margin-left: 5px;
+    font-size: 11px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 3px;
 }

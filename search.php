@@ -86,8 +86,7 @@ if(isset($_SESSION['login']))
 			      LEFT JOIN invoice ON payment_invoice_id = invoice_id
 			      INNER JOIN bank ON payment_bank_id = bank_id
 			      INNER JOIN admin ON payment_admin_id = admin_id
-			      INNER JOIN paytype ON payment_type = paytype_id
-			      WHERE CONVERT(paytype_name USING utf8) LIKE '%$topsearch%' OR CONVERT(name_surname USING utf8) LIKE '%$topsearch%' OR CONVERT(bank_name USING utf8) LIKE '%$topsearch%' OR CONVERT(payment_desc USING utf8) LIKE '%$topsearch%' OR CONVERT(payment_date USING utf8) LIKE '%$topsearch%' OR CONVERT(cust_name USING utf8) LIKE '%$topsearch%'
+			      WHERE CONVERT(name_surname USING utf8) LIKE '%$topsearch%' OR CONVERT(bank_name USING utf8) LIKE '%$topsearch%' OR CONVERT(payment_desc USING utf8) LIKE '%$topsearch%' OR CONVERT(payment_date USING utf8) LIKE '%$topsearch%' OR CONVERT(cust_name USING utf8) LIKE '%$topsearch%'
 			      ");
 			      $countpi = $paymentlist->rowCount();
 			      

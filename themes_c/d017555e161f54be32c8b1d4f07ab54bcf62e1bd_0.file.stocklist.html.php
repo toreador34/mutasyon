@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-04-03 16:26:39
+<?php /* Smarty version 3.1.27, created on 2016-04-22 13:37:20
          compiled from "/var/www/html/mutasyon/themes/default/invoice/stocklist.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:146975023957011a0f5c0f87_52975400%%*/
+/*%%SmartyHeaderCode:6177745745719fee0e53789_74129174%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '146975023957011a0f5c0f87_52975400',
+  'nocache_hash' => '6177745745719fee0e53789_74129174',
   'variables' => 
   array (
     '_add_stock' => 0,
@@ -25,13 +25,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_57011a0f5ce113_54457212',
+  'unifunc' => 'content_5719fee0e66302_62352202',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_57011a0f5ce113_54457212')) {
-function content_57011a0f5ce113_54457212 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5719fee0e66302_62352202')) {
+function content_5719fee0e66302_62352202 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '146975023957011a0f5c0f87_52975400';
+$_smarty_tpl->properties['nocache_hash'] = '6177745745719fee0e53789_74129174';
 ?>
 <div class="collapse topwind" id="stocklist">
   <div>

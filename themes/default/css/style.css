@@ -978,15 +978,14 @@ img.admin{
     background: #fff;
     height: 48px;
     border: 4px double #eee;
-    margin-left: 15px;
 }
 .firstli {
-    margin-left:-49px !important
+/*     margin-left:-20px !important */
 }
 .prfilter li {
     float: left;
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 5px;
     font-size: 14px;
     border: 1px solid #eee;
     padding-left: 7px;
@@ -997,7 +996,7 @@ img.admin{
     cursor:pointer;
 }
 .activeli a{
-  color:#fff;
+  color:#fff !important;
 }
 .activeli {
     background: #000;
@@ -1018,9 +1017,17 @@ img.admin{
 }
 
 /* List view */
+.vlist{
+  padding-left:3px;
+  padding-right:20px;
+}
 .vlist img.vprimage{
-    max-width: 100%;
+    max-width: 97%;
     height: auto;
+    border: 2px solid #eee;
+    padding: 3px;
+    margin-left: -14px;
+    margin-top: 1px;
 }
 .vlist .second .ablock{
   position:absolute;
@@ -1054,7 +1061,6 @@ img.admin{
     position: absolute;
     top: 0px;
     margin-left: -13px;
-    opacity: 0.9;
 }
 .vlist .vpricemobile {
     height: 30px;
@@ -1107,7 +1113,6 @@ img.admin{
     position: absolute;
     top: -2px;
     left: 1px;
-    opacity: 0.7;
 }
 .vgrid .third .vprice {
     right: 18px;

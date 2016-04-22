@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.27, created on 2016-03-31 17:47:32
+<?php /* Smarty version 3.1.27, created on 2016-04-21 15:35:03
          compiled from "/var/www/html/mutasyon/themes/default/widget/lastinvoice.html" */ ?>
 <?php
-/*%%SmartyHeaderCode:84615980256fd3884774909_56900629%%*/
+/*%%SmartyHeaderCode:6217158135718c8f741f936_23152405%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f849bee0249866810f780595cd1c58540cbe4f5c' => 
     array (
       0 => '/var/www/html/mutasyon/themes/default/widget/lastinvoice.html',
-      1 => 1456420643,
+      1 => 1460230843,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '84615980256fd3884774909_56900629',
+  'nocache_hash' => '6217158135718c8f741f936_23152405',
   'variables' => 
   array (
     'screen' => 0,
@@ -23,23 +23,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.27',
-  'unifunc' => 'content_56fd38847fdd88_30382343',
+  'unifunc' => 'content_5718c8f74916d2_94503348',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_56fd38847fdd88_30382343')) {
-function content_56fd38847fdd88_30382343 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5718c8f74916d2_94503348')) {
+function content_5718c8f74916d2_94503348 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '84615980256fd3884774909_56900629';
+$_smarty_tpl->properties['nocache_hash'] = '6217158135718c8f741f936_23152405';
 ?>
 <div class="panel">
       <div class="panel-body">
 	  <div class="row">
-	      <div class="col-md-8">
+	      <div class="col-sm-9">
 		  <?php if ($_smarty_tpl->tpl_vars['screen']->value == 'computer') {?>
 		  <div id="instocks"></div>
 		  <?php }?>
 	      </div>
-	      <div class="col-md-4">
+	      <div class="col-sm-3" style="overflow:hidden;height:360px">
 		  <h4 class="mbm"><?php echo $_smarty_tpl->tpl_vars['_last_invoices']->value;?>
 </h4>
 		  <?php
@@ -55,7 +55,6 @@ $foreach_b_Sav = $_smarty_tpl->tpl_vars['b'];
 ?>
 			<?php if ($_smarty_tpl->tpl_vars['b']->value['invoice_providers'] == 0) {?>
 			      <?php if ($_smarty_tpl->tpl_vars['b']->value['invtotal'] != null || $_smarty_tpl->tpl_vars['b']->value['invtotal'] != '' || $_smarty_tpl->tpl_vars['b']->value['invtotal'] != 0) {?>
-				    <?php if ($_smarty_tpl->tpl_vars['b']->value['invtotal'] != ($_smarty_tpl->tpl_vars['b']->value['paytotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])) {?>
 					  <span class="task-item"><a href="invoicedetail.php?iid=<?php echo $_smarty_tpl->tpl_vars['b']->value['invoice_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['b']->value['invoice_no'];?>
 </a><small class="pull-right text-muted"><?php echo round(($_smarty_tpl->tpl_vars['b']->value['paytotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['invtotal']*100);?>
@@ -66,11 +65,9 @@ $foreach_b_Sav = $_smarty_tpl->tpl_vars['b'];
 %;" class="progress-bar <?php if (round(($_smarty_tpl->tpl_vars['b']->value['paytotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['invtotal']*100) == 100) {?> progress-bar-success <?php } elseif (round(($_smarty_tpl->tpl_vars['b']->value['paytotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['invtotal']*100) < 51) {?> progress-bar-yellow <?php } elseif ($_smarty_tpl->tpl_vars['b']->value['invoice_cancelled'] == 1) {?> progress-bar-red <?php } else { ?> progress-bar-blue<?php }?>">
 					      </div>
 					  </div>
-				    <?php }?>
 			      <?php }?>
 			<?php } else { ?>
 			      <?php if ($_smarty_tpl->tpl_vars['b']->value['servtotal'] != null || $_smarty_tpl->tpl_vars['b']->value['servtotal'] != '' || $_smarty_tpl->tpl_vars['b']->value['servtotal'] != 0) {?>
-				    <?php if ($_smarty_tpl->tpl_vars['b']->value['servtotal'] != ($_smarty_tpl->tpl_vars['b']->value['payservtotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])) {?>
 					  <span class="task-item"><a href="invoicedetail.php?seid=<?php echo $_smarty_tpl->tpl_vars['b']->value['invoice_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['b']->value['invoice_no'];?>
 </a><small class="pull-right text-muted"><?php echo round(($_smarty_tpl->tpl_vars['b']->value['payservtotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['servtotal']*100);?>
@@ -81,7 +78,6 @@ $foreach_b_Sav = $_smarty_tpl->tpl_vars['b'];
 %;" class="progress-bar <?php if (round(($_smarty_tpl->tpl_vars['b']->value['payservtotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['servtotal']*100) == 100) {?> progress-bar-success <?php } elseif (round(($_smarty_tpl->tpl_vars['b']->value['payservtotal']+$_smarty_tpl->tpl_vars['b']->value['invoice_discount'])/$_smarty_tpl->tpl_vars['b']->value['servtotal']*100) < 51) {?> progress-bar-yellow <?php } elseif ($_smarty_tpl->tpl_vars['b']->value['service_cancelled'] == 1) {?> progress-bar-red <?php } else { ?> progress-bar-blue<?php }?>">
 					      </div>
 					  </div>
-				    <?php }?>
 			      <?php }?>
 			<?php }?>
 		  <?php
