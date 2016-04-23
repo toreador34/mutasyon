@@ -96,10 +96,6 @@ Versiyon Alfa 3
 9. Stok ürünleri sayfasına **ürünü satın al** ve **ürünü sat** kısayolu eklendi
 
 
-NOT!
-====
-Mutasyon halen geliştirilme aşamasındadır ve Allah nasip ettiği sürece geliştirmeyi devam ettirmek istiyorum. Lütfen yorum yaparak konuya katkı sununuz böylece daha fazla gelişmesi için yardımcı olabileceksiniz. Şimdiden teşekkür ederim
-
 Ekran Görüntüleri
 =================
 ![ ](https://imagizer.imageshack.us/v2/348x379q90/922/NG4h9e.png)
