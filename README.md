@@ -1,5 +1,5 @@
-MUTASYON (**Mu**steri **Ta**kip ve **S**tok **Yon**etimi)
-=========================================================
+MUTASYON (*Mu*steri *Ta*kip ve *S*tok *Yon*etimi)
+=================================================
 
 Mutasyon Nedir?
 ===============
