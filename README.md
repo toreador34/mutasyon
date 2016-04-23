@@ -6,61 +6,61 @@ Mutasyon Nedir?
 Mutasyon PHP, JQUERY, CSS ve MYSQL kullanılarak oluşturulmuş WEB TABANLI bir muhasebe programıdır. Tasarımında *Bootstrap* kullanıldığı için Cep telefonu ve tabletlere uyumludur.
 
 Neden Mutasyon?
--Mutasyon web tabanlı olduğu için her yerden ulaşmanız mümkündür. Böylece şirkette olsanız yada olmasanız da bilgilere kolayca ulaşabilirsiniz.
--Mutasyon PHP ve MySQL tabanlı olduğu için güvenlidir.
--İsterseniz localhost kurulumu yaparak ta sadece şirketinizin bilgisayarından ulaşmasını sağlayabilirsiniz.
--**Mutasyon tamamen ücretsizdir**.
+- Mutasyon web tabanlı olduğu için her yerden ulaşmanız mümkündür. Böylece şirkette olsanız yada olmasanız da bilgilere kolayca ulaşabilirsiniz.
+- Mutasyon PHP ve MySQL tabanlı olduğu için güvenlidir.
+- İsterseniz localhost kurulumu yaparak ta sadece şirketinizin bilgisayarından ulaşmasını sağlayabilirsiniz.
+- **Mutasyon tamamen ücretsizdir**.
 
 Mutasyon Ne İşe Yarar?
 ======================
 
 Müşteri Yönetimi
-----------------
+----------------
 Buradan,
--Müşteri ekleyebilir
--Müşterinizin bilgilerini takip edebilir
--Müşterinin hangi ürünleri aldığını izleyebilir
--Müşterinin ödemelerini kontrol edebilir
--Bu müşteri için faturalar düzenleyebilirsiniz
+- Müşteri ekleyebilir
+- Müşterinizin bilgilerini takip edebilir
+- Müşterinin hangi ürünleri aldığını izleyebilir
+- Müşterinin ödemelerini kontrol edebilir
+- Bu müşteri için faturalar düzenleyebilirsiniz
 
 Stok Yönetimi
 -------------
 Bu menüden,
--Ürünlerinizi kategorilere ekleyebilir
--Bu ürünlerinizin resim, stok ve fiyat gibi bilgilerini kontrol edebilir
--Hangi ürünün kaç defa, kime satıldığı yada ne kadar kar/zarar sağladığı gibi istatiksel bilgiler takip edilebilir
--Ürün için barkod oluşturabilir ve kolayca yazdırabilirsiniz
+- Ürünlerinizi kategorilere ekleyebilir
+- Bu ürünlerinizin resim, stok ve fiyat gibi bilgilerini kontrol edebilir
+- Hangi ürünün kaç defa, kime satıldığı yada ne kadar kar/zarar sağladığı gibi istatiksel bilgiler takip edilebilir
+- Ürün için barkod oluşturabilir ve kolayca yazdırabilirsiniz
 
 Fatura Yönetimi
 ---------------
 Sayfasında,
--Hizmet faturaları düzenleyebilir
--Faturaların ödeme miktarını takip edebilir
--Bu faturaları kolayca yazdırabilirsiniz
--Ürün iadeleri için faturaları kolayca iptal edebilir
--Faturanın ödenip ödenmediği yada ne kadarının ödendiği gibi bilgilere ulaşabilirsiniz.
+- Hizmet faturaları düzenleyebilir
+- Faturaların ödeme miktarını takip edebilir
+- Bu faturaları kolayca yazdırabilirsiniz
+- Ürün iadeleri için faturaları kolayca iptal edebilir
+- Faturanın ödenip ödenmediği yada ne kadarının ödendiği gibi bilgilere ulaşabilirsiniz.
 
 Ödemeler
 --------
--Ödemelerinizi ödemeler sayfasından kolayca görebilirsiniz
--Kimin ne zaman, ne kadar ödediği,
--Para giriş-çıkışları gibi ödemelere ait tüm bilgileri görüntüleyebilirsiniz.
--Para giriş veya çıkışı ile ilgili makbuz da düzenleyebilirsiniz.
+- Ödemelerinizi ödemeler sayfasından kolayca görebilirsiniz
+- Kimin ne zaman, ne kadar ödediği,
+- Para giriş-çıkışları gibi ödemelere ait tüm bilgileri görüntüleyebilirsiniz.
+- Para giriş veya çıkışı ile ilgili makbuz da düzenleyebilirsiniz.
 
 Diğerleri
 ---------
--Birden fazla yönetici atayabilir böylece iş bölümü ile tüm şirket işlerini kolayca halledebilirsiniz.
--Yapılacaklar listesi oluşturabilir ve bunları takip edebilirsiniz.
--Highchart ile şirketiniz hakkında bilgileri grafiklere dökebilirsiniz.
--Çalıştığınız başka firmalar hakkında bilgiler oluşturabilir ve bu firmalara aktardığınız paraları görebilir onlara olan borçlarınızı takip edebilirsiniz.
--Çoklu dil desteği
+- Birden fazla yönetici atayabilir böylece iş bölümü ile tüm şirket işlerini kolayca halledebilirsiniz.
+- Yapılacaklar listesi oluşturabilir ve bunları takip edebilirsiniz.
+- Highchart ile şirketiniz hakkında bilgileri grafiklere dökebilirsiniz.
+- Çalıştığınız başka firmalar hakkında bilgiler oluşturabilir ve bu firmalara aktardığınız paraları görebilir onlara olan borçlarınızı takip edebilirsiniz.
+- Çoklu dil desteği
 ve sayamadığım birçok özellik
 
 Kullanımı
 =========
--Dosyaları indirin ve hepsini FTP adresinize yükleyiniz
--www.SİZİNSİTE.com/install çalıştırınız
--Adımları takip ediniz
+- Dosyaları indirin ve hepsini FTP adresinize yükleyiniz
+- www.SİZİNSİTE.com/install çalıştırınız
+- Adımları takip ediniz
 
 Neler Yeni?
 ===========
