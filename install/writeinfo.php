@@ -15,6 +15,8 @@ $username = @$_POST["username"];
 $namesurname = @$_POST["namesurname"];
 $city = @$_POST["city"];
 $old = @$_POST["old"];
+if($old == "")
+	$old = date("Y-m-d H:i:s");
 
       if(Check::email($email) == 0)
       {
