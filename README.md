@@ -59,8 +59,10 @@ ve sayamadığım birçok özellik
 Kullanımı
 =========
 - Dosyaları indirin ve hepsini FTP adresinize yükleyiniz
-- www.SİZİNSİTE.com/install çalıştırınız
-- Adımları takip ediniz
+- themes_c ve install/themes_c dizinlerine 777 izni verin.
+- Dosyaları yüklediğiniz alan adını tarayıcınızla ziyaret edin.
+- Kurulum yönergelerini takip ederek kurulumu tamamlayın.
+- Giriş sayfası ile giriş yaparak kullanmaya başlayabilirsiniz.
 
 Neler Yeni?
 ===========
