@@ -17,6 +17,9 @@ $password = Check::getValue("passwd");
 				echo '<script type="text/javascript">window.location.href="index.php";</script>';
 				
 			}
+			else{
+			  $smarty->display(theme_base.'login.html');
+			}
 		}
 		else{
 		  $smarty->display(theme_base.'login.html');
