@@ -2,6 +2,8 @@ https://github.com/worlds/mutasyon2
 Buradan yeni versiyonu görebilirsiniz bana yardım etmek isteyen arkadaşları bekliyorum
 
 
+NOT: Mutasyonun bu versiyonu Php 7'de bazı sıkıntılar vermektedir. Bu nedenle bu versiyon için lütfen Php'nin önceki versiyonları kullanınız!
+
 MUTASYON (*Mu*steri *Ta*kip ve *S*tok *Yon*etimi)
 =================================================
 
