@@ -102,17 +102,3 @@ Versiyon Alfa 3
 7. Ürün ayrıntısı sayfasına **ürünü sat** kısayolu eklendi.
 8. Tahsilatlar sayfasına sayfalama eklendi
 9. Stok ürünleri sayfasına **ürünü satın al** ve **ürünü sat** kısayolu eklendi
-
-
-Ekran Görüntüleri
-=================
-![ ](https://imagizer.imageshack.us/v2/348x379q90/922/NG4h9e.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/923/3sz46I.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/924/e4pGY5.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/923/IWI6TP.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/921/gt9W0e.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/924/klWEpp.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/922/SMB8sL.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/921/WqOlkZ.png)
-![ ](https://imagizer.imageshack.us/v2/821x392q90/924/YZ8fAq.png)
-![ ](https://imagizer.imageshack.us/v2/821x389q90/924/6uzsqh.png)
